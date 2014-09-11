@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Bible Soap Opera Demo</title>
+        <meta name="description" content="An Interactive Audio Soap Opera">
+        <meta name="author" content="Tim Roediger">
+        <meta name="keywords" content="blah">
+        <link rel="icon shortcut" type="image/png" href="favicon.png" />
+
+        <!-- smoosh -->
+        <link rel="stylesheet" href="../min.css">
+        <!-- endsmoosh -->
+
+        <script>var bso = {}</script>
+        <!-- smoosh -->
+        <script src="../min.js"></script>
+        <!-- endsmoosh -->
+        <script>bso.start()</script>
+        
+        <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>        
+        
+    </head>
+    <body>
+
+        <div class='top-nav'>
+            <img class='logo' src='favicon.png' /><div class='logo'>Bible Soap Opera</div>
+        </div>
+
+        <div id="loading" class='screen active'>
+            <div class='screen-inner'>
+                <div class='screen-container'>
+                    <div class='screen-container-inner'>
+                        Loading episode ...
+
+                        <!--
+                        <div>
+                          <button onclick="document.getElementById('demo').play()">Play the Audio</button>
+                          <button onclick="document.getElementById('demo').pause()">Pause the Audio</button>
+                          <button onclick="document.getElementById('demo').volume+=0.1">Increase Volume</button>
+                          <button onclick="document.getElementById('demo').volume-=0.1">Decrease Volume</button>
+                        </div>   -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

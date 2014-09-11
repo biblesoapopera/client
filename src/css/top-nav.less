@@ -1,0 +1,31 @@
+.top-nav {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 40px;
+  background-color: black;
+  top: -30px;
+  transition-property: top;
+  transition-duration: .25s;
+  background-color: @nav-background-color;
+  font-size: @nav-font-size;
+  text-align: left;
+  
+}
+
+.top-nav:hover {
+  top: 0;
+}
+
+.top-nav img.logo {
+    float: left;
+    width: 20px;
+    height: 20px;
+    padding: 10px;
+}
+
+.top-nav div.logo{
+  color: @nav-logo-font-color; 
+  font-weight: @nav-logo-font-weight;
+  padding: 12.5px;
+}
