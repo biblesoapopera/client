@@ -15,35 +15,35 @@
         <link rel="stylesheet" href="../temp/min.css">
         <!-- endsmoosh -->
 
-        <script>var bso = {}</script>
+        <script>var bso = {slide: {}}</script>
         <!-- smoosh -->
         <script src="../temp/min.js"></script>
         <!-- endsmoosh -->
         <script>bso.start()</script>     
-        
     </head>
     <body>
 
         <div class='top-nav'>
-            <img class='logo' src='favicon.png' /><div class='logo'>Bible Soap Opera</div>
+            <img class='logo' src='favicon.png' /><div class='title'></div>
         </div>
 
-        <div id="loading" class='slide active'>
+        <div data-slide="loading" class='slide active'>
             <div class='slide-inner'>
                 <div class='slide-container'>
                     <div class='slide-container-inner'>
                         Loading episode ...
-
-                        <!--
-                        <div>
-                          <button onclick="document.getElementById('demo').play()">Play the Audio</button>
-                          <button onclick="document.getElementById('demo').pause()">Pause the Audio</button>
-                          <button onclick="document.getElementById('demo').volume+=0.1">Increase Volume</button>
-                          <button onclick="document.getElementById('demo').volume-=0.1">Decrease Volume</button>
-                        </div>   -->
                     </div>
                 </div>
             </div>
         </div>
-    </body>
+    
+        @@include('./js/slide/template/title.html')
+        @@include('./js/slide/template/info.html')        
+        @@include('./js/slide/template/pick.html')        
+        @@include('./js/slide/template/slider.html') 
+        @@include('./js/slide/template/sort.html') 
+        @@include('./js/slide/template/discuss.html')         
+        @@include('./js/slide/template/audio.html')         
+        
+</body>
 </html>

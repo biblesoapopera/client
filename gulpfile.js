@@ -8,6 +8,7 @@ var minifyHTML = require('gulp-minify-html');
 var livereload = require('gulp-livereload');
 var ghPages = require('gulp-gh-pages');
 var bso = require('./tools/bsoBuilder');
+var fileinclude = require('gulp-file-include');
 
 var paths = {
   distjs: ['src/js/**/*.js'],
@@ -16,7 +17,9 @@ var paths = {
   less: ['src/less/**/*.less'],
   index: ['src/index.html'],
   devcopy: ['src/icons/favicon.png'],  
-  distcopy: ['src/icons/favicon.png']
+  distcopy: ['src/icons/favicon.png'],
+  templates: ['src/js/**/*.html'],
+  slidedata: ['data/**/*.js']
 };
 
 gulp.task('dev-copy', function() {
@@ -58,6 +61,7 @@ gulp.task('dist-less', function() {
 
 gulp.task('dev-index', ['dev-js', 'dev-less'], function() {
   return gulp.src(paths.index)
+    .pipe(fileinclude({prefix: '@@', basepath: '@file'}))
     .pipe(smoosher())  
     .pipe(gulp.dest('dev'))
     .pipe(livereload())
@@ -65,6 +69,7 @@ gulp.task('dev-index', ['dev-js', 'dev-less'], function() {
 
 gulp.task('dist-index', ['dist-js', 'dist-less'], function() {
   return gulp.src(paths.index)
+    .pipe(fileinclude({prefix: '@@', basepath: '@file'}))  
     .pipe(smoosher())
     .pipe(minifyHTML({}))
     .pipe(gulp.dest('dist'))
@@ -88,14 +93,16 @@ gulp.task('dist', ['dist-index', 'dist-copy', 'dist-bso']);
 
 gulp.task('deploy', ['dist'], function(){
   gulp.src("dist/**/*")
-    .pipe(deploy(options));  
+    .pipe(ghPages());  
 });
 
 // Rerun the task when a file changes
 gulp.task('dev-watch', function() {
-  gulp.watch(paths.js, ['dev-index']);
+  gulp.watch(paths.templates, ['dev-index']);    
+  gulp.watch(paths.devjs, ['dev-index']);
   gulp.watch(paths.less, ['dev-index']);
   gulp.watch(paths.index, ['dev-index']);
+  gulp.watch(paths.slidedata, ['dev-bso', 'dev-index']);  
 });
 
 // The default task (called when you run `gulp` from cli)
