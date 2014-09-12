@@ -18,7 +18,6 @@ function build(episodePath, name, destPath){
 
     fs.writeFile(path.join(destPath, name + '.bso'), Buffer.concat([lengthBuffer, slidesBuffer, audioBuffer]), function(err){
       if (err) console.log(err);
-      console.log('bso done');
     })
   })
 }
@@ -35,7 +34,7 @@ function bso(destPath){
 		  if (err) console.log(err);
 
 		  if (stats.isDirectory()){
-			build(episodePath, dir, destPath);
+			build(episodePath, file, destPath);
 		  }
 		})
 	  })

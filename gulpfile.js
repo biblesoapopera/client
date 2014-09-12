@@ -7,15 +7,27 @@ var smoosher = require('gulp-smoosher');
 var minifyHTML = require('gulp-minify-html');
 var livereload = require('gulp-livereload');
 var ghPages = require('gulp-gh-pages');
-var bso = require('build/bsoBuilder');
+var bso = require('./tools/bsoBuilder');
 
 var paths = {
   distjs: ['src/js/**/*.js'],
   devjs: ['src/js/**/*.js', 'tools/livereload.js'],
   mainless: ['src/less/main.less'],
   less: ['src/less/**/*.less'],
-  index: ['src/index.html']
+  index: ['src/index.html'],
+  devcopy: ['src/icons/favicon.png'],  
+  distcopy: ['src/icons/favicon.png']
 };
+
+gulp.task('dev-copy', function() {
+  return gulp.src(paths.devcopy)    
+    .pipe(gulp.dest('dev'));
+});
+
+gulp.task('dist-copy', function() {
+  return gulp.src(paths.devcopy)    
+    .pipe(gulp.dest('dist'));
+});
 
 gulp.task('dev-js', function() {
   return gulp.src(paths.devjs)
@@ -59,20 +71,20 @@ gulp.task('dist-index', ['dist-js', 'dist-less'], function() {
 });
 
 gulp.task('dev-bso', function(){
-  bso(path.join(__dirname, 'dev');
-};
-
-gulp.task('dist-bso', function(){
-  bso(path.join(__dirname, 'dist');
-};
-
-gulp.task('dev-server', function(){
-  require('tools/devserver.js');
+  bso(path.join(__dirname, 'dev'));
 });
 
-gulp.task('dev', ['dev-bso', 'dev-server', 'dev-index']);
+gulp.task('dist-bso', function(){
+  bso(path.join(__dirname, 'dist'));
+});
 
-gulp.task('dist', ['dist-bso', 'dist-index']);
+gulp.task('dev-server', function(){
+  require('./tools/devserver');
+});
+
+gulp.task('dev', ['dev-server', 'dev-copy', 'dev-index', 'dev-bso']);
+
+gulp.task('dist', ['dist-index', 'dist-copy', 'dist-bso']);
 
 gulp.task('deploy', ['dist'], function(){
   gulp.src("dist/**/*")
