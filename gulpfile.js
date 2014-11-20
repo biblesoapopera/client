@@ -7,80 +7,70 @@ var smoosher = require('gulp-smoosher');
 var minifyHTML = require('gulp-minify-html');
 var livereload = require('gulp-livereload');
 var ghPages = require('gulp-gh-pages');
+var gulpif = require('gulp-if');
 var bso = require('./tools/bsoBuilder');
-var fileinclude = require('gulp-file-include');
+var twig = require('./tools/gulpTwig');
+var argv = require('yargs').argv;
 
-var paths = {
-  distjs: ['src/js/**/*.js'],
-  devjs: ['src/js/**/*.js', 'tools/livereload.js'],
-  mainless: ['src/less/main.less'],
-  less: ['src/less/**/*.less'],
-  index: ['src/index.html'],
-  devcopy: ['src/icons/favicon.png'],  
-  distcopy: ['src/icons/favicon.png'],
-  templates: ['src/js/**/*.html'],
-  slidedata: ['data/**/*.js']
+var buildType = 'dev';
+if (argv.dist) buildType = 'dist'
+
+var sourcePaths = {
+   dev: {
+       js: ['src/js/**/*.js', 'tools/livereload.js'],
+       mainless: ['src/less/main.less'],
+       less: ['src/less/**/*.less'],
+       maintwig: ['src/twig/*.twig'],
+       twig: ['src/twig/**/*.twig'],       
+       copy: ['src/icons/favicon.png'],
+       slidedata: ['data/**/*.json']
+   },
+   dist: {
+       js: ['src/js/**/*.js'],
+       mainless: ['src/less/main.less'],
+       less: ['src/less/**/*.less'],
+       maintwig: ['src/twig/*.twig'],
+       twig: ['src/twig/**/*.twig'],         
+       copy: ['src/icons/favicon.png'],
+       slidedata: ['data/**/*.json']      
+   }    
 };
 
-gulp.task('dev-copy', function() {
-  return gulp.src(paths.devcopy)    
-    .pipe(gulp.dest('dev'));
+var targetPaths = {
+    dev: 'dev',
+    dist: 'dist'
+};
+
+gulp.task('copy', function() {
+  return gulp.src(sourcePaths[buildType].copy)    
+    .pipe(gulp.dest(targetPaths[buildType]));
 });
 
-gulp.task('dist-copy', function() {
-  return gulp.src(paths.devcopy)    
-    .pipe(gulp.dest('dist'));
-});
-
-gulp.task('dev-js', function() {
-  return gulp.src(paths.devjs)
+gulp.task('js', function() {
+  return gulp.src(sourcePaths[buildType].js)
     .pipe(concat('min.js'))
+    .pipe(gulpif(buildType === 'dist', uglify()))
     .pipe(gulp.dest('temp'));
 });
 
-gulp.task('dist-js', function() {
-  return gulp.src(paths.distjs)
-    .pipe(uglify())
-    .pipe(concat('min.js'))
-    .pipe(gulp.dest('temp'));
-});
-
-gulp.task('dev-less', function() {
-  return gulp.src(paths.mainless)
-    .pipe(less({paths: [path.join(__dirname, 'src', 'less')], compress: false}))
+gulp.task('less', function() {
+  return gulp.src(sourcePaths[buildType].mainless)
+    .pipe(gulpif(buildType === 'dist', less({paths: [path.join(__dirname, 'src', 'less')], compress: true})))
+    .pipe(gulpif(buildType === 'dev', less({paths: [path.join(__dirname, 'src', 'less')], compress: false})))
     .pipe(concat('min.css'))
     .pipe(gulp.dest('temp'));
 });
 
-gulp.task('dist-less', function() {
-  return gulp.src(paths.mainless)
-    .pipe(less({paths: [path.join(__dirname, 'src', 'less')], compress: true}))
-    .pipe(concat('min.css'))
-    .pipe(gulp.dest('temp'));
-});
-
-gulp.task('dev-index', ['dev-js', 'dev-less'], function() {
-  return gulp.src(paths.index)
-    .pipe(fileinclude({prefix: '@@', basepath: '@file'}))
+gulp.task('twig', ['js', 'less'], function() {
+  return gulp.src(sourcePaths[buildType].maintwig)
+    .pipe(twig())        
     .pipe(smoosher())  
-    .pipe(gulp.dest('dev'))
-    .pipe(livereload())
+    .pipe(gulpif(buildType === 'dist', minifyHTML({})))
+    .pipe(gulp.dest(targetPaths[buildType]))
 });
 
-gulp.task('dist-index', ['dist-js', 'dist-less'], function() {
-  return gulp.src(paths.index)
-    .pipe(fileinclude({prefix: '@@', basepath: '@file'}))  
-    .pipe(smoosher())
-    .pipe(minifyHTML({}))
-    .pipe(gulp.dest('dist'))
-});
-
-gulp.task('dev-bso', function(){
-  bso(path.join(__dirname, 'dev'));
-});
-
-gulp.task('dist-bso', function(){
-  bso(path.join(__dirname, 'dist'));
+gulp.task('bso', function() {
+  bso(path.join(__dirname, buildType));
 });
 
 gulp.task('dev-server', function(){
@@ -96,14 +86,18 @@ gulp.task('deploy', ['dist'], function(){
     .pipe(ghPages());  
 });
 
+gulp.task('main', ['copy', 'bso', 'twig']);
+
 // Rerun the task when a file changes
-gulp.task('dev-watch', function() {
-  gulp.watch(paths.templates, ['dev-index']);    
-  gulp.watch(paths.devjs, ['dev-index']);
-  gulp.watch(paths.less, ['dev-index']);
-  gulp.watch(paths.index, ['dev-index']);
-  gulp.watch(paths.slidedata, ['dev-bso', 'dev-index']);  
+gulp.task('watch', function() {
+  livereload.listen();
+  gulp.watch(sourcePaths.dev.twig, ['twig']);    
+  gulp.watch(sourcePaths.dev.js, ['twig']);
+  gulp.watch(sourcePaths.dev.less, ['twig']);
+  gulp.watch(sourcePaths.dev.slidedata, ['bso', 'twig']);    
+  gulp.watch('dev/**/*.html').on('change', function(){setTimeout(livereload.changed, 150)});
 });
 
 // The default task (called when you run `gulp` from cli)
-gulp.task('default', ['dev-watch', 'dev']);
+gulp.task('default', ['watch', 'dev-server', 'main']);
+

@@ -12,12 +12,12 @@
         <link rel="icon shortcut" type="image/png" href="favicon.png" />
 
         <!-- smoosh -->
-        <link rel="stylesheet" href="../temp/min.css">
+        <link rel="stylesheet" href="../../temp/min.css">
         <!-- endsmoosh -->
 
         <script>var bso = {slide: {}}</script>
         <!-- smoosh -->
-        <script src="../temp/min.js"></script>
+        <script src="../../temp/min.js"></script>
         <!-- endsmoosh -->
         <script>bso.start()</script>     
     </head>
@@ -37,13 +37,13 @@
             </div>
         </div>
     
-        @@include('./js/slide/template/title.html')
-        @@include('./js/slide/template/info.html')        
-        @@include('./js/slide/template/pick.html')        
-        @@include('./js/slide/template/slider.html') 
-        @@include('./js/slide/template/sort.html') 
-        @@include('./js/slide/template/discuss.html')         
-        @@include('./js/slide/template/audio.html')         
-        
+        {% include 'include/audio.twig' %}
+        {% include 'include/discuss.twig' %}
+        {% include 'include/info.twig' %}
+        {% include 'include/pick.twig' %}
+        {% include 'include/slider.twig' %}
+        {% include 'include/sort.twig' %}
+        {% include 'include/title.twig' %}        
+               
 </body>
 </html>
