@@ -11,6 +11,10 @@ bso.slide.pick = function(config, nextFn){
     config.answers.forEach(function(answer){
        var li = document.createElement('li');
        li.innerHTML = answer;
+       li.addEventListener('click', function(evt){
+         for(var i=0; i<answerList.children.length; i++) answerList.children[i].removeAttribute('class')
+         li.setAttribute('class', 'active');  
+       });
        answerList.appendChild(li);
     })
                     

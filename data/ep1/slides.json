@@ -1,11 +1,11 @@
 {
   "author": "tim",
-  "title": "Episode 1",
+  "title": "Ep 1",
   "sections": [
     {
       "type": "info",
       "title": "intro",
-      "slides": [         
+      "slides": [             
         {
           "type": "title",
           "title": "Episode 1",
@@ -23,7 +23,7 @@
     },
     {
       "type": "discuss",
-      "title": "opening discussion",
+      "title": "discussion",
       "slides": [
         {
           "type": "pick",
