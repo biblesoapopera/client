@@ -77,11 +77,7 @@ gulp.task('dev-server', function(){
   require('./tools/devserver');
 });
 
-gulp.task('dev', ['dev-server', 'dev-copy', 'dev-index', 'dev-bso']);
-
-gulp.task('dist', ['dist-index', 'dist-copy', 'dist-bso']);
-
-gulp.task('deploy', ['dist'], function(){
+gulp.task('deploy', function(){
   gulp.src("dist/**/*")
     .pipe(ghPages());  
 });
