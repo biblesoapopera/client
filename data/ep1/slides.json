@@ -4,6 +4,7 @@
   "sections": [
     {
       "type": "info",
+      "title": "intro",
       "slides": [         
         {
           "type": "title",
@@ -21,7 +22,8 @@
       ]
     },
     {
-      "type": "quiz",
+      "type": "discuss",
+      "title": "opening discussion",
       "slides": [
         {
           "type": "pick",
@@ -55,7 +57,8 @@
       ]
     },
     {
-      "type": "audio",
+      "type": "listen",
+      "title": "drama",
       "slides": [
         {
           "type": "audio",
@@ -66,6 +69,7 @@
     },
     {
       "type": "info",
+      "title": "wrap up",
       "slides": [
         {
           "type": "info",

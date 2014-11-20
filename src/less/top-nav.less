@@ -4,28 +4,57 @@
   width: 100%;
   height: 40px;
   background-color: black;
-  //top: -30px;
+  top: -30px;
   transition-property: top;
   transition-duration: .25s;
   background-color: @nav-background-color;
   font-size: @nav-font-size;
   text-align: left;
+  color: @nav-title-font-color;  
+    
+  div{
+    height: 40px;
+    line-height: 40px;     
+    float: left;              
+  }
   
+  img.logo {
+    width: 20px;
+    height: 20px;
+    padding: 10px;
+  } 
+
+  .title{
+    font-weight: @nav-title-font-weight;
+    padding-right: 10px;
+  }  
+  
+  .section{
+    padding-left: 35px;
+    padding-right: 10px;
+    background-size: 20px 20px;    
+    background-repeat: no-repeat;
+    background-position: 10px 10px;
+  }  
+  
+  .section.info{
+    background-image: data-uri('../icons/info.png');           
+  }
+  
+  .section.discuss{
+    background-image: data-uri('../icons/discuss.png');           
+  }
+  
+  .section.listen{
+    background-image: data-uri('../icons/listen.png');           
+  }  
+  
+  .section.active{
+    background-color: @strong;
+  }
 }
 
 .top-nav:hover {
   top: 0;
 }
 
-.top-nav img.logo {
-    float: left;
-    width: 20px;
-    height: 20px;
-    padding: 10px;
-}
-
-.top-nav div.title{
-  color: @nav-title-font-color; 
-  font-weight: @nav-title-font-weight;
-  padding: 12.5px;
-}
