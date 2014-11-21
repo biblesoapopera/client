@@ -5,7 +5,7 @@
     {
       "type": "info",
       "title": "intro",
-      "slides": [             
+      "slides": [         
         {
           "type": "title",
           "title": "Episode 1",
@@ -36,10 +36,10 @@
         },
         {
           "type": "slider",
-          "question": "How big is an apple?",
-          "left": "small",
-          "right": "large"
-        },
+          "question": "Do you like chocolate?",
+          "left": "yuck",
+          "right": "yum"
+        }, 
         {
           "type": "sort",
           "question": "Put these in order from smallest to largest:",
