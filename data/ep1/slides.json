@@ -5,7 +5,7 @@
     {
       "type": "info",
       "title": "intro",
-      "slides": [         
+      "slides": [          
         {
           "type": "title",
           "title": "Episode 1",
@@ -42,7 +42,7 @@
         }, 
         {
           "type": "sort",
-          "question": "Put these in order from smallest to largest:",
+          "question": "Sort these from smallest to largest:",
           "answers": [
             "mouse",
             "elephant",

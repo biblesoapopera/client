@@ -1,0 +1,42 @@
+.slide .sort {
+    
+    .answer-container {
+        display: table;
+        border-spacing: 10px;
+        
+        .row {
+            display: table-row;           
+            
+            .numbers, .answers {
+                //vertical-align: middle;            
+                display: table-cell;
+                //height: 40px;              
+            }
+                
+            .number, .answer {
+                background-color: @primary-weak;                
+                height: 40px;
+                line-height: 40px;
+                margin: 10px 0;
+                border-radius: 2px 2px 2px 2px;                 
+            }
+            
+            .number {        
+                width: 40px;                 
+            }
+        
+            .answer {
+                width: 250px;              
+                cursor: pointer;
+            }
+            
+            .answer:hover {
+                background-color: @primary-light;
+            }
+            
+            .dragging{
+                background-color: @primary-light;
+            }
+        }
+    }
+}
