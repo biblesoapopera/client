@@ -2,14 +2,22 @@
     <div class='slide'>
         <div class='slide-inner'>
             <div class='slide-container'>
-                <div class='slide-container-inner'>
+                <div class='slide-container-inner audio'>
                     <p>Listen to the drama ...</p>
-                    <button class='btn play' data-attach='play'></button>
-                    <button class='btn pause' data-attach='pause'></button>
-                    <button class='btn minus' data-attach='minus'></button>
-                    <button class='btn plus' data-attach='plus'></button>
+                    <div class="track-container">
+                        <div class="track"></div>
+                        <div class="grip"></div>                       
+                        <div class="left">
+                            <button class='btn play'></button>
+                        </div>
+                        <div class="right">
+                            <button class='btn vol-minus'></button>
+                            <button class='btn vol-plus'></button>                            
+                        </div>                         
+                    </div>                       
                 </div>
             </div>
         </div>
     </div>        
 </template>
+

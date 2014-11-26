@@ -5,7 +5,12 @@
     {
       "type": "info",
       "title": "intro",
-      "slides": [          
+      "slides": [  
+        {
+          "type": "audio",
+          "start": 30,
+          "end": 35
+        },          
         {
           "type": "title",
           "title": "Episode 1",

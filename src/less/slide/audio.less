@@ -1,0 +1,61 @@
+.slide .audio {
+    
+    .track-container {
+        position: relative;
+        height: 100px;
+        padding-top:2.5px;
+    }
+    .track {
+        width: 300px;
+        height: 5px;
+        background-color: @strong-light;        
+        border-radius: 2.5px 2.5px 2.5px 2.5px;           
+    }
+    
+    .grip {
+        width: 10px;
+        height: 10px;
+        background-color: @strong;
+        border-radius: 5px 5px 5px 5px;  
+        position: absolute;
+        top: 0px;
+        left: -2.5px;
+    }
+       
+    .left, .right{
+        position: absolute;        
+    }
+    
+    .left {
+        top: 10px;
+        left: 0px;       
+    }
+    
+    .right {
+        top: 10px;
+        right: 0px; 
+    }  
+       
+    .play {
+      background-image: data-uri('../icons/play.png');
+    }
+
+    .pause {
+      background-image: data-uri('../icons/pause.png');
+    }
+
+    .vol-plus {
+      background-image: data-uri('../icons/vol-plus.png');
+      background-color: @strong-light;        
+    }
+
+    .vol-minus {
+      background-image: data-uri('../icons/vol-minus.png');
+      background-color: @strong-light;        
+    }  
+    
+    .vol-plus:hover, .vol-minus:hover {
+      background-color: darken(@strong-light, 20%);       
+    }    
+}
+
