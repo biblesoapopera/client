@@ -1,6 +1,6 @@
 bso.slide.title = function(config){
     this.config = config;
-    
+        
     var template = document.querySelector('[data-slide=title]');    
     var clone = document.importNode(template.content, true);
     clone.querySelector('[data-var=title]').innerHTML = config.title;
@@ -8,6 +8,10 @@ bso.slide.title = function(config){
                     
     document.body.appendChild(clone);
     this.node = document.body.lastElementChild;
+    
+    this.show = function(){
+        bso.next.enable();        
+    }
 }
 
 

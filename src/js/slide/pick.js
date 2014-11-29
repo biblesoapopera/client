@@ -1,7 +1,7 @@
-bso.slide.pick = function(config, nextFn){
+bso.slide.pick = function(config){
     this.config = config;
-    this.nextFn = nextFn;
     
+    var nextEnable = false;
     var template = document.querySelector('[data-slide=pick]');    
     var clone = document.importNode(template.content, true);
     clone.querySelector('[data-var=question]').innerHTML = config.question;
@@ -13,11 +13,18 @@ bso.slide.pick = function(config, nextFn){
        li.innerHTML = answer;
        li.addEventListener('click', function(evt){
          for(var i=0; i<answerList.children.length; i++) answerList.children[i].removeAttribute('class')
-         li.setAttribute('class', 'active');  
+         li.setAttribute('class', 'active'); 
+         nextEnable = true;
+         bso.next.enable();   
        });
        answerList.appendChild(li);
     })
                     
     document.body.appendChild(clone);
     this.node = document.body.lastElementChild;
+    
+    this.show = function(){
+        if (nextEnable) bso.next.enable()
+        else bso.next.disable()
+    }    
 }

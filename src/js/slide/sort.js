@@ -1,6 +1,7 @@
 bso.slide.sort = function(config){
     this.config = config;
-
+    
+    var nextEnable = false;    
     var dragNode;
     
     var template = document.querySelector('[data-slide=sort]');    
@@ -20,6 +21,8 @@ bso.slide.sort = function(config){
     var dragend = function(event){        
         event.target.setAttribute('class', 'answer');
         dragNode = undefined;
+        nextEnable = true;        
+        bso.next.enable();
     };
     
     var dragover = function(event){
@@ -61,4 +64,9 @@ bso.slide.sort = function(config){
     
     document.body.appendChild(clone);
     this.node = document.body.lastElementChild;
+    
+    this.show = function(){
+        if (nextEnable) bso.next.enable(); 
+        else bso.next.disable()        
+    }     
 }

@@ -14,6 +14,8 @@ bso.slideTransition = function(newSlide, direction){
   //position slide ready for transiton
   newNode.setAttribute('class', 'slide ' + direction);
 
+  newSlide.show();
+  
   //wait for repaint
   setTimeout(function(){
     //now apply the transitions
@@ -22,7 +24,7 @@ bso.slideTransition = function(newSlide, direction){
     activeNode.setAttribute('class', 'slide ' + outDirection);
     newNode.setAttribute('class', 'slide active');
     activeSlide = newSlide;
-  }, 10);
+  }, 50);
 }
 
 bso.slideTransitionEnd = function(evt){

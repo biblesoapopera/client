@@ -1,7 +1,28 @@
-.btn.next {    
-  background-image: data-uri('../icons/next.png');    
+.btn.previous, .btn.next {
+  background-image: data-uri('../icons/arrow.png');    
   position: fixed;
   z-index: 1;
-  bottom: 10px;
+  bottom: 10px;    
+}
+
+.btn.previous.disabled, .btn.next.disabled {
+  background-color: @strong-light;
+  cursor: inherit;
+}
+
+.btn.previous.disabled:hover, .btn.next.disabled:hover {
+  background-color: @strong-light;    
+}
+
+.btn.previous.hidden, .btn.next.hidden {
+  display: none;
+}
+
+.btn.previous {    
+  left: 10px;
+  transform: rotate(180deg);  
+}
+
+.btn.next {    
   right: 10px;
 }

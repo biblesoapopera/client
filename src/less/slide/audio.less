@@ -1,3 +1,8 @@
+button::-moz-focus-inner { 
+    border: 0;
+    padding: 0;
+}
+
 .slide .audio {
     
     .track-container {
@@ -27,13 +32,13 @@
     }
     
     .left {
-        top: 10px;
+        top: 15px;
         left: 0px;       
     }
     
     .right {
-        top: 10px;
-        right: 0px; 
+        top: 15px;
+        right: 0px;        
     }  
        
     .play {
@@ -44,18 +49,41 @@
       background-image: data-uri('../icons/pause.png');
     }
 
+    .rewind {
+      background-image: data-uri('../icons/rewind.png');
+    }
+    
+    .vol-plus, .vol-minus {
+      background-color: @strong-light;
+    }
+    
     .vol-plus {
-      background-image: data-uri('../icons/vol-plus.png');
-      background-color: @strong-light;        
+      background-image: data-uri('../icons/vol-plus.png');       
     }
 
     .vol-minus {
-      background-image: data-uri('../icons/vol-minus.png');
-      background-color: @strong-light;        
+      background-image: data-uri('../icons/vol-minus.png');        
     }  
     
     .vol-plus:hover, .vol-minus:hover {
       background-color: darken(@strong-light, 20%);       
-    }    
+    } 
+    
+    .vol-track {
+      background-color: @strong-light;
+      height: 30px;      
+      width: 5px;
+      border-radius: 2.5px 2.5px 2.5px 2.5px;   
+      display: inline-block;
+    }
+    
+    .vol-grip {
+      background-color: darken(@strong-light, 20%);  
+      height: 15px;      
+      width: 5px;
+      top: 15px;
+      position: relative;
+      border-radius: 2.5px 2.5px 2.5px 2.5px;       
+    }
 }
 

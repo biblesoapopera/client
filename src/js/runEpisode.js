@@ -19,37 +19,58 @@ bso.runEpisode = function(episodeData){
     topNav.appendChild(sectionDiv);    
     episodeData.sections[i].topNavNode = sectionDiv;
   }
+    
+  var slideCache = [];
+  function go(dir){
   
-  function next(){
-  
-    ++slideIndex;
-    if(slideIndex === episodeData.sections[sectionIndex].slides.length){
+    if (dir === 1 && bso.next.disabled) return
+    if (dir === -1 && bso.previous.disabled) return
+    
+    slideIndex += dir;
+    if(slideIndex === -1 || slideIndex === episodeData.sections[sectionIndex].slides.length){
         episodeData.sections[sectionIndex].topNavNode.setAttribute(
             'class',
             episodeData.sections[sectionIndex].topNavNode.getAttribute('class').replace(' active', '')    
         );
-        ++sectionIndex;        
+        sectionIndex += dir;        
         episodeData.sections[sectionIndex].topNavNode.setAttribute(
             'class',
             episodeData.sections[sectionIndex].topNavNode.getAttribute('class') + ' active'
         );        
-        slideIndex = 0;
+
+        if (slideIndex === -1){
+            slideIndex = episodeData.sections[sectionIndex].slides.length - 1;
+        } else {
+            slideIndex = 0;
+        }
     }        
-     
-    if(!(slideIndex === episodeData.sections[sectionIndex].slides.length-1 && sectionIndex === episodeData.sections.length-1)){
+
+    if(slideIndex === episodeData.sections[sectionIndex].slides.length-1 && sectionIndex === episodeData.sections.length-1){
        bso.next.hide();
+    } else {
+       bso.next.show();
     }
     
-    var type = episodeData.sections[sectionIndex].slides[slideIndex].type;
-    var config = episodeData.sections[sectionIndex].slides[slideIndex];
-    if (type === 'audio') config.audioUrl = episodeData.audioUrl;
+    if(slideIndex === 0 && sectionIndex === 0){
+        bso.previous.hide();
+    } else {
+        bso.previous.show();
+    }
     
-    var slide = new bso.slide[type](config);
-
-    bso.slideTransition(slide, 'right'); 
+    if (!slideCache[sectionIndex]) slideCache[sectionIndex] = []
+    if (!slideCache[sectionIndex][slideIndex]){
+        var type = episodeData.sections[sectionIndex].slides[slideIndex].type;
+        var config = episodeData.sections[sectionIndex].slides[slideIndex];
+        if (type === 'audio') config.audioUrl = episodeData.audioUrl;
+    
+        slideCache[sectionIndex][slideIndex] = new bso.slide[type](config);        
+    }
+   
+    bso.slideTransition(slideCache[sectionIndex][slideIndex], dir === 1 ? 'right' : 'left'); 
   }  
   
-  bso.next.create(next);
+  bso.previous.create(go);  
+  bso.next.create(go);
   
-  next();
+  go(1);
 };

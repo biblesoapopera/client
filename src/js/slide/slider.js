@@ -1,6 +1,7 @@
 bso.slide.slider = function(config){
     this.config = config;
-    
+        
+    var nextEnable = false;        
     var template = document.querySelector('[data-slide=slider]');    
     var clone = document.importNode(template.content, true);
     clone.querySelector('[data-var=question]').innerHTML = config.question;
@@ -25,7 +26,9 @@ bso.slide.slider = function(config){
     var mouseup = function(evt){
         document.removeEventListener('mousemove', mousemove);        
         document.removeEventListener('mouseup', mouseup);
-        grip.setAttribute('class', 'grip');        
+        grip.setAttribute('class', 'grip'); 
+        nextEnable = true;
+        bso.next.enable();
     };
     var mousemove = function(evt){
         var newLeft = position.left + evt.clientX - position.client;
@@ -45,4 +48,9 @@ bso.slide.slider = function(config){
     
     document.body.appendChild(clone);
     this.node = document.body.lastElementChild;
+    
+    this.show = function(){
+        if (nextEnable) bso.next.enable();      
+        else bso.next.disable()        
+    }     
 }

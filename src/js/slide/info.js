@@ -1,5 +1,5 @@
 bso.slide.info = function(config){
-    this.config = config;
+    this.config = config;   
     
     var template = document.querySelector('[data-slide=info]');    
     var clone = document.importNode(template.content, true);
@@ -7,4 +7,8 @@ bso.slide.info = function(config){
                 
     document.body.appendChild(clone);
     this.node = document.body.lastElementChild;
+    
+    this.show = function(){
+        bso.next.enable();        
+    }    
 }

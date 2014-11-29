@@ -1,19 +1,19 @@
-bso.next = {
+bso.previous = {
     create: function(goFn){
        var btn = document.createElement('a');
-       btn.setAttribute('class', 'btn next');
+       btn.setAttribute('class', 'btn previous');
        btn.addEventListener('click', function(){
-           goFn(1);
+           goFn(-1);
        });
        document.body.appendChild(btn);
        this.disabled = false;
        this.hidden = false;
     },
     render: function(){
-       var cls = 'btn next';
+       var cls = 'btn previous';
        if (this.disabled) cls += ' disabled'
        if (this.hidden) cls += ' hidden'
-       document.querySelector('.btn.next').setAttribute('class', cls);        
+       document.querySelector('.btn.previous').setAttribute('class', cls);        
     },
     show: function(){
        this.hidden = false;
@@ -32,6 +32,3 @@ bso.next = {
        this.render();        
     }
 }
-
-
-

@@ -5,12 +5,7 @@
     {
       "type": "info",
       "title": "intro",
-      "slides": [  
-        {
-          "type": "audio",
-          "start": 30,
-          "end": 35
-        },          
+      "slides": [            
         {
           "type": "title",
           "title": "Episode 1",
@@ -63,6 +58,7 @@
       "slides": [
         {
           "type": "audio",
+          "text": "audio drama, part 1",
           "start": 0,
           "end": 60
         }
@@ -74,7 +70,7 @@
       "slides": [
         {
           "type": "info",
-          "text": "Thanks for trying out the demo"
+          "content": "Thanks for trying out the demo"
         }
       ]
     }
