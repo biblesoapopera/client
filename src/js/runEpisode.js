@@ -63,7 +63,7 @@ bso.runEpisode = function(episodeData){
         var config = episodeData.sections[sectionIndex].slides[slideIndex];
         if (type === 'audio') config.audioUrl = episodeData.audioUrl;
     
-        slideCache[sectionIndex][slideIndex] = new bso.slide[type](config);        
+        slideCache[sectionIndex][slideIndex] = new bso.slide[type](config, episodeData.sections[sectionIndex].type);        
     }
    
     bso.slideTransition(slideCache[sectionIndex][slideIndex], dir === 1 ? 'right' : 'left'); 

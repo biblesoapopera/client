@@ -1,10 +1,10 @@
-bso.slide.audio = function(config){
-    this.config = config;
+bso.slide.audio = function(config, sectionType){
        
     var nextEnable = false;
-    var template = document.querySelector('[data-slide=audio]');    
+    var template = document.querySelector('[data-slide=audio]');      
     var clone = document.importNode(template.content, true);
     
+    clone.querySelector('.slide-inner').setAttribute('class', 'slide-inner ' + sectionType);      
     clone.querySelector('.text').innerHTML = config.text;
     
     var player = new Audio();
@@ -69,8 +69,12 @@ bso.slide.audio = function(config){
        togglePlay();
     }, 1400);
     
-    this.show = function(){
+    this.enter = function(){
         if (nextEnable) bso.next.enable()
         else bso.next.disable()        
     }     
+    
+    this.exit = function(){
+        player.pause();
+    }
 }

@@ -1,12 +1,12 @@
-bso.slide.sort = function(config){
-    this.config = config;
+bso.slide.sort = function(config, sectionType){
     
     var nextEnable = false;    
     var dragNode;
     
     var template = document.querySelector('[data-slide=sort]');    
     var clone = document.importNode(template.content, true);
-    clone.querySelector('[data-var=question]').innerHTML = config.question;
+    clone.querySelector('.slide-inner').setAttribute('class', 'slide-inner ' + sectionType);         
+    clone.querySelector('.question').innerHTML = config.question;
                      
     var dragstart = function(event){
         var target = event.target;
@@ -39,8 +39,8 @@ bso.slide.sort = function(config){
         }
     };
     
-    var numberList = clone.querySelector('[class=numbers]');
-    var answerList = clone.querySelector('[class=answers]');
+    var numberList = clone.querySelector('.numbers');
+    var answerList = clone.querySelector('.answers');
     
     config.answers.forEach(function(answer, index){
        
@@ -65,8 +65,10 @@ bso.slide.sort = function(config){
     document.body.appendChild(clone);
     this.node = document.body.lastElementChild;
     
-    this.show = function(){
+    this.enter = function(){
         if (nextEnable) bso.next.enable(); 
         else bso.next.disable()        
     }     
+    
+    this.exit = function(){}
 }

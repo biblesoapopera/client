@@ -7,14 +7,12 @@
         .row {
             display: table-row;           
             
-            .numbers, .answers {
-                //vertical-align: middle;            
-                display: table-cell;
-                //height: 40px;              
+            .numbers, .answers {        
+                display: table-cell;             
             }
                 
             .number, .answer {
-                background-color: @primary-weak;                
+                background-color: fade(@white, 10%);              
                 height: 40px;
                 line-height: 40px;
                 margin: 10px 0;
@@ -31,11 +29,11 @@
             }
             
             .answer:hover {
-                background-color: @primary-light;
+                background-color: fade(@white, 20%); 
             }
             
             .dragging{
-                background-color: @primary-light;
+                background-color: fade(@white, 40%); 
             }
         }
     }

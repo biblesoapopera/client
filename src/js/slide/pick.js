@@ -1,12 +1,12 @@
-bso.slide.pick = function(config){
-    this.config = config;
+bso.slide.pick = function(config, sectionType){
     
     var nextEnable = false;
     var template = document.querySelector('[data-slide=pick]');    
     var clone = document.importNode(template.content, true);
-    clone.querySelector('[data-var=question]').innerHTML = config.question;
+    clone.querySelector('.slide-inner').setAttribute('class', 'slide-inner ' + sectionType);     
+    clone.querySelector('.question').innerHTML = config.question;
     
-    var answerList = clone.querySelector('[data-var=answers]');
+    var answerList = clone.querySelector('.answers');
 
     config.answers.forEach(function(answer){
        var li = document.createElement('li');
@@ -23,8 +23,10 @@ bso.slide.pick = function(config){
     document.body.appendChild(clone);
     this.node = document.body.lastElementChild;
     
-    this.show = function(){
+    this.enter = function(){
         if (nextEnable) bso.next.enable()
         else bso.next.disable()
     }    
+    
+    this.exit = function(){}
 }

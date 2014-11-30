@@ -2,16 +2,20 @@
   background-image: data-uri('../icons/arrow.png');    
   position: fixed;
   z-index: 1;
-  bottom: 10px;    
+  bottom: 10px; 
+}
+
+.btn.previous:hover, .btn.next:hover {
+  background-color: fade(@white, 20%);       
 }
 
 .btn.previous.disabled, .btn.next.disabled {
-  background-color: @strong-light;
+  opacity: 0.5;
   cursor: inherit;
 }
 
 .btn.previous.disabled:hover, .btn.next.disabled:hover {
-  background-color: @strong-light;    
+  background-color: fade(@white, 0%);
 }
 
 .btn.previous.hidden, .btn.next.hidden {

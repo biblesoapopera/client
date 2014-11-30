@@ -10,20 +10,19 @@
         margin: 10px 0;
         cursor: pointer;  
         border-radius: 2px 2px 2px 2px;     
-        background-color: @primary-weak;          
+        background-color: fade(@white, 10%);          
     }
         
     li:hover {
-        background-color: @primary-light;        
+        background-color: fade(@white, 20%);     
     }
     
     li.active {
-        color: white;
-        background-color: @highlight;          
+        background-color: fade(@white, 40%);        
     }
     
     li.active:hover {        
-        background-color: @highlight;        
+        background-color: fade(@white, 40%);       
     }
 }
 
