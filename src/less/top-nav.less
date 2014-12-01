@@ -1,60 +1,161 @@
 .top-nav {
-  position: absolute;
-  z-index: 1;
-  width: 100%;
-  height: 40px;
-  background-color: black;
-  top: -30px;
-  transition-property: top;
-  transition-duration: .25s;
-  background-color: @nav-background-color;
-  font-size: @nav-font-size;
-  text-align: left;
-  color: @nav-title-font-color;  
+
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    //  margin-top: 8px;
+    //  top: -100%;
+    top: 0;
+    left: 0px;
+    transition-property: margin-top top;
+    transition-duration: .25s;
+    background-color: #2e0a3a;
+    display: table;
+    text-align: center;
+
+    .inner {
+        display: table-cell;
+        vertical-align: middle;
+        height: 100%;
+        min-height: 100%;
+    }
+
+    .container {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .container-inner {
+        margin-left: auto;
+        margin-right: auto;
+        display: inline-block;
+        padding: 15px;
+        color: white;
+        font-size: 15px;
+        font-family: sans-serif;
+    }
+
+    .toggle {
+        position: absolute;
+        bottom: 14px;
+        left: 0;
+        height: 14px;
+        width: 100%;
+        background-color: white;
+        line-height: 8px;
+        font-size: 0;
+    }
+
+    .thumbs {
+        position: absolute;
+        bottom: 3px;
+        left: 0;
+        height: 8px;
+        line-height: 8px;
+        font-size: 0;
+    }
+
+    .thumbs div {
+        width: 12px;
+        height: 8px;
+        display: inline-block;
+    }
+
+    .info {
+        background-color: @blue;
+    }
+
+    .discuss {
+        background-color: @orange;
+    }
+
+    .listen {
+        background-color: @red;
+    }
+
+    .nav-table {
+        display: table;
+    }
+
+    .summary {
+        display: table-cell;        
+        vertical-align: middle;   
+        height: 100%;                
+        background-color: #2ca700;
+        width: 140px;
+        border-radius: 2px 2px 2px 2px;   
+    }
+
+    .summary-table {
+        display: table;
+        margin-left: auto;
+        margin-right: auto;
+
+        .summary-cell {
+            display: table-cell;
+
+            .title{
+                font-weight: 900;
+            }
+
+            .sub-title{
+                font-size: 12px;
+            }
+        }
+    }
+
+    .sections {
+        display: table-cell;
+    }
+
+    .sections-table {
+        display: table;
+        width: 240px;
+
+        > div {
+            display: table-row;            
+            div {
+                height: 25px;
+                border-radius: 2px 2px 2px 2px;
+                text-align: left;                
+                margin-left: 5px;
+                margin-bottom: 5px;
+            }
+        }
+
+        > div:last-child div {
+            margin-bottom: 0;            
+        }
+
+        .icon {
+            width: 15px;
+            height: 15px;            
+            display: inline-block;
+            vertical-align: middle;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            margin-left: 5px;
+            margin-right: 10px;
+            background-size: 15px 15px;            
+        } 
+        
+        .info .icon {
+            background-image: data-uri('../icons/info.png');             
+        }
+        
+        .discuss .icon{
+            background-image: data-uri('../icons/discuss.png');           
+        }
     
-  div{
-    height: 40px;
-    line-height: 40px;     
-    float: left;              
-  }
-  
-  img.logo {
-    width: 20px;
-    height: 20px;
-    padding: 10px;
-  } 
-
-  .title{
-    font-weight: @nav-title-font-weight;
-    padding-right: 10px;
-  }  
-  
-  .section{
-    padding-left: 35px;
-    padding-right: 10px;
-    background-size: 20px 20px;    
-    background-repeat: no-repeat;
-    background-position: 10px 10px;
-  }  
-  
-  .section.info{
-    background-image: data-uri('../icons/info.png');           
-  }
-  
-  .section.discuss{
-    background-image: data-uri('../icons/discuss.png');           
-  }
-  
-  .section.listen{
-    background-image: data-uri('../icons/listen.png');           
-  }  
-  
-  .section.active{
-    background-color: @strong;
-  }
+        .listen .icon{
+            background-image: data-uri('../icons/listen.png');           
+        }        
+    }
 }
 
-.top-nav:hover {
-  top: 0;
-}
-
+//.top-nav:hover{
+//  margin-top: 28px;
+//}
