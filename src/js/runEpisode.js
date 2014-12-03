@@ -47,7 +47,12 @@ bso.runEpisode = function(episodeData){
     if (!slideCache[sectionIndex][slideIndex]){
         var type = episodeData.sections[sectionIndex].slides[slideIndex].type;
         var config = episodeData.sections[sectionIndex].slides[slideIndex];
-        if (type === 'audio') config.audioUrl = episodeData.audioUrl;
+        if (type === 'title') {
+            config.title = episodeData.title;
+            config.subtitle = episodeData.subtitle;
+        } else if (type === 'audio') {
+            config.audioUrl = episodeData.audioUrl;
+        }
     
         slideCache[sectionIndex][slideIndex] = new bso.slide[type](config, episodeData.sections[sectionIndex].type);        
     }

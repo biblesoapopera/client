@@ -1,15 +1,14 @@
 {
   "author": "tim",
-  "title": "Ep 1",
+  "title": "Episode 1",
+  "subtitle": "bible soap opera demo",
   "sections": [
     {
       "type": "info",
       "title": "intro",
       "slides": [          
         {
-          "type": "title",
-          "title": "Episode 1",
-          "subtitle": "bible soap opera demo"
+          "type": "title"
         },        
         {
           "type": "html",

@@ -2,7 +2,7 @@ bso.nav = function(name, dir){
     return {
         create: function(goFn){
            var btn = document.createElement('a');
-           btn.setAttribute('class', 'btn ' + name);
+           btn.setAttribute('class', 'btn sprite ' + name);
            btn.addEventListener('click', function(){
                goFn(dir);
            });
@@ -11,7 +11,7 @@ bso.nav = function(name, dir){
            this.hidden = false;
         },
         render: function(){
-           var cls = 'btn ' + name;
+           var cls = 'btn sprite ' + name;
            if (this.disabled) cls += ' disabled'
            if (this.hidden) cls += ' hidden'
            document.querySelector('.btn.' + name).setAttribute('class', cls);        

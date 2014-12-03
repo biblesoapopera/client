@@ -22,7 +22,7 @@ var sourcePaths = {
        less: ['src/less/**/*.less'],
        maintwig: ['src/twig/*.twig'],
        twig: ['src/twig/**/*.twig'],       
-       copy: ['src/icons/favicon.png'],
+       copy: ['src/favicon.png'],
        slidedata: ['data/**/*.json']
    },
    dist: {
@@ -31,7 +31,7 @@ var sourcePaths = {
        less: ['src/less/**/*.less'],
        maintwig: ['src/twig/*.twig'],
        twig: ['src/twig/**/*.twig'],         
-       copy: ['src/icons/favicon.png'],
+       copy: ['src/favicon.png'],
        slidedata: ['data/**/*.json']      
    }    
 };

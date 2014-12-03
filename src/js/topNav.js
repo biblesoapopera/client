@@ -1,18 +1,39 @@
 bso.topNav = function(episodeData){
   
-//  document.querySelector('.top-nav div.title').innerHTML = episodeData.title;
-//  
-//  var topNav = document.querySelector('.top-nav');
-//  var sectionDiv;
-//  var classAttr;
-//  for (var i in episodeData.sections){
-//    sectionDiv = document.createElement('div');
-//    
-//    classAttr = 'section ' + episodeData.sections[i].type;    
-//    if (i==0) classAttr += ' active';   
-//    sectionDiv.setAttribute('class', classAttr);    
-//    sectionDiv.innerHTML = episodeData.sections[i].title;    
-//    topNav.appendChild(sectionDiv);    
-//    episodeData.sections[i].topNavNode = sectionDiv;
-//  }    
+  var topNav = document.querySelector('.top-nav');
+  
+  topNav.querySelector('.title').innerHTML = episodeData.title;
+  topNav.querySelector('.sub-title').innerHTML = episodeData.subtitle;  
+  
+  var sectionsTable = topNav.querySelector('.sections-table');
+  var thumbs = topNav.querySelector('.thumbs');
+  var sectionDiv;
+  var slideDiv;
+  for (var i in episodeData.sections){
+    sectionDiv = document.createElement('div');
+
+    sectionDiv.innerHTML = "<div class='" +  episodeData.sections[i].type + "'><span class='sprite'></span>" + episodeData.sections[i].title + "</div>";     
+    sectionsTable.appendChild(sectionDiv);    
+  
+    for (var j in episodeData.sections[i].slides){
+        slideDiv = document.createElement('div');
+        if (i == 0 && j == 0){
+            slideDiv.setAttribute('class', 'active ' + episodeData.sections[i].type);            
+        } else {
+            slideDiv.setAttribute('class', episodeData.sections[i].type);
+        }
+        slideDiv.setAttribute('data-section', i);
+        slideDiv.setAttribute('data-slide', j);
+        
+        thumbs.appendChild(slideDiv);
+    }
+  }
+  
+  topNav.querySelector('.toggle').addEventListener('click', function(){
+    if (topNav.getAttribute('class').indexOf('active') === -1){
+        topNav.setAttribute('class', 'top-nav active');
+    } else {
+        topNav.setAttribute('class', 'top-nav');        
+    }
+  });
 }
