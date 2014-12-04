@@ -9,17 +9,18 @@
         <meta name="description" content="An Interactive Audio Soap Opera">
         <meta name="author" content="Tim Roediger">
         <meta name="keywords" content="blah">
-        <link rel="icon shortcut" type="image/png" href="favicon.png" />
-
-        <!-- smoosh -->
-        <link rel="stylesheet" href="../../temp/min.css">
-        <!-- endsmoosh -->
-
-        <script>var bso = {slide: {}}</script>
-        <!-- smoosh -->
-        <script src="../../temp/min.js"></script>
-        <!-- endsmoosh -->
-        <script>bso.start()</script>     
+        
+        <link rel="icon shortcut" type="image/png" href="data:image/png;base64,{% include '../../temp/favicon.base64' %}" />
+        
+        <style>
+          {% include '../../temp/min.css' %}  
+        </style>
+        
+        <script>
+            var bso = {slide: {}};
+            {% include '../../temp/min.js' %}  
+            bso.start();
+        </script>   
     </head>
     <body>
 

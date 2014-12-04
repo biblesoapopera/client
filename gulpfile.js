@@ -3,13 +3,13 @@ var path = require('path');
 var less = require('gulp-less');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
-var smoosher = require('gulp-smoosher');
 var minifyHTML = require('gulp-minify-html');
 var livereload = require('gulp-livereload');
-var ghPages = require('gulp-gh-pages');
 var gulpif = require('gulp-if');
+var imagemin = require('gulp-imagemin');
 var bso = require('./tools/bsoBuilder');
 var twig = require('./tools/gulpTwig');
+var base64 = require('./tools/gulpBase64');
 var argv = require('yargs').argv;
 
 var buildType = 'dev';
@@ -21,8 +21,10 @@ var sourcePaths = {
        mainless: ['src/less/main.less'],
        less: ['src/less/**/*.less'],
        maintwig: ['src/twig/*.twig'],
-       twig: ['src/twig/**/*.twig'],       
-       copy: ['src/favicon.png'],
+       twig: ['src/twig/**/*.twig'],
+       imagemin: ['src/**/*.png'],
+       base64: ['temp/favicon.png'],
+       copy: [],
        slidedata: ['data/**/*.json']
    },
    dist: {
@@ -30,8 +32,10 @@ var sourcePaths = {
        mainless: ['src/less/main.less'],
        less: ['src/less/**/*.less'],
        maintwig: ['src/twig/*.twig'],
-       twig: ['src/twig/**/*.twig'],         
-       copy: ['src/favicon.png'],
+       twig: ['src/twig/**/*.twig'],      
+       imagemin: ['src/**/*.png'], 
+       base64: ['temp/favicon.png'],       
+       copy: [],
        slidedata: ['data/**/*.json']      
    }    
 };
@@ -53,7 +57,7 @@ gulp.task('js', function() {
     .pipe(gulp.dest('temp'));
 });
 
-gulp.task('less', function() {
+gulp.task('less', ['imagemin'], function() {
   return gulp.src(sourcePaths[buildType].mainless)
     .pipe(gulpif(buildType === 'dist', less({paths: [path.join(__dirname, 'src', 'less')], compress: true})))
     .pipe(gulpif(buildType === 'dev', less({paths: [path.join(__dirname, 'src', 'less')], compress: false})))
@@ -61,10 +65,21 @@ gulp.task('less', function() {
     .pipe(gulp.dest('temp'));
 });
 
-gulp.task('twig', ['js', 'less'], function() {
+gulp.task('imagemin', function(){
+  return gulp.src(sourcePaths[buildType].imagemin)
+    .pipe(gulpif(buildType === 'dist', imagemin({optimizationLevel: 7})))
+    .pipe(gulp.dest('temp'));
+})
+
+gulp.task('base64', ['imagemin'], function(){
+  return gulp.src(sourcePaths[buildType].base64)
+    .pipe(base64())
+    .pipe(gulp.dest('temp'));
+})
+
+gulp.task('twig', ['base64', 'js', 'less'], function() {
   return gulp.src(sourcePaths[buildType].maintwig)
     .pipe(twig())        
-    .pipe(smoosher())  
     .pipe(gulpif(buildType === 'dist', minifyHTML({})))
     .pipe(gulp.dest(targetPaths[buildType]))
 });
@@ -75,11 +90,6 @@ gulp.task('bso', function() {
 
 gulp.task('dev-server', function(){
   require('./tools/devserver');
-});
-
-gulp.task('deploy', function(){
-  gulp.src("dist/**/*")
-    .pipe(ghPages());  
 });
 
 gulp.task('main', ['copy', 'bso', 'twig']);
@@ -95,5 +105,9 @@ gulp.task('watch', function() {
 });
 
 // The default task (called when you run `gulp` from cli)
-gulp.task('default', ['watch', 'dev-server', 'main']);
+if (buildType === 'dist'){
+    gulp.task('default', ['main']);    
+} else {
+    gulp.task('default', ['watch', 'dev-server', 'main']);
+}
 

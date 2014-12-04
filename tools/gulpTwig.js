@@ -10,9 +10,7 @@ var twig = Twig.twig;
 util.inherits(GulpTwig, Transform);
 
 function GulpTwig() {
-    if (!(this instanceof GulpTwig))
-        return new GulpTwig();
-
+    if (!(this instanceof GulpTwig)) return new GulpTwig();
     Transform.call(this, {objectMode: true});
 }
 
