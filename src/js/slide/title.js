@@ -8,12 +8,6 @@ bso.slide.title = function(config, sectionType){
 
     document.body.appendChild(clone);
     this.node = document.body.lastElementChild;      
-        
-    this.enter = function(){
-        bso.next.enable();        
-    }
     
-    this.exit = function(){}
+    this.complete = true;
 }
-
-

@@ -1,3 +1,4 @@
+//TODO get rid of this global var - bad form
 var activeSlide;
 
 bso.slideTransition = function(newSlide, direction){
@@ -14,8 +15,11 @@ bso.slideTransition = function(newSlide, direction){
   //position slide ready for transiton
   newNode.setAttribute('class', 'slide ' + direction);
 
-  activeSlide.exit();
-  newSlide.enter();
+  if (activeSlide.exit) activeSlide.exit()
+  if (newSlide.enter) newSlide.enter()
+  
+  if (newSlide.complete) bso.next.enable()
+  else bso.next.disable()
   
   //wait for repaint
   setTimeout(function(){

@@ -1,6 +1,5 @@
 bso.slide.audio = function(config, sectionType){
        
-    var nextEnable = false;
     var template = document.querySelector('[data-slide=audio]');      
     var clone = document.importNode(template.content, true);
     
@@ -51,30 +50,27 @@ bso.slide.audio = function(config, sectionType){
     document.body.appendChild(clone);
     this.node = document.body.lastElementChild;       
         
-    player.addEventListener('timeupdate', function(evt){
+    player.addEventListener('timeupdate', function(){
         if (player.currentTime >= config.end) {
             player.pause();
             playPauseBtn.setAttribute('class', 'btn rewind');
-            nextEnable = true;
-            bso.next.enable();
+            this.complete = true;
+            this.emit('complete');
         } 
         var gripPosition = Math.round(300*(player.currentTime - config.start)/(config.end - config.start)) - 2.5;
         if (gripPosition < -2.5) gripPosition = -2.5
         else if (gripPosition > 297.5) gripPosition = 297.5
         grip.style.left = gripPosition + 'px';
-    })
+    }.bind(this))
     
     setTimeout(function(){
        player.currentTime = config.start;
        togglePlay();
     }, 1400);
-    
-    this.enter = function(){
-        if (nextEnable) bso.next.enable()
-        else bso.next.disable()        
-    }     
-    
+          
     this.exit = function(){
         player.pause();
     }
+    
+    bso.evented(this);
 }

@@ -14,15 +14,15 @@ bso.runEpisode = function(episodeData){
     
     slideIndex += dir;
     if(slideIndex === -1 || slideIndex === episodeData.sections[sectionIndex].slides.length){
-        episodeData.sections[sectionIndex].topNavNode.setAttribute(
-            'class',
-            episodeData.sections[sectionIndex].topNavNode.getAttribute('class').replace(' active', '')    
-        );
+        //episodeData.sections[sectionIndex].topNavNode.setAttribute(
+        //    'class',
+        //    episodeData.sections[sectionIndex].topNavNode.getAttribute('class').replace(' active', '')    
+        //);
         sectionIndex += dir;        
-        episodeData.sections[sectionIndex].topNavNode.setAttribute(
-            'class',
-            episodeData.sections[sectionIndex].topNavNode.getAttribute('class') + ' active'
-        );        
+        //episodeData.sections[sectionIndex].topNavNode.setAttribute(
+        //    'class',
+        //    episodeData.sections[sectionIndex].topNavNode.getAttribute('class') + ' active'
+        //);        
 
         if (slideIndex === -1){
             slideIndex = episodeData.sections[sectionIndex].slides.length - 1;
@@ -54,9 +54,11 @@ bso.runEpisode = function(episodeData){
             config.audioUrl = episodeData.audioUrl;
         }
     
-        slideCache[sectionIndex][slideIndex] = new bso.slide[type](config, episodeData.sections[sectionIndex].type);        
+        var newSlide = new bso.slide[type](config, episodeData.sections[sectionIndex].type);
+        slideCache[sectionIndex][slideIndex] = newSlide;
+        if (newSlide.on) newSlide.on('complete', function(){bso.next.enable()})
     }
-   
+      
     bso.slideTransition(slideCache[sectionIndex][slideIndex], dir === 1 ? 'right' : 'left'); 
   }  
   

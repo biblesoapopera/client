@@ -1,6 +1,5 @@
 bso.slide.sort = function(config, sectionType){
-    
-    var nextEnable = false;    
+     
     var dragNode;
     
     var template = document.querySelector('[data-slide=sort]');    
@@ -21,9 +20,9 @@ bso.slide.sort = function(config, sectionType){
     var dragend = function(event){        
         event.target.setAttribute('class', 'answer');
         dragNode = undefined;
-        nextEnable = true;        
-        bso.next.enable();
-    };
+        this.complete = true;        
+        this.emit('complete');
+    }.bind(this);
     
     var dragover = function(event){
        
@@ -63,12 +62,7 @@ bso.slide.sort = function(config, sectionType){
     })
     
     document.body.appendChild(clone);
-    this.node = document.body.lastElementChild;
+    this.node = document.body.lastElementChild;    
     
-    this.enter = function(){
-        if (nextEnable) bso.next.enable(); 
-        else bso.next.disable()        
-    }     
-    
-    this.exit = function(){}
+    bso.evented(this);
 }

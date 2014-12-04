@@ -1,6 +1,5 @@
 bso.slide.slider = function(config, sectionType){
-        
-    var nextEnable = false;        
+               
     var template = document.querySelector('[data-slide=slider]');    
     var clone = document.importNode(template.content, true);
     clone.querySelector('.slide-inner').setAttribute('class', 'slide-inner ' + sectionType);     
@@ -14,6 +13,7 @@ bso.slide.slider = function(config, sectionType){
     
     var position;
     var grip = clone.querySelector('.grip');
+    
     var mousedown = function(evt){
         position = {
             left: parseInt(window.getComputedStyle(grip).getPropertyValue('left').replace('px', '')),
@@ -23,13 +23,15 @@ bso.slide.slider = function(config, sectionType){
         document.addEventListener('mousemove', mousemove);    
         grip.setAttribute('class', 'grip active');
     };
+    
     var mouseup = function(evt){
         document.removeEventListener('mousemove', mousemove);        
         document.removeEventListener('mouseup', mouseup);
         grip.setAttribute('class', 'grip'); 
-        nextEnable = true;
-        bso.next.enable();
-    };
+        this.complete = true;
+        this.emit('complete');
+    }.bind(this);
+    
     var mousemove = function(evt){
         var newLeft = position.left + evt.clientX - position.client;
         
@@ -49,10 +51,5 @@ bso.slide.slider = function(config, sectionType){
     document.body.appendChild(clone);
     this.node = document.body.lastElementChild;
     
-    this.enter = function(){
-        if (nextEnable) bso.next.enable();      
-        else bso.next.disable()        
-    }     
-    
-    this.exit = function(){}
+    bso.evented(this);    
 }

@@ -1,6 +1,5 @@
 bso.slide.pick = function(config, sectionType){
     
-    var nextEnable = false;
     var template = document.querySelector('[data-slide=pick]');    
     var clone = document.importNode(template.content, true);
     clone.querySelector('.slide-inner').setAttribute('class', 'slide-inner ' + sectionType);     
@@ -8,25 +7,21 @@ bso.slide.pick = function(config, sectionType){
     
     var answerList = clone.querySelector('.answers');
 
-    config.answers.forEach(function(answer){
+    for (var i=0; i<config.answers.length; i++){
+       var answer = config.answers[i];
        var li = document.createElement('li');
        li.innerHTML = answer;
-       li.addEventListener('click', function(evt){
+       li.addEventListener('click', function(event){
          for(var i=0; i<answerList.children.length; i++) answerList.children[i].removeAttribute('class')
-         li.setAttribute('class', 'active'); 
-         nextEnable = true;
-         bso.next.enable();   
-       });
+         event.target.setAttribute('class', 'active'); 
+         this.complete = true;
+         this.emit('complete');  
+       }.bind(this));
        answerList.appendChild(li);
-    })
+    }
                     
     document.body.appendChild(clone);
     this.node = document.body.lastElementChild;
     
-    this.enter = function(){
-        if (nextEnable) bso.next.enable()
-        else bso.next.disable()
-    }    
-    
-    this.exit = function(){}
+    bso.evented(this);
 }
