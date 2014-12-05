@@ -6,21 +6,28 @@ bso.slide.audio = function(config, sectionType){
     clone.querySelector('.slide-inner').setAttribute('class', 'slide-inner ' + sectionType);      
     clone.querySelector('.text').innerHTML = config.text;
     
-    var player = new Audio();
+    var player = new Audio();   
     player.src = config.audioUrl; 
+
+    function setStartTime(){      
+        player.removeEventListener('canplay', setStartTime);
+        player.currentTime = config.start;             
+    }
+    player.addEventListener('canplay', setStartTime);
     
     function togglePlay(){
+        
         var cls = playPauseBtn.getAttribute('class');
 
-        if (cls === 'btn rewind'){            
+        if (cls === 'btn sprite rewind'){            
             player.currentTime = config.start;
-            playPauseBtn.setAttribute('class', 'btn play');                                             
-        } else if (cls === 'btn pause'){
+            playPauseBtn.setAttribute('class', 'btn sprite play');                                             
+        } else if (cls === 'btn sprite pause'){
             player.pause();
-            playPauseBtn.setAttribute('class', 'btn play');
-        } else if (cls === 'btn play'){
+            playPauseBtn.setAttribute('class', 'btn sprite play');
+        } else if (cls === 'btn sprite play'){
             player.play();
-            playPauseBtn.setAttribute('class', 'btn pause');             
+            playPauseBtn.setAttribute('class', 'btn sprite pause');             
         }      
     }
     
@@ -53,7 +60,7 @@ bso.slide.audio = function(config, sectionType){
     player.addEventListener('timeupdate', function(){
         if (player.currentTime >= config.end) {
             player.pause();
-            playPauseBtn.setAttribute('class', 'btn rewind');
+            playPauseBtn.setAttribute('class', 'btn sprite rewind');
             this.complete = true;
             this.emit('complete');
         } 
@@ -62,12 +69,13 @@ bso.slide.audio = function(config, sectionType){
         else if (gripPosition > 297.5) gripPosition = 297.5
         grip.style.left = gripPosition + 'px';
     }.bind(this))
+                 
+    this.enter = function(){
+        setTimeout(function(){
+           togglePlay();
+        }, 1400);        
+    }
     
-    setTimeout(function(){
-       player.currentTime = config.start;
-       togglePlay();
-    }, 1400);
-          
     this.exit = function(){
         player.pause();
     }
