@@ -17,7 +17,7 @@ if (argv.dist) buildType = 'dist'
 
 var sourcePaths = {
    dev: {
-       js: ['src/js/**/*.js', 'tools/livereload.js'],
+       js: ['src/**/*.js', 'tools/livereload.js'],
        mainless: ['src/less/main.less'],
        less: ['src/less/**/*.less'],
        maintwig: ['src/twig/*.twig'],
@@ -28,7 +28,7 @@ var sourcePaths = {
        slidedata: ['data/**/*.json']
    },
    dist: {
-       js: ['src/js/**/*.js'],
+       js: ['src/**/*.js'],
        mainless: ['src/less/main.less'],
        less: ['src/less/**/*.less'],
        maintwig: ['src/twig/*.twig'],
