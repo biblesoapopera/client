@@ -6,7 +6,7 @@ bso.runEpisode = function(episodeData){
   //setup top-nav     
   bso.topNav(episodeData);
   var thumbs = document.querySelector('.top-nav .thumbs');
-  
+   
   var slideCache = [];
   function go(dir){
   
@@ -39,7 +39,7 @@ bso.runEpisode = function(episodeData){
     } else {
         bso.previous.show();
     }
-    
+  
     if (!slideCache[sectionIndex]) slideCache[sectionIndex] = []
     if (!slideCache[sectionIndex][slideIndex]){
         var type = episodeData.sections[sectionIndex].slides[slideIndex].type;
@@ -63,10 +63,11 @@ bso.runEpisode = function(episodeData){
     );
 
     bso.slideTransition(slideCache[sectionIndex][slideIndex], dir === 1 ? 'right' : 'left'); 
+    
   }  
-  
+ 
   bso.previous.create(go);  
   bso.next.create(go);
   
-  go(1);
+  go(1);  
 };

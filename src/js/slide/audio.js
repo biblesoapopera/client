@@ -1,14 +1,26 @@
 bso.slide.audio = function(config, sectionType){
-       
+
     var template = document.querySelector('[data-slide=audio]');      
     var clone = document.importNode(template.content, true);
+    var ready;    
+    var player = new Audio(); 
+    
+    if (config.audioUrl.then){
+        clone.querySelector('.text').innerHTML = 'loading ...';
+        config.audioUrl.then(function(audioUrl){
+            if (this.node) this.node.querySelector('.text').innerHTML = config.text;
+            else clone.querySelector('.text').innerHTML = config.text;            
+            player.src = audioUrl;
+            ready = true;
+        }.bind(this))
+    } else {
+        clone.querySelector('.text').innerHTML = config.text;
+        player.src = config.audioUrl;         
+        ready = true;
+    }
     
     clone.querySelector('.slide-inner').setAttribute('class', 'slide-inner ' + sectionType);      
-    clone.querySelector('.text').innerHTML = config.text;
     
-    var player = new Audio();   
-    player.src = config.audioUrl; 
-
     function setStartTime(){      
         player.removeEventListener('canplay', setStartTime);
         player.currentTime = config.start;             
@@ -16,6 +28,8 @@ bso.slide.audio = function(config, sectionType){
     player.addEventListener('canplay', setStartTime);
     
     function togglePlay(){
+        
+        if (!ready) return;
         
         var cls = playPauseBtn.getAttribute('class');
 

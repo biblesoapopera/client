@@ -14,13 +14,7 @@
         
         <style>
           {% include '../../temp/min.css' %}  
-        </style>
-        
-        <script>
-            var bso = {slide: {}};
-            {% include '../../temp/min.js' %}  
-            bso.start();
-        </script>   
+        </style>         
     </head>
     <body>
 
@@ -34,6 +28,11 @@
         {% include 'include/slider.twig' %}
         {% include 'include/sort.twig' %}
         {% include 'include/title.twig' %}        
-               
-</body>
+         
+        <script>
+            var bso = {slide: {}};
+            {% include '../../temp/min.js' %}  
+            bso.start();
+        </script>         
+    </body>
 </html>
