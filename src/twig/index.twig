@@ -26,15 +26,7 @@
 
         {% include 'include/topNav.twig' %}        
 
-        <div data-slide="loading" class='slide active'>
-            <div class='slide-inner info'>
-                <div class='slide-container'>
-                    <div class='slide-container-inner'>
-                        Loading episode ...
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% include 'include/loading.twig' %}         
     
         {% include 'include/audio.twig' %}
         {% include 'include/html.twig' %}

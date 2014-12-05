@@ -17,13 +17,8 @@ bso.topNav = function(episodeData){
   
     for (var j in episodeData.sections[i].slides){
         slideDiv = document.createElement('div');
-        if (i == 0 && j == 0){
-            slideDiv.setAttribute('class', 'active ' + episodeData.sections[i].type);            
-        } else {
-            slideDiv.setAttribute('class', episodeData.sections[i].type);
-        }
-        slideDiv.setAttribute('data-section', i);
-        slideDiv.setAttribute('data-slide', j);
+        slideDiv.setAttribute('class', episodeData.sections[i].type);        
+        slideDiv.setAttribute('data-slide-index', 'i' + i + '-' + j);
         
         thumbs.appendChild(slideDiv);
     }
