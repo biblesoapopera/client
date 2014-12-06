@@ -20,22 +20,22 @@ var sourcePaths = {
        js: ['src/**/*.js', 'tools/livereload.js'],
        mainless: ['src/less/main.less'],
        less: ['src/less/**/*.less'],
-       maintwig: ['src/twig/*.twig'],
+       maintwig: ['src/twig/**/*.twig', '!src/twig/include/**/*'],
        twig: ['src/twig/**/*.twig'],
-       imagemin: ['src/**/*.png'],
+       imagemin: ['src/**/*.png', '!src/phone.png'],
        base64: ['temp/favicon.png'],
-       copy: [],
+       copy: ['src/phone.png'],
        slidedata: ['data/**/*.json']
    },
    dist: {
        js: ['src/**/*.js'],
        mainless: ['src/less/main.less'],
        less: ['src/less/**/*.less'],
-       maintwig: ['src/twig/*.twig'],
+       maintwig: ['src/twig/**/*.twig', '!src/twig/include/**/*'],
        twig: ['src/twig/**/*.twig'],      
-       imagemin: ['src/**/*.png'], 
+       imagemin: ['src/**/*.png', '!src/phone.png'],
        base64: ['temp/favicon.png'],       
-       copy: [],
+       copy: ['src/phone.png'],
        slidedata: ['data/**/*.json']      
    }    
 };
@@ -85,7 +85,7 @@ gulp.task('twig', ['base64', 'js', 'less'], function() {
 });
 
 gulp.task('bso', function() {
-  bso(path.join(__dirname, buildType));
+  bso(path.join(__dirname, buildType + '/app'));
 });
 
 gulp.task('dev-server', function(){

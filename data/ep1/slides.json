@@ -12,10 +12,6 @@
         },        
         {
           "type": "html",
-          "content": "<p>This is an experimental demo.</p><p>It has been developed with firefox, and is not tested on other browsers.</p><p>The UI is designed for a small screen (320x480) landscape. Press <code>ctrl-shift-m</code> in firefox to change your screen size.</p><p>Enjoy!</p>"
-        },
-        {
-          "type": "html",
           "content": "<p>Each episode has some opening discussion questions ...</p>"
         }         
       ]

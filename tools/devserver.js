@@ -4,7 +4,8 @@ var path = require('path');
 var rangeParser = require('range-parser');
 
 var server = http.createServer(function (request, response) {
-    if (request.url == '/') request.url = '/index.html';    
+    if (request.url.slice(-1) == '/') request.url += 'index.html'; 
+
     var filePath = path.join(__dirname, '..', 'dev', request.url);
 
     if (request.headers.range){
