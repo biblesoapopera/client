@@ -97,9 +97,7 @@ gulp.task('main', ['copy', 'bso', 'twig']);
 // Rerun the task when a file changes
 gulp.task('watch', function() {
   livereload.listen();
-  gulp.watch(sourcePaths.dev.twig, ['twig']);    
-  gulp.watch(sourcePaths.dev.js, ['twig']);
-  gulp.watch(sourcePaths.dev.less, ['twig']);
+  gulp.watch(['src/**/*'], ['twig']);    
   gulp.watch(sourcePaths.dev.slidedata, ['bso', 'twig']);    
   gulp.watch('dev/**/*.html').on('change', function(){setTimeout(livereload.changed, 150)});
 });
