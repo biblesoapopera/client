@@ -14,9 +14,9 @@ bso.slide.slider = function(config, sectionType){
     var position;
     var grip = clone.querySelector('.grip');
     
-    var mousedown = function(evt){
+    var mousedown = function(evt){       
         position = {
-            left: parseInt(grip.style.left.replace('px', '')),
+            left: parseInt(window.getComputedStyle(grip).getPropertyValue('left').replace('px', '')),
             client: evt.clientX
         }
         document.addEventListener('mouseup', mouseup);

@@ -4,7 +4,9 @@ var activeSlide;
 bso.slideTransition = function(newSlide, direction){
 
   if (!activeSlide){
-    activeSlide = new bso.slide.loading();
+    newSlide.node.setAttribute('class', 'slide active');    
+    activeSlide = newSlide;
+    return;
   }
   
   var activeNode = activeSlide.node;
@@ -29,7 +31,7 @@ bso.slideTransition = function(newSlide, direction){
     activeNode.setAttribute('class', 'slide ' + outDirection);
     newNode.setAttribute('class', 'slide active');
     activeSlide = newSlide;
-  }, 50);
+  }, 80);
 }
 
 bso.slideTransitionEnd = function(evt){

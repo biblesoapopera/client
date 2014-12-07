@@ -3,28 +3,34 @@ bso.slide.audio = function(config, sectionType){
     var template = document.querySelector('[data-slide=audio]');      
     var clone = document.importNode(template.content, true);
     var ready;    
+    var waiting;
     var player = new Audio(); 
     var progressTime = config.start;
     
     if (config.audioUrl.then){
-        clone.querySelector('.text').innerHTML = 'loading ...';
-        config.audioUrl.then(function(audioUrl){
-            if (this.node) this.node.querySelector('.text').innerHTML = config.text;
-            else clone.querySelector('.text').innerHTML = config.text;            
+     
+        var spinner = clone.querySelector('.spinner');
+        var playerContainer = clone.querySelector('.player-container');
+        spinner.setAttribute('class', 'spinner');      
+        playerContainer.setAttribute('class', 'player-container hidden');
+        
+        config.audioUrl.then(function(audioUrl){       
+            spinner.setAttribute('class', 'spinner hidden');      
+            playerContainer.setAttribute('class', 'player-container');           
             player.src = audioUrl;
-            ready = true;
         }.bind(this))
     } else {
-        clone.querySelector('.text').innerHTML = config.text;
         player.src = config.audioUrl;         
-        ready = true;
     }
-    
+
+    clone.querySelector('.text').innerHTML = config.text;    
     clone.querySelector('.slide-inner').setAttribute('class', 'slide-inner ' + sectionType);      
     
-    function setStartTime(){      
+    function setStartTime(){   
         player.removeEventListener('canplay', setStartTime);
         player.currentTime = config.start;             
+        ready = true;    
+        if (!waiting) play()
     }
     player.addEventListener('canplay', setStartTime);
     
@@ -146,7 +152,9 @@ bso.slide.audio = function(config, sectionType){
     this.node = document.body.lastElementChild;   
     
     this.enter = function(){
+        waiting = true;
         setTimeout(function(){
+           waiting = false;
            play();
         }, 1400);        
     }

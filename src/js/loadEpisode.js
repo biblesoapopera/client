@@ -1,5 +1,7 @@
 bso.loadEpisode = function(name){
 
+  document.querySelector('.spinner').setAttribute('class', 'spinner');
+  
   var episodeData;
   var partialAudio;
   var audioUrl;

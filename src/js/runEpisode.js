@@ -68,6 +68,9 @@ bso.runEpisode = function(episodeData){
  
   bso.previous.create(go);  
   bso.next.create(go);
-  
+   
   go(1);  
+  
+  var loadingSlide = document.querySelector('.slide.loading'); 
+  loadingSlide.parentNode.removeChild(loadingSlide);
 };
