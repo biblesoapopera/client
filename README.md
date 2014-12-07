@@ -86,7 +86,31 @@ Type:
 
 This will build compressed distributable files to `/demo/dist`. These are the files placed in the `gh-pages` branch for serving at `http://biblesoapopera.github.io/demo`.
 
-IMPORTANT NOTE: THIS ISN'T WORKING FULLY RIGHT NOW
+making a contribution
+=====================
+
+Not surprisingly this project uses git to manage source code, and github pull requests to review changes.
+
+If you make local changes to the demo that you would like incorporated into the master repository, then follow this workflow:
+
+* You will need a github account if you don't already have one.
+* Go the demo github page (`http://github.com/biblesoapopera/demo`) and click on `fork` in the top right corner. This will create your own personal copy of the demo in your own github account.
+* On your local machine open a command prompt and go to your `demo` directory
+* Add a new remote to your local git repository by typing the following command:
+`>git remote add myforkname http://github.com/myusername/demo`
+* Next, list the changes you have made to your local repository with:
+`>git status`
+* Now you need to stage those changes you want to commit. Use the following two commands multiple times for different files:
+`>git add filepath`
+`>git rm filepath`
+* Use `>git status` to check your staging. Unstaged changes will be listed in red. Staged changes will be listed in green.
+* Commit your work with:
+`git commit -m "my commit message"`
+* Send your commit to your github remote with:
+`git push myforkname master`
+* Then go to your personal github fork (`http://github.com/myusername/demo`) and create a pull request.
+ 
+You're done! Your pull request will appear on the issues page of `http://github.com/biblesoapopera/demo` ready for review, dissucssion and then merging.
 
 design principles
 =================
@@ -117,7 +141,6 @@ user interface
 
 This is all the html, js, css and images compiled into a single page that the user interacts with. The user interface is like a slide show, with some slides interactive. The slide types are:
 
-* loading. The slide shown while the episode data is loading
 * title. Shown at the start of an episode
 * html. Shows arbitary html content
 * pick. Shows a multiple choice question
