@@ -14,26 +14,37 @@ bso.slide.slider = function(config, sectionType){
     var position;
     var grip = clone.querySelector('.grip');
     
-    var mousedown = function(evt){       
+    var getClientX = function(evt){
+        if (evt.touches) return evt.touches[0].clientX;
+        else return evt.clientX;        
+    }
+    
+    var dragstart = function(evt){          
         position = {
             left: parseInt(window.getComputedStyle(grip).getPropertyValue('left').replace('px', '')),
-            client: evt.clientX
+            client: getClientX(evt)
         }
-        document.addEventListener('mouseup', mouseup);
-        document.addEventListener('mousemove', mousemove);    
+        document.addEventListener('mouseup', dragend);
+        document.addEventListener('mousemove', dragmove);    
+        document.addEventListener('touchend', dragend);
+        document.addEventListener('touchmove', dragmove);        
         grip.setAttribute('class', 'grip active');
     };
-    
-    var mouseup = function(evt){
-        document.removeEventListener('mousemove', mousemove);        
-        document.removeEventListener('mouseup', mouseup);
+        
+    var dragend = function(){
+        document.removeEventListener('mousemove', dragmove);        
+        document.removeEventListener('mouseup', dragend);
+        document.removeEventListener('touchmove', dragmove);        
+        document.removeEventListener('touchend', dragend);        
         grip.setAttribute('class', 'grip'); 
         this.complete = true;
         this.emit('complete');
     }.bind(this);
     
-    var mousemove = function(evt){
-        var newLeft = position.left + evt.clientX - position.client;
+    var dragmove = function(evt){
+        var clientX = getClientX(evt);
+      
+        var newLeft = position.left + clientX - position.client;
         
         if (newLeft < -10){
             newLeft = -10;
@@ -43,10 +54,11 @@ bso.slide.slider = function(config, sectionType){
         
         grip.style.left = newLeft + 'px';        
         position.left = newLeft;
-        position.client = evt.clientX;
+        position.client = clientX;
     }
     
-    grip.addEventListener('mousedown', mousedown);
+    grip.addEventListener('mousedown', dragstart);
+    grip.addEventListener('touchstart', dragstart);
     
     document.body.appendChild(clone);
     this.node = document.body.lastElementChild;

@@ -3,6 +3,8 @@ bso.runEpisode = function(episodeData){
   var sectionIndex = 0;
   var slideIndex = -1;
 
+  var transitioner = new bso.slideTransitioner();
+  
   //setup top-nav     
   bso.topNav(episodeData);
   var thumbs = document.querySelector('.top-nav .thumbs');
@@ -55,17 +57,18 @@ bso.runEpisode = function(episodeData){
         slideCache[sectionIndex][slideIndex] = newSlide;
         if (newSlide.on) newSlide.on('complete', function(){bso.next.enable()})
     }
-      
+         
+    transitioner.transition(slideCache[sectionIndex][slideIndex], dir === 1 ? 'right' : 'left');     
+  }  
+ 
+  transitioner.on('transitiondone', function(){
     //activate entering slide thumb        
     thumbs.querySelector('[data-slide-index=i' + sectionIndex + '-' + slideIndex + ']').setAttribute(
         'class', 
         episodeData.sections[sectionIndex].type + ' active' + (slideCache[sectionIndex][slideIndex].complete ? ' complete' : '')
-    );
-
-    bso.slideTransition(slideCache[sectionIndex][slideIndex], dir === 1 ? 'right' : 'left'); 
-    
-  }  
- 
+    );      
+  });
+  
   bso.previous.create(go);  
   bso.next.create(go);
    
