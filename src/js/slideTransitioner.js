@@ -5,7 +5,6 @@ bso.slideTransitioner = function () {
     var slideTransitionEnd = function(evt){
         evt.target.removeEventListener('transitionend', slideTransitionEnd);
         evt.target.setAttribute('class', 'slide');
-        this.emit('transitiondone');
     }.bind(this);
 
     this.transition = function (newSlide, direction) {
@@ -45,6 +44,4 @@ bso.slideTransitioner = function () {
             activeSlide = newSlide;
         }, 80);
     }
-    
-    bso.evented(this);
 }
