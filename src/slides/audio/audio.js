@@ -104,30 +104,36 @@ bso.slide.audio = function(config, sectionType){
     
     var isPlaying;
     var gripDragPosition;
-    var mousedown = function(evt){
+    var dragstart = function(evt){
         isPlaying = !player.paused;
         player.pause();
         gripDragPosition = {
             left: parseInt(grip.style.left.replace('px', '')),
-            client: evt.clientX
+            client: bso.getClientX(evt)
         }
-        document.addEventListener('mouseup', mouseup);
-        document.addEventListener('mousemove', mousemove);    
+        document.addEventListener('mouseup', dragend);
+        document.addEventListener('mousemove', dragmove);    
+        document.addEventListener('touchend', dragend);
+        document.addEventListener('touchmove', dragmove);     
     };
     
-    var mouseup = function(){        
-        document.removeEventListener('mousemove', mousemove);        
-        document.removeEventListener('mouseup', mouseup);
+    var dragend = function(){        
+        document.removeEventListener('mousemove', dragmove);        
+        document.removeEventListener('mouseup', dragend);
+        document.removeEventListener('touchmove', dragmove);        
+        document.removeEventListener('touchend', dragend);  
         var currentTime = config.start + (gripDragPosition.left + 2.5) * (config.end - config.start) / 300;
         if (currentTime < config.start) currentTime = config.start
         else if (currentTime > config.end) currentTime = config.end
+    
         player.currentTime = currentTime;        
         if (isPlaying) player.play();
     };
     
-    var mousemove = function(evt){
-        var newLeft = gripDragPosition.left + evt.clientX - gripDragPosition.client;
-               
+    var dragmove = function(evt){
+        var clientX = bso.getClientX(evt);        
+        var newLeft = gripDragPosition.left + clientX - gripDragPosition.client;
+
         if (newLeft < -2.5){
             newLeft = -2.5;
         } else if (newLeft > progress.style.width.replace('px', '') - 2.5){
@@ -136,10 +142,11 @@ bso.slide.audio = function(config, sectionType){
         
         grip.style.left = newLeft + 'px';        
         gripDragPosition.left = newLeft;
-        gripDragPosition.client = evt.clientX;
+        gripDragPosition.client = clientX;
     }
       
-    grip.addEventListener('mousedown', mousedown);        
+    grip.addEventListener('mousedown', dragstart);
+    grip.addEventListener('touchstart', dragstart);        
     
     progress.addEventListener('click', function(event){
         var currentTime = config.start + (event.clientX - progress.getBoundingClientRect().left) * (config.end - config.start) / 300;

@@ -6,10 +6,16 @@
     {
       "type": "info",
       "title": "intro",
-      "slides": [  
+      "slides": [ 
+        {
+          "type": "audio",
+          "text": "audio drama, part 1",
+          "start": 0,
+          "end": 15
+        }, 
         {
           "type": "title"
-        },        
+        },                
         {
           "type": "html",
           "content": "<p>Each episode has some opening discussion questions ...</p>"
