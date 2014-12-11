@@ -17,6 +17,10 @@ function build(episodePath, name, destPath, cb) {
             var lengthBuffer = new Buffer(16);
             lengthBuffer.write(length);
 
+            if (!fs.existsSync(destPath)){
+                fs.mkdirSync(destPath);
+            }
+            
             fs.writeFile(path.join(destPath, name + '.bso'), Buffer.concat([lengthBuffer, slidesBuffer, audioBuffer]), function (err) {
                 if (err) cb(err);
                 else cb();
