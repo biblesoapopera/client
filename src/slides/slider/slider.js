@@ -13,7 +13,8 @@ bso.slide.slider = function(config, sectionType){
     
     var position;
     var grip = clone.querySelector('.grip');
-        
+    var track = clone.querySelector('.track');
+    
     var dragstart = function(evt){          
         position = {
             left: parseInt(window.getComputedStyle(grip).getPropertyValue('left').replace('px', '')),
@@ -53,6 +54,10 @@ bso.slide.slider = function(config, sectionType){
     
     grip.addEventListener('mousedown', dragstart);
     grip.addEventListener('touchstart', dragstart);
+    
+    track.addEventListener('click', function(evt){        
+        grip.style.left = evt.clientX - track.getBoundingClientRect().left - grip.getBoundingClientRect().width/2 + 'px';       
+    })
     
     document.body.appendChild(clone);
     this.node = document.body.lastElementChild;
