@@ -162,12 +162,12 @@ bso.slide.audio = function(config, sectionType){
         waiting = true;
         setTimeout(function(){
            waiting = false;
-           play();
+           if (actionBtn.getAttribute('class').indexOf('play') !== -1) play();
         }, 1400);        
     }
     
     this.exit = function(){
-        pause();
+        if (actionBtn.getAttribute('class').indexOf('pause') !== -1) pause();
     }
     
     bso.evented(this);
