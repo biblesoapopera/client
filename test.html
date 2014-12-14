@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Bible Soap Opera Demo</title>
+        <meta name="description" content="An Interactive Audio Soap Opera">
+        <meta name="author" content="Tim Roediger">
+        <meta name="keywords" content="blah">
+        
+        <link rel="icon shortcut" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAACNwAAAjcB9wZEwgAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAHgSURBVDiNjZE9aNNRFMV/55+kDYGgLu2gYqMOHRQKFQeLJa0aaTXWD+xkEVw62OIsiJsiQrcKougqthQ0FCExUAVxqw6OamIHP6BDQm2btE3edbDBpInGAw/effedc+89V2ZGNdL7hrdhxTFD58B2GZjQG4MHsWwizRaCquPU/tPdct4MsIcGMCzdYsvxaHauWHnzKpdE51C4ivzBHIP5ULCVknZKdgVYFTq+QXhm/tBooE4guM7EJnnqbba7S6J9+0rxCQEmnXmfneMo4itiMJf7dqlOQNgZ4HvAfKNH9r67h7hv0jJmbcJe+8Ruc9wFMPOu1gmYETVHz+KXwE+wXkkXYpnnl/OhYL/EMxM3nJTc/H3wjzFmdWcuGvVXx8mOeGcqEk8YKBWJF1KRuE1x0WdmtVtohpeRU13I9x5YPJFJtNWM0AzTB4Zb8Hy3f/vFdJ0H/8Krvj7/jkLxKcYAsKSym/h/AUkbC+HHZpwF1kAjxxZmM5W0vxk/1REfF4wAS+a5/tin2fnqfNMOJM4DmLi+lVzXQaJzKBxcZ1JyuZJXvhVw/l6gB1gte6VHjQrUCATzRadQ60lM7f6y/1plwSbdHPj4Yq2RQM0IsR/JFYnDhh4CBSArNB7LJO78bcRfFdHQ8rIfuRUAAAAASUVORK5CYII=" />
+              
+    </head>
+    <body>
+
+TEST    
+<div class="result1"></div>
+<div class="result2"></div>
+<div class="result3"></div>
+<script>
+    if (Audio) document.querySelector('.result1').innerHTML = 'I do audio';
+    
+    var a = new Audio();
+    document.querySelector('.result2').innerHTML = 'audio/mpeg ' + a.canPlayType('audio/mpeg');
+    document.querySelector('.result3').innerHTML = 'audio/ogg ' + a.canPlayType('audio/ogg');        
+</script> 
+
+<audio src="audio.mp3" controls autoplay></audio>
+   
+    </body>
+</html>
