@@ -22,6 +22,8 @@
 
         {% include 'include/loading.twig' %}         
     
+        {% include 'include/demonotes.twig' %}
+        
         {% include '../slides/audio/audio.twig' %}
         {% include '../slides/html/html.twig' %}
         {% include '../slides/pick/pick.twig' %}
@@ -30,9 +32,9 @@
         {% include '../slides/title/title.twig' %}        
          
         <script>
-            var bso = {slide: {}};
+            var bso = {episode: 'ep1', slide: {}};
             {% include '../../temp/min.js' %}  
-            bso.start();
+            bso.load();
         </script>         
     </body>
 </html>

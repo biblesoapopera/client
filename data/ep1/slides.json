@@ -1,19 +1,35 @@
 {
-  "author": "tim",
-  "title": "Episode 1",
-  "subtitle": "bible soap opera demo",
+  "author": "martin",
+  "title": "Bible Soap Opera: Demo Episode",
+  "subtitle": "Learn the whole Bible. Find Jesus in every story.",
   "sections": [
     {
       "type": "info",
-      "title": "intro",
-      "slides": [            
+      "title": "introduction",
+      "slides": [               
         {
           "type": "title"
-        },                
+        },        
         {
           "type": "html",
-          "content": "<p>Each episode has some opening discussion questions ...</p>"
-        }         
+          "content": "<p>Hello.</p><p>Welcome to this drama lesson.<p></p>Today we are going to learn about Abraham and how he trusted God's word.</p>"
+        },         
+        {
+          "type": "html",
+          "content": "<p>First, can you remember when God asks Abraham to sacrifice his son Isaac?</p><p>If you have a Bible, you can read Genesis chapter 22.</p><p><small>Click <i class='icon next sprite'></i> when you're ready.</small></p>"
+        }        
+      ]
+    },
+    {
+      "type": "listen",
+      "title": "drama part 1",
+      "slides": [
+        {
+          "type": "audio",
+          "text": "Let’s hear the story of Paul and his friends now.",
+          "start": 0,
+          "end": 494
+        }
       ]
     },
     {
@@ -21,52 +37,91 @@
       "title": "discussion",
       "slides": [
         {
+          "type": "html",
+          "content": "<p>Hello again.</p><p>Our friend Paul is in trouble. Why is Paul's uncle asking for the TV back? What will he do? Will he listen to David, or to Samson? </p><p> We'll come back to the story soon.</p><p> First, some questions for you to talk about in your group.</p>"
+        },         
+        {
           "type": "pick",
-          "question": "What is the answer?",
+          "question": "What did Paul’s uncle give him as a gift?",
           "answers": [
-            "answer 1",
-            "answer 2",
-            "answer 3"
+            "TV",
+            "phone",
+            "football"
           ]
         },
         {
+          "type": "pick",
+          "question": "What does Paul’s uncle want Paul to do with the TV now?",
+          "answers": [
+            "Keep it",
+            "Give it back"
+          ]
+        },
+        {
+          "type": "html",
+          "content": "<p>How does Paul feel about this?</p><p>Discuss in your group now.</p>"
+        },         
+        {
+          "type": "html",
+          "content": "Paul feels confused. He thought his uncle was kind, but now he’s not sure. He also feels ashamed. His neighbours will laugh at him if he gives back the TV."
+        },         
+        {
           "type": "slider",
-          "question": "Do you like chocolate?",
-          "left": "yuck",
-          "right": "yum"
+          "question": "Who said this: 'Abraham must have done something wrong, and so God is taking away the promises by taking away Isaac.'",
+          "left": "Samson",
+          "right": "David"
         }, 
         {
-          "type": "sort",
-          "question": "Sort these from smallest to largest:",
+          "type": "slider",
+          "question": "Who said this: 'Abraham learnt about resurrection. So even if Abraham died without the promises coming true in his lifetime, Abraham wouldn’t miss out on any'",
+          "left": "Samson",
+          "right": "David"
+        }, 
+        {
+          "type": "pick",
+          "question": "<small>David said to Paul: 'You know, many years later, another loved son was obedient, and offered himself as a sacrifice. But this son was provided by God. And he came back from death.' Who is the son that offers himself?</small>",
           "answers": [
-            "mouse",
-            "elephant",
-            "grape",
-            "pig"
+            "Jesus",
+            "Isaac",
+            "Joseph"
           ]
+        },
+        {
+          "type": "html",
+          "content": "<p>Jesus is the lamb that God provides.</p><p>Let's get back to our story...</p>"
+        },         
+        {
+          "type": "slider",
+          "question": "Who would you listen to if you were Paul?",
+          "left": "Samson",
+          "right": "David"
         }
       ]
     },
     {
       "type": "listen",
-      "title": "drama",
+      "title": "drama part 2",
       "slides": [
         {
           "type": "audio",
-          "text": "audio drama, part 1",
-          "start": 20,
-          "end": 35
+          "text": "Let’s hear what Paul does.",
+          "start": 470,
+          "end": 617
         }
       ]
     },
     {
       "type": "info",
-      "title": "wrap up",
-      "slides": [
+      "title": "lessons",
+      "slides": [                   
         {
           "type": "html",
-          "content": "Thanks for trying out the demo"
-        }
+          "content": "<p>Well, that’s a happy ending. Paul decided to trust his uncle. His uncle was always being kind, even when Paul didn’t understand his words. We learnt that Abraham learnt to trust God – even beyond death. How about you? When do you find it hard to trust God’s Word? You can talk about this with your group now. </p>"
+        },         
+        {
+          "type": "html",
+          "content": "<p>We hope you enjoyed this demo episode.</p><p><small>Written by Martin Olmos and Joe Radkovic.</small></p><p><small>Acting by Samuel Gates, Ruth Lee, Luke Forster, and Harry Martin.</small></p><p>This project aims to help christians with an oral culture learn how the whole Bible fits together, with Jesus at its heart. Follow this project at <a href='http://biblesoapopera.com' target='_blank'>biblesoapopera.com</a></p>"
+        }       
       ]
     }
   ]

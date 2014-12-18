@@ -2,66 +2,32 @@ bso.slide.audio = function(config, sectionType){
 
     var template = document.querySelector('[data-slide=audio]');      
     var clone = document.importNode(template.content, true);
-    var ready;    
-    var waiting;
-    var player = new Audio(); 
     var progressTime = config.start;
-    
-    if (config.audioUrl.then){
-     
-        var spinner = clone.querySelector('.spinner');
-        var playerContainer = clone.querySelector('.player-container');
-        spinner.setAttribute('class', 'spinner');      
-        playerContainer.setAttribute('class', 'player-container hidden');
-        
-        config.audioUrl.then(function(audioUrl){       
-            spinner.setAttribute('class', 'spinner hidden');      
-            playerContainer.setAttribute('class', 'player-container');           
-            player.src = audioUrl;
-        }.bind(this))
-    } else {
-        player.src = config.audioUrl;         
-    }
-
+    var currentTime = config.start;
+    var player = bso.player();
+                           
     clone.querySelector('.text').innerHTML = config.text;    
     clone.querySelector('.slide-inner').setAttribute('class', 'slide-inner ' + sectionType);      
-    
-    function setStartTime(){   
-        player.removeEventListener('canplay', setStartTime);
-        player.currentTime = config.start;             
-        ready = true;    
-        if (!waiting) play()
-    }
-    player.addEventListener('canplay', setStartTime);
-    
-    var actionBtn = clone.querySelector('.action');
-    actionBtn.addEventListener('click', action);
-    
-    function play(){
-        if (!ready) return; 
+           
+    function play(){          
         player.play();
         actionBtn.setAttribute('class', 'btn sprite action pause');         
     }
     
-    function pause(){
-        if (!ready) return; 
+    function pause(){              
         player.pause();
         actionBtn.setAttribute('class', 'btn sprite action play');        
     }
-    
-    function rewind(){
-        if (!ready) return;
-        player.currentTime = config.start;
-        actionBtn.setAttribute('class', 'btn sprite action play');          
-    }
-      
+         
     function action(){
         var cls = actionBtn.getAttribute('class');
         if (cls.indexOf('play') !== -1) play()
         else if (cls.indexOf('pause') !== -1) pause()
-        else if (cls.indexOf('rewind') !== -1) rewind()
     }
        
+    var actionBtn = clone.querySelector('.action');
+    actionBtn.addEventListener('click', action);
+    
     var volumeGrip = clone.querySelector('.vol-grip');
     function setVolumeGrip(){        
         volumeGrip.style.height = Math.round(30 * player.volume) + 'px';
@@ -70,7 +36,7 @@ bso.slide.audio = function(config, sectionType){
        
     clone.querySelector('.vol-plus').addEventListener('click', function(){
         if (player.volume > 0.9) player.volume = 1
-        player.volume+=0.1;
+        else player.volume+=0.1;
         setVolumeGrip();
     });
     clone.querySelector('.vol-minus').addEventListener('click', function(){        
@@ -83,10 +49,10 @@ bso.slide.audio = function(config, sectionType){
     var grip = clone.querySelector('.grip');
     var progress = clone.querySelector('.progress');
     
-    player.addEventListener('timeupdate', function(){
+    var timeupdate = function(){        
         if (player.currentTime >= config.end) {
             pause();
-            actionBtn.setAttribute('class', 'btn sprite action rewind');
+            player.currentTime = config.start;          
             this.complete = true;
             this.emit('complete');
         }
@@ -100,8 +66,8 @@ bso.slide.audio = function(config, sectionType){
             progressTime = player.currentTime;
             progress.style.width = position + 'px';            
         }
-    }.bind(this))
-    
+    }.bind(this);
+       
     var isPlaying;
     var gripDragPosition;
     var dragstart = function(evt){
@@ -158,16 +124,15 @@ bso.slide.audio = function(config, sectionType){
     document.body.appendChild(clone);
     this.node = document.body.lastElementChild;   
     
-    this.enter = function(){
-        waiting = true;
-        setTimeout(function(){
-           waiting = false;
-           if (actionBtn.getAttribute('class').indexOf('play') !== -1) play();
-        }, 1400);        
+    this.enter = function(){       
+        player.currentTime = currentTime;
+        player.addEventListener('timeupdate', timeupdate);              
     }
     
     this.exit = function(){
+        player.removeEventListener('timeupdate', timeupdate);        
         if (actionBtn.getAttribute('class').indexOf('pause') !== -1) pause();
+        currentTime = player.currentTime;
     }
     
     bso.evented(this);

@@ -60,8 +60,8 @@
        id="rect3069"
        width="1717.5399"
        height="1152.9155"
-       x="-717.1925"
-       y="219.407" />
+       x="-767.29089"
+       y="179.32834" />
     <g
        id="g4988"
        inkscape:export-filename="C:\xds\demo\src\icons\plus.png"
@@ -135,7 +135,7 @@
        inkscape:export-filename="C:\xds\demo\src\sprite.png"
        inkscape:export-xdpi="27.011492"
        inkscape:export-ydpi="27.011492"
-       transform="translate(-1277.4444,-704.49637)">
+       transform="translate(-1305.0636,-703.49438)">
       <path
          style="fill:#ffffff;fill-opacity:1"
          inkscape:connector-curvature="0"
@@ -223,7 +223,7 @@
     </g>
     <g
        id="g3061"
-       transform="translate(-28.0049,-11.522621)"
+       transform="translate(-155.58154,-10.520632)"
        inkscape:export-filename="C:\xds\demo\src\sprite.png"
        inkscape:export-xdpi="27.011492"
        inkscape:export-ydpi="27.011492">
@@ -340,7 +340,7 @@
     </g>
     <g
        id="g3863"
-       transform="translate(-407.98927,-411.24916)"
+       transform="translate(-535.56591,-410.24717)"
        inkscape:export-filename="C:\xds\demo\src\sprite.png"
        inkscape:export-xdpi="27.011492"
        inkscape:export-ydpi="27.011492">
@@ -384,7 +384,7 @@
     </g>
     <g
        id="g3869"
-       transform="translate(-428.69569,-411.24916)"
+       transform="translate(-556.27233,-410.24717)"
        inkscape:export-filename="C:\xds\demo\src\sprite.png"
        inkscape:export-xdpi="27.011492"
        inkscape:export-ydpi="27.011492">
@@ -423,7 +423,7 @@
     </g>
     <g
        id="g3851"
-       transform="translate(-475.8396,-411.24916)"
+       transform="translate(-503.45875,-410.24717)"
        inkscape:export-filename="C:\xds\demo\src\sprite.png"
        inkscape:export-xdpi="27.011492"
        inkscape:export-ydpi="27.011492">
@@ -460,7 +460,7 @@
     </g>
     <g
        id="g3846"
-       transform="translate(-425.73967,-411.24916)"
+       transform="translate(-453.35882,-410.24717)"
        inkscape:export-filename="C:\xds\demo\src\sprite.png"
        inkscape:export-xdpi="27.011492"
        inkscape:export-ydpi="27.011492">
@@ -497,64 +497,8 @@
          unicode="" />
     </g>
     <g
-       id="g3839"
-       transform="translate(-226.66994,-232.90225)"
-       inkscape:export-filename="C:\xds\demo\src\sprite.png"
-       inkscape:export-xdpi="27.011492"
-       inkscape:export-ydpi="27.011492">
-      <g
-         id="g3832"
-         transform="translate(-40.113653,-480.64391)"
-         style="fill:none"
-         inkscape:export-filename="C:\xds\demo\src\icons\rewind.png"
-         inkscape:export-xdpi="36.015312"
-         inkscape:export-ydpi="36.015312">
-        <rect
-           inkscape:tile-y0="952.34222"
-           inkscape:tile-x0="0.062455468"
-           y="956.2207"
-           x="-27.194853"
-           height="99.957489"
-           width="99.957489"
-           id="rect3834"
-           style="fill:none;stroke:none"
-           inkscape:tile-cx="50.0412"
-           inkscape:tile-cy="1002.321"
-           inkscape:tile-w="99.957489"
-           inkscape:tile-h="99.957489" />
-      </g>
-      <g
-         inkscape:export-ydpi="36.015312"
-         inkscape:export-xdpi="36.015312"
-         inkscape:export-filename="C:\xds\demo\src\icons\rewind.png"
-         style="fill:#ffffff;fill-opacity:1"
-         transform="translate(2.9146207,1.6904856)"
-         id="g3842">
-        <path
-           inkscape:export-ydpi="36.015312"
-           inkscape:export-xdpi="36.015312"
-           inkscape:export-filename="C:\xds\demo\src\icons\play.png"
-           style="fill:#ffffff;fill-opacity:1"
-           inkscape:connector-curvature="0"
-           id="path3836"
-           d="m -56.174478,523.06027 34.47624,-19.15922 q 0.597107,-0.33755 1.025456,-0.0779 0.4284,0.25959 0.4284,0.93461 l 0,38.21456 q 0,0.67502 -0.4284,0.93462 -0.428349,0.25964 -1.025456,-0.0778 l -34.47624,-19.15925 q -0.597107,-0.33756 -0.597107,-0.80475 0,-0.46738 0.597107,-0.80484 z"
-           horiz-adv-x="1408"
-           unicode="" />
-        <path
-           unicode=""
-           horiz-adv-x="1408"
-           d="m -19.647275,523.06027 34.47624,-19.15922 q 0.597107,-0.33755 1.025457,-0.0779 0.428399,0.25959 0.428399,0.93461 l 0,38.21456 q 0,0.67502 -0.428399,0.93462 -0.42835,0.25964 -1.025457,-0.0778 l -34.47624,-19.15928 q -0.597107,-0.33756 -0.597107,-0.80475 0,-0.46738 0.597107,-0.80484 z"
-           id="path3838"
-           inkscape:connector-curvature="0"
-           style="fill:#ffffff;fill-opacity:1"
-           inkscape:export-filename="C:\xds\demo\src\icons\play.png"
-           inkscape:export-xdpi="36.015312"
-           inkscape:export-ydpi="36.015312" />
-      </g>
-    </g>
-    <g
        id="g3895"
-       transform="translate(767.0807,-434.45863)"
+       transform="translate(639.50406,-433.45664)"
        inkscape:export-filename="C:\xds\demo\src\sprite.png"
        inkscape:export-xdpi="27.011492"
        inkscape:export-ydpi="27.011492">

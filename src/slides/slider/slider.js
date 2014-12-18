@@ -57,7 +57,9 @@ bso.slide.slider = function(config, sectionType){
     
     track.addEventListener('click', function(evt){        
         grip.style.left = evt.clientX - track.getBoundingClientRect().left - grip.getBoundingClientRect().width/2 + 'px';       
-    })
+        this.complete = true;
+        this.emit('complete');        
+    }.bind(this))
     
     document.body.appendChild(clone);
     this.node = document.body.lastElementChild;

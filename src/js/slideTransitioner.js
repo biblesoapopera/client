@@ -11,6 +11,11 @@ bso.slideTransitioner = function () {
 
         if (!activeSlide) {
             newSlide.node.setAttribute('class', 'slide active');
+            if (newSlide.complete)
+                bso.next.enable()
+            else
+                bso.next.disable()            
+            if (newSlide.enter) newSlide.enter();
             activeSlide = newSlide;
             return;
         }

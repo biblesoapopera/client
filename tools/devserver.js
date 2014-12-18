@@ -8,6 +8,8 @@ var server = http.createServer(function (request, response) {
 
     var filePath = path.join(__dirname, '..', 'dev', request.url);
 
+    console.log('Dev serving ' + filePath);
+    
     if (request.headers.range){
         fs.stat(filePath, function(err, stats){
             if (err) console.log(err);

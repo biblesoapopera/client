@@ -7,7 +7,6 @@ var minifyHTML = require('gulp-minify-html');
 var livereload = require('gulp-livereload');
 var gulpif = require('gulp-if');
 var imagemin = require('gulp-imagemin');
-var bso = require('./tools/bsoBuilder');
 var twig = require('./tools/gulpTwig');
 var base64 = require('./tools/gulpBase64');
 var argv = require('yargs').argv;
@@ -24,8 +23,7 @@ var sourcePaths = {
        twig: ['src/twig/**/*.twig'],
        imagemin: ['src/**/*.png'],
        base64: ['temp/favicon.png'],
-       copy: [],
-       slidedata: ['data/**/*.json']
+       copy: ['data/**/*']
    },
    dist: {
        js: ['src/**/*.js'],
@@ -35,8 +33,7 @@ var sourcePaths = {
        twig: ['src/twig/**/*.twig'],      
        imagemin: ['src/**/*.png'],
        base64: ['temp/favicon.png'],       
-       copy: [],
-       slidedata: ['data/**/*.json']      
+       copy: ['data/**/*']     
    }    
 };
 
@@ -84,21 +81,17 @@ gulp.task('twig', ['base64', 'js', 'less'], function() {
     .pipe(gulp.dest(targetPaths[buildType]))
 });
 
-gulp.task('bso', function(cb) {
-  bso(path.join(__dirname, buildType), cb);  
-});
-
 gulp.task('dev-server', function(){
   require('./tools/devserver');
 });
 
-gulp.task('main', ['copy', 'bso', 'twig']);
+gulp.task('main', ['copy', 'twig']);
 
 // Rerun the task when a file changes
 gulp.task('watch', function() {
   livereload.listen();
   gulp.watch(['src/**/*'], ['twig']);    
-  gulp.watch(sourcePaths.dev.slidedata, ['bso', 'twig']);    
+  gulp.watch(sourcePaths.dev.copy, ['copy', 'twig']);    
   gulp.watch('dev/**/*.html').on('change', function(){setTimeout(livereload.changed, 150)});
 });
 
