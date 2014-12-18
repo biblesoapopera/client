@@ -28,7 +28,6 @@
           "type": "audio",
           "text": "Let’s hear the story of Paul and his friends now.",
           "start": 0,
-          "end": 20,
           "end": 494
         }
       ]
@@ -107,8 +106,7 @@
           "type": "audio",
           "text": "Let’s hear what Paul does.",
           "start": 470,
-          "end": 480,
-          "opt": 617
+          "end": 617
         }
       ]
     },
