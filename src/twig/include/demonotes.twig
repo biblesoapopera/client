@@ -1,0 +1,50 @@
+<style>
+    .demonotes {
+        z-index: 100;
+    }
+
+    .demonotes .slide-container-inner {
+        background-color:rgba(0,0,0,0.85);        
+        width: 80%;
+        border-radius: 5px 5px 5px 5px;
+        color: white;
+        font-size: 12px;
+    }
+    
+    .demonotes a {
+        background-color:black; 
+        padding: 5px 10px 5px 10px;
+        border-radius: 2px 2px 2px 2px;        
+    }
+</style>
+
+<div class='slide active demonotes'>
+    <div class='slide-inner'>
+        <div class='slide-container'>
+            <div class='slide-container-inner'>                
+                <p>This is an experimental demo.</p>
+                <p>It has been tested with the latest versions of these browsers:
+                    <small>
+                        <ul>
+                            <li>Firefox for windows</li>
+                            <li>Chrome for windows</li>
+                            <li>Chrome for android</li>        
+                            <li>Firefox for android</li> 
+                            <li>Opera for android</li>         
+                        </ul>
+                    </small>
+                </p>
+                <p>It will not work in any version IE. Get yourself a better browser!</p>
+                <p>The UI is designed for a small screen (320x480) landscape. <br /><small>Press <code>ctrl-shift-m</code> in firefox to change your screen size.</small></p>
+                <a href="#">OK</a>     
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.querySelector('.demonotes a').addEventListener('click', function () {
+        document.querySelector('.demonotes').setAttribute('class', 'hidden');
+    })
+</script>
+

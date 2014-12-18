@@ -11,8 +11,7 @@
                 display: table-cell;             
             }
                 
-            .number, .answer {
-                background-color: fade(@white, 10%);              
+            .number, .answer {            
                 height: 40px;
                 line-height: 40px;
                 margin: 10px 0;
@@ -24,15 +23,20 @@
             }
         
             .answer {
+                background-color: fade(@white, 10%);                  
                 width: 250px;              
                 cursor: pointer;
             }
-            
+
             .answer:hover {
                 background-color: fade(@white, 20%); 
             }
             
-            .dragging{
+            .drag {            
+                margin: 0;
+                position: fixed;
+                left: 0;
+                top: 0;
                 background-color: fade(@white, 40%); 
             }
         }

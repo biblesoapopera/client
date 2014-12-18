@@ -62,7 +62,7 @@ This will start the build tool (called gulp). The build tool will carry out the 
 view
 ----
 
-Point your browser to `http://localhost`. You should see the demo.
+Point your browser to `http://localhost:8080`. You should see the demo.
 
 edit
 ----

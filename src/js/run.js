@@ -1,4 +1,4 @@
-bso.runEpisode = function(episodeData){
+bso.run = function(episodeData){
   
   var sectionIndex = 0;
   var slideIndex = -1;
@@ -49,29 +49,25 @@ bso.runEpisode = function(episodeData){
         if (type === 'title') {
             config.title = episodeData.title;
             config.subtitle = episodeData.subtitle;
-        } else if (type === 'audio') {
-            config.audioUrl = episodeData.audioUrl;
         }
     
         var newSlide = new bso.slide[type](config, episodeData.sections[sectionIndex].type);
         slideCache[sectionIndex][slideIndex] = newSlide;
         if (newSlide.on) newSlide.on('complete', function(){bso.next.enable()})
     }
-         
-    transitioner.transition(slideCache[sectionIndex][slideIndex], dir === 1 ? 'right' : 'left');     
-  }  
- 
-  transitioner.on('transitiondone', function(){
+
     //activate entering slide thumb        
     thumbs.querySelector('[data-slide-index=i' + sectionIndex + '-' + slideIndex + ']').setAttribute(
         'class', 
         episodeData.sections[sectionIndex].type + ' active' + (slideCache[sectionIndex][slideIndex].complete ? ' complete' : '')
-    );      
-  });
+    ); 
+          
+    transitioner.transition(slideCache[sectionIndex][slideIndex], dir === 1 ? 'right' : 'left');       
+  }  
   
   bso.previous.create(go);  
   bso.next.create(go);
-   
+ 
   go(1);  
   
   var loadingSlide = document.querySelector('.slide.loading'); 

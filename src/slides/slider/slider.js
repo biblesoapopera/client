@@ -13,16 +13,12 @@ bso.slide.slider = function(config, sectionType){
     
     var position;
     var grip = clone.querySelector('.grip');
-    
-    var getClientX = function(evt){
-        if (evt.touches) return evt.touches[0].clientX;
-        else return evt.clientX;        
-    }
+    var track = clone.querySelector('.track');
     
     var dragstart = function(evt){          
         position = {
             left: parseInt(window.getComputedStyle(grip).getPropertyValue('left').replace('px', '')),
-            client: getClientX(evt)
+            client: bso.getClientX(evt)
         }
         document.addEventListener('mouseup', dragend);
         document.addEventListener('mousemove', dragmove);    
@@ -42,8 +38,7 @@ bso.slide.slider = function(config, sectionType){
     }.bind(this);
     
     var dragmove = function(evt){
-        var clientX = getClientX(evt);
-      
+        var clientX = bso.getClientX(evt);      
         var newLeft = position.left + clientX - position.client;
         
         if (newLeft < -10){
@@ -59,6 +54,12 @@ bso.slide.slider = function(config, sectionType){
     
     grip.addEventListener('mousedown', dragstart);
     grip.addEventListener('touchstart', dragstart);
+    
+    track.addEventListener('click', function(evt){        
+        grip.style.left = evt.clientX - track.getBoundingClientRect().left - grip.getBoundingClientRect().width/2 + 'px';       
+        this.complete = true;
+        this.emit('complete');        
+    }.bind(this))
     
     document.body.appendChild(clone);
     this.node = document.body.lastElementChild;
