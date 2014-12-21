@@ -1,8 +1,7 @@
 bso.slide.audio = function(config, sectionType){
 
-    var template = document.querySelector('[data-slide=audio]');      
-    var clone = document.importNode(template.content, true);
-        
+    var clone = bso.clone(document.querySelector('[data-slide=audio]'));
+    
     var progressTime = config.start;
     var currentTime = config.start;
     var player = bso.player();

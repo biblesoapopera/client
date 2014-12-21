@@ -1,7 +1,6 @@
 bso.slide.title = function(config, sectionType){
-        
-    var template = document.querySelector('[data-slide=title]');    
-    var clone = document.importNode(template.content, true);
+    
+    var clone = bso.clone(document.querySelector('[data-slide=title]'));
     clone.querySelector('.slide-inner').setAttribute('class', 'slide-inner ' + sectionType);        
     clone.querySelector('.title h1').innerHTML = config.title;
     clone.querySelector('.subtitle').innerHTML = config.subtitle;

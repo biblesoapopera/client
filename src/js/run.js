@@ -22,7 +22,7 @@ bso.run = function(episodeData){
             episodeData.sections[sectionIndex].type + (slideCache[sectionIndex][slideIndex].complete ? ' complete' : '')
         );
     }
-    
+   
     slideIndex += dir;
     if(slideIndex === -1 || slideIndex === episodeData.sections[sectionIndex].slides.length){
         sectionIndex += dir;              
@@ -35,7 +35,8 @@ bso.run = function(episodeData){
     } else {
        bso.next.show();
     }
-    
+console.log(slideIndex);
+console.log(sectionIndex);
     if(slideIndex === 0 && sectionIndex === 0){
         bso.previous.hide();
     } else {
