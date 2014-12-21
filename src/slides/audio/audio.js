@@ -2,6 +2,7 @@ bso.slide.audio = function(config, sectionType){
 
     var template = document.querySelector('[data-slide=audio]');      
     var clone = document.importNode(template.content, true);
+        
     var progressTime = config.start;
     var currentTime = config.start;
     var player = bso.player();
@@ -24,7 +25,7 @@ bso.slide.audio = function(config, sectionType){
         if (cls.indexOf('play') !== -1) play()
         else if (cls.indexOf('pause') !== -1) pause()
     }
-       
+              
     var actionBtn = clone.querySelector('.action');
     actionBtn.addEventListener('click', action);
     
@@ -126,7 +127,12 @@ bso.slide.audio = function(config, sectionType){
     
     this.enter = function(){       
         player.currentTime = currentTime;
-        player.addEventListener('timeupdate', timeupdate);              
+        player.addEventListener('timeupdate', timeupdate); 
+        
+        //TODO remove these two lines
+        //they make audio skippable for demo purposes only
+        this.complete = true;
+        this.emit('complete');        
     }
     
     this.exit = function(){
