@@ -1,7 +1,6 @@
 bso.slide.sort = function(config, sectionType){
     
-    var template = document.querySelector('[data-slide=sort]');    
-    var clone = document.importNode(template.content, true);
+    var clone = bso.clone(document.querySelector('[data-slide=sort]'));
     clone.querySelector('.slide-inner').setAttribute('class', 'slide-inner ' + sectionType);         
     clone.querySelector('.question').innerHTML = config.question;
     

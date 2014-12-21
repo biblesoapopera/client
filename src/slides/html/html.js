@@ -1,7 +1,6 @@
 bso.slide.html = function(config, sectionType){
-        
-    var template = document.querySelector('[data-slide=html]');    
-    var clone = document.importNode(template.content, true);
+           
+    var clone = bso.clone(document.querySelector('[data-slide=html]'));
     clone.querySelector('.slide-inner').setAttribute('class', 'slide-inner ' + sectionType);
     clone.querySelector('.content').innerHTML = config.content;
 
