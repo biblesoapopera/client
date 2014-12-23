@@ -2,6 +2,8 @@ bso.player = function(){
    
     if (!bso.player._instance){
 
+        if (!Audio) return;
+        
         var player = new Audio;
         
         var ogg = player.canPlayType('audio/ogg');

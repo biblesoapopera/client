@@ -1,5 +1,8 @@
 bso.run = function(episodeData){
   
+  var message;
+  if (!!(message = bso.has())) episodeData.sections[0].slides.unshift({type: 'support', message: message})
+  
   var sectionIndex = 0;
   var slideIndex = -1;
 
@@ -35,8 +38,7 @@ bso.run = function(episodeData){
     } else {
        bso.next.show();
     }
-console.log(slideIndex);
-console.log(sectionIndex);
+    
     if(slideIndex === 0 && sectionIndex === 0){
         bso.previous.hide();
     } else {
