@@ -55,6 +55,7 @@ bso.run = function(episodeData){
         }
     
         var newSlide = new bso.slide[type](config, episodeData.sections[sectionIndex].type);
+        document.body.appendChild(newSlide.node);   
         slideCache[sectionIndex][slideIndex] = newSlide;
         if (newSlide.on) newSlide.on('complete', function(){bso.next.enable()})
     }

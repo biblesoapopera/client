@@ -6,7 +6,7 @@
     {
       "type": "info",
       "title": "introduction",
-      "slides": [               
+      "slides": [      
         {
           "type": "title"
         },        
@@ -44,22 +44,79 @@
           "type": "pick",
           "question": "What did Paul’s uncle give him as a gift?",
           "answers": [
-            "TV",
-            "phone",
-            "football"
-          ]
+            {
+                "value": "TV",
+                "score": 100
+            },
+            {
+                "value": "phone",
+                "score": 0        
+            },
+            {
+                "value": "football",
+                "score": 0          
+            }
+          ],
+          "complete": {
+              "value": 100
+          },
+          "feedback": [
+            {
+              "condition": {"value": "TV"},
+              "content": "Yes, Paul's uncle gave him a TV"
+            },
+            {
+              "condition": {"value": "phone"},
+              "content": "No, Paul's uncle didn't gave him a phone"                
+            },
+            {
+              "condition": {"value": "football"},
+              "content": "No, Paul's uncle didn't gave him a football"                
+            },
+            {
+                "condition": {"score": 0},
+                "content": "Please try again"
+            },
+            {
+                "condition": {"complete": true},
+                "content": "Good stuff."
+            }
+          ]                        
         },
         {
           "type": "pick",
           "question": "What does Paul’s uncle want Paul to do with the TV now?",
           "answers": [
-            "Keep it",
-            "Give it back"
+            {
+                "value": "Keep it",
+                "score": 0
+            },
+            {
+                "value": "Give it back",
+                "score": 100
+            }
+          ],
+          "complete": {
+              "value": 100
+          },
+          "feedback": [              
+            {
+              "condition": {"value": "Keep it"},
+              "content": "No, Paul's uncle doesn't want him to keep the TV"
+            },
+            {
+              "condition": {"value": "phone"},
+              "content": "Yes, Paul's uncle does want him to give it back"                
+            },
+            {
+                "condition": {"score": 0},
+                "content": "Please try again"
+            }              
           ]
         },
         {
-          "type": "html",
-          "content": "<p>How does Paul feel about this?</p><p>Discuss in your group now.</p>"
+          "type": "discuss",
+          "content": "How does Paul feel about this?"
         },         
         {
           "type": "html",
@@ -68,23 +125,115 @@
         {
           "type": "slider",
           "question": "Who said this: 'Abraham must have done something wrong, and so God is taking away the promises by taking away Isaac.'",
-          "left": "Samson",
-          "right": "David"
+          "answers": [
+              {
+                  "value": "Samson",
+                  "score": 0
+              },
+              {
+                  "value": "David",
+                  "score": 100
+              }
+          ],
+          "complete": {
+              "score": {"$gte": 60, "$lte": 40}
+          },
+          "feedback": [
+              {
+                  "condition": {"score": {"$lte": 40}},
+                  "content": "You're right! Well done."
+              },
+              {
+                  "condition": {"score": {"$gte": 60}},
+                  "content": "Sorry, David didn't say that, Samson did."                  
+              },
+              {
+                  "condition": {"score": {"gt": 40, "$lt": 60}},
+                  "content": "Hmm. You need to make a clearer decision. Was it David or Samson? Please try again."                  
+              },
+              {
+                  "condition": {"complete": true},
+                  "content": "Let's move on ..."
+              }
+          ]
         }, 
         {
           "type": "slider",
           "question": "Who said this: 'Abraham learnt about resurrection. So even if Abraham died without the promises coming true in his lifetime, Abraham wouldn’t miss out on any'",
-          "left": "Samson",
-          "right": "David"
+          "answers": [
+              {
+                  "value": "Samson",
+                  "score": 0
+              },
+              {
+                  "value": "David",
+                  "score": 100
+              }
+          ],          
+          "complete": {
+              "score": {"$gte": 60, "$lte": 40}
+          },
+          "feedback": [
+              {
+                  "condition": {"score": {"$lte": 40}},
+                  "content": "You're right! Well done."
+              },
+              {
+                  "condition": {"score": {"$gte": 60}},
+                  "content": "Sorry, David didn't say that, Samson did."                  
+              },
+              {
+                  "condition": {"score": {"gt": 40, "$lt": 60}},
+                  "content": "Hmm. You need to make a clearer decision. Was it David or Samson? Please try again."                  
+              },
+              {
+                  "condition": {"complete": true},
+                  "content": "Let's move on ..."
+              }
+          ]
         }, 
         {
           "type": "pick",
           "question": "<small>David said to Paul: 'You know, many years later, another loved son was obedient, and offered himself as a sacrifice. But this son was provided by God. And he came back from death.' Who is the son that offers himself?</small>",
           "answers": [
-            "Jesus",
-            "Isaac",
-            "Joseph"
-          ]
+            {
+                "value": "Jesus",
+                "score": 100
+            },
+            {
+                "value": "Isaac",
+                "score": 0        
+            },
+            {
+                "value": "Joseph",
+                "score": 0          
+            }              
+          ],
+          "complete": {
+              "value": 100
+          },
+          "feedback": [
+            {
+              "condition": {"value": "Jesus"},
+              "content": "Yes"
+            },
+            {
+              "condition": {"value": "Isaac"},
+              "content": "No"                
+            },
+            {
+              "condition": {"value": "Joseph"},
+              "content": "No"                
+            },
+            {
+                "condition": {"score": 0},
+                "content": "Please try again"
+            },
+            {
+                "condition": {"complete": true},
+                "content": "Good stuff."
+            }
+          ]          
         },
         {
           "type": "html",
@@ -93,8 +242,33 @@
         {
           "type": "slider",
           "question": "Who would you listen to if you were Paul?",
-          "left": "Samson",
-          "right": "David"
+          "answers": [
+              {
+                  "value": "Samson",
+                  "score": 0
+              },
+              {
+                  "value": "David",
+                  "score": 100
+              }
+          ],          
+          "complete": {
+              "score": {"attempt": {"$gte": 1}}
+          },
+          "feedback": [
+              {
+                  "condition": {"score": {"$lte": 40}},
+                  "content": "Hmm. Will Samson's advice turn out to be the best?"
+              },
+              {
+                  "condition": {"score": {"$gte": 60}},
+                  "content": "Hmm. Will David's advice turn out to be the best?"                  
+              },
+              {
+                  "condition": {"score": {"gt": 40, "$lt": 60}},
+                  "content": "Hmm. It can be hard to pick."                  
+              }
+          ]          
         }
       ]
     },
@@ -103,7 +277,7 @@
       "title": "drama part 2",
       "slides": [
         {
-          "type": "audio",
+          "type": "audio",       
           "text": "Let’s hear what Paul does.",
           "start": 470,
           "end": 617

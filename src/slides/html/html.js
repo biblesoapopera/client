@@ -1,11 +1,9 @@
 bso.slide.html = function(config, sectionType){
            
-    var clone = bso.clone(document.querySelector('[data-slide=html]'));
-    clone.querySelector('.slide-inner').setAttribute('class', 'slide-inner ' + sectionType);
-    clone.querySelector('.content').innerHTML = config.content;
-
-    document.body.appendChild(clone);
-    this.node = document.body.lastElementChild;        
+    var node = bso.slide.call(this, 'html', sectionType);
+    node.querySelector('.content').innerHTML = config.content;
         
-    this.complete = true;
+    this._complete();
 }
+
+bso.extend(bso.slide.html)

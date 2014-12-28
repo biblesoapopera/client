@@ -3,8 +3,8 @@ bso.topNav = function(episodeData){
   var topNav = document.querySelector('.top-nav');
   
   topNav.querySelector('.title').innerHTML = episodeData.title;
-  topNav.querySelector('.sub-title').innerHTML = episodeData.subtitle;  
-  
+  if (episodeData.subtitle) topNav.querySelector('.sub-title').innerHTML = episodeData.subtitle;  
+    
   var sectionsTable = topNav.querySelector('.sections-table');
   var thumbs = topNav.querySelector('.thumbs');
   var sectionDiv;

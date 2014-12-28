@@ -1,41 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends 'include/skeleton.twig' %}
 
-        <title>Bible Soap Opera Demo</title>
-        <meta name="description" content="An Interactive Audio Soap Opera">
-        <meta name="author" content="Tim Roediger">
-        <meta name="keywords" content="blah">
-        
-        <link rel="icon shortcut" type="image/png" href="data:image/png;base64,{% include '../../temp/favicon.base64' %}" />
-        
-        <style>
-          {% include '../../temp/min.css' %}  
-        </style>         
-    </head>
-    <body>
+{% block demonotes %}
+    {% include 'include/demonotes.twig' %}    
+{% endblock %}
 
-        {% include 'include/topNav.twig' %}        
-
-        {% include 'include/loading.twig' %}         
-    
-        {% include 'include/demonotes.twig' %}
-        
-        {% include '../slides/audio/audio.twig' %}
-        {% include '../slides/html/html.twig' %}
-        {% include '../slides/pick/pick.twig' %}
-        {% include '../slides/slider/slider.twig' %}
-        {% include '../slides/sort/sort.twig' %}
-        {% include '../slides/title/title.twig' %}        
-        {% include '../slides/support/support.twig' %} 
-        
-        <script>
-            var bso = {episode: 'ep1', slide: {}};
-            {% include '../../temp/min.js' %}  
-            bso.load();
-        </script>         
-    </body>
-</html>
+{% block execute %}
+    bso.load('ep1');
+{% endblock %}
