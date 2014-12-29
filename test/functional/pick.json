@@ -10,45 +10,45 @@
                     "question": "How many legs does a dog have?",
                     "answers": [
                         {
-                            "value": "4",
+                            "value": "four",
                             "score": 100
                         },
                         {
-                            "value": "3",
+                            "value": "three",
                             "score": 0
                         },
                         {
-                            "value": "2",
+                            "value": "two",
                             "score": 0
                         }
                     ],
                     "complete": {
-                        "value": 100
+                        "score": 100
                     },
                     "feedback": [
                         {
                             "condition": {
-                                "value": "TV"
+                                "value": "four"
                             },
-                            "content": "Yes, Paul's uncle gave him a TV"
+                            "content": "Yes, a dog does have four legs."
                         },
                         {
                             "condition": {
-                                "value": "phone"
+                                "value": "three"
                             },
-                            "content": "No, Paul's uncle didn't gave him a phone"
+                            "content": "No, a dog does does not have three legs."
                         },
                         {
                             "condition": {
-                                "value": "football"
+                                "value": "two"
                             },
-                            "content": "No, Paul's uncle didn't gave him a football"
+                            "content": "No, a dog does not have two legs."
                         },
                         {
                             "condition": {
                                 "score": 0
                             },
-                            "content": "Please try again"
+                            "content": "Please try again."
                         },
                         {
                             "condition": {
