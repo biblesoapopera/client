@@ -5,15 +5,18 @@ bso.slideTransitioner = function () {
     var slideTransitionEnd = function(evt){
         evt.target.removeEventListener('transitionend', slideTransitionEnd);
         evt.target.setAttribute('class', 'slide');
-        this.emit('transitiondone');
     }.bind(this);
 
     this.transition = function (newSlide, direction) {
 
         if (!activeSlide) {
             newSlide.node.setAttribute('class', 'slide active');
+            if (newSlide.complete)
+                bso.next.enable()
+            else
+                bso.next.disable()            
+            if (newSlide.enter) newSlide.enter();
             activeSlide = newSlide;
-            this.emit('transitiondone');
             return;
         }
 
@@ -45,6 +48,4 @@ bso.slideTransitioner = function () {
             activeSlide = newSlide;
         }, 80);
     }
-    
-    bso.evented(this);
 }

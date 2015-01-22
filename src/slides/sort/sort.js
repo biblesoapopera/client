@@ -1,46 +1,79 @@
 bso.slide.sort = function(config, sectionType){
-     
-    var dragNode;
     
-    var template = document.querySelector('[data-slide=sort]');    
-    var clone = document.importNode(template.content, true);
+    var clone = bso.clone(document.querySelector('[data-slide=sort]'));
     clone.querySelector('.slide-inner').setAttribute('class', 'slide-inner ' + sectionType);         
     clone.querySelector('.question').innerHTML = config.question;
-                     
-    var dragstart = function(event){
-        var target = event.target;
-        
-        target.setAttribute('class', 'answer dragging');
-        
-        event.dataTransfer.effectAllowed = 'move';
-        dragNode = target;
-        event.dataTransfer.setData('application/sort', target.getAttribute('data-id'));
-    };
     
-    var dragend = function(event){        
-        event.target.setAttribute('class', 'answer');
-        dragNode = undefined;
-        this.complete = true;        
-        this.emit('complete');
-    }.bind(this);
-    
-    var dragover = function(event){
-       
-        event.preventDefault();
-        event.stopPropagation();
-       
-        if (event.target === dragNode) return;
-       
-        if (dragNode.offsetTop - event.target.offsetTop < 0) {
-            answerList.insertBefore(dragNode, event.target.nextSibling)
-        } else {
-            answerList.insertBefore(dragNode, event.target);
-        }
-    };
-    
+    var drag = clone.querySelector('.drag');
     var numberList = clone.querySelector('.numbers');
     var answerList = clone.querySelector('.answers');
     
+    var beingDragged;
+    var position;    
+    
+    var dragstart = function(evt){
+               
+        beingDragged = evt.target;
+        position = {
+            left: beingDragged.offsetLeft,
+            top: beingDragged.offsetTop,
+            clientX: bso.getClientX(evt),
+            clientY: bso.getClientY(evt)
+        };
+        drag.style.left = beingDragged.offsetLeft + 'px';        
+        drag.style.top = beingDragged.offsetTop + 'px';
+        
+        document.addEventListener('mouseup', dragend);
+        document.addEventListener('mousemove', dragmove);    
+        document.addEventListener('touchend', dragend);
+        document.addEventListener('touchmove', dragmove); 
+        drag.setAttribute('class', 'answer drag');
+        drag.innerHTML = beingDragged.innerHTML;
+    };
+    
+    var dragend = function(){           
+        document.removeEventListener('mousemove', dragmove);        
+        document.removeEventListener('mouseup', dragend);
+        document.removeEventListener('touchmove', dragmove);        
+        document.removeEventListener('touchend', dragend);        
+        drag.setAttribute('class', 'answer hidden drag'); 
+        this.complete = true;
+        this.emit('complete');
+    }.bind(this);
+    
+    var dragmove = function(evt){
+        
+        var clientX = bso.getClientX(evt); 
+        var clientY = bso.getClientY(evt);
+        var newLeft = position.left + clientX - position.clientX;
+        var newTop = position.top + clientY - position.clientY;
+               
+        drag.style.left = newLeft + 'px';        
+        drag.style.top = newTop + 'px';
+        position.left = newLeft;
+        position.top = newTop;
+        position.clientX = clientX;               
+        position.clientY = clientY;
+        
+        var i, child, diff = 1000, targetChild;
+        for (i=0; i<answerList.children.length; i++){
+            child = answerList.children[i];
+            if (child===drag) continue; 
+            if (Math.abs(drag.offsetTop - child.offsetTop) < Math.abs(diff)){
+                diff = drag.offsetTop - child.offsetTop;
+                targetChild = child;
+            }
+        }
+       
+        if (targetChild !== beingDragged){
+            if (diff < 0){
+                answerList.insertBefore(beingDragged, targetChild.nextSibling);                 
+            } else {
+                answerList.insertBefore(beingDragged, targetChild);   
+            }
+        }
+    };
+        
     config.answers.forEach(function(answer, index){
        
        var num = document.createElement('div');
@@ -49,13 +82,10 @@ bso.slide.sort = function(config, sectionType){
        
        var txt = document.createElement('div');
        txt.setAttribute('class', 'answer');
-       txt.setAttribute('draggable', true);
-       txt.setAttribute('data-id', index);
        txt.innerHTML = answer;
        
-       txt.addEventListener('dragstart', dragstart);
-       txt.addEventListener('dragend', dragend);
-       txt.addEventListener('dragover', dragover);
+       txt.addEventListener('mousedown', dragstart);
+       txt.addEventListener('touchstart', dragstart);
        
        numberList.appendChild(num);
        answerList.appendChild(txt);

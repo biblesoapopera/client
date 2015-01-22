@@ -11,18 +11,31 @@
         <meta name="keywords" content="blah">
         
         <link rel="icon shortcut" type="image/png" href="data:image/png;base64,{% include '../../temp/favicon.base64' %}" />
-                
+        
+        <style>
+          {% include '../../temp/min.css' %}  
+        </style>         
     </head>
     <body>
 
-        <h1>BSO Demo launch page</h1>
+        {% include 'include/topNav.twig' %}        
+
+        {% include 'include/loading.twig' %}         
+    
+        {% include 'include/demonotes.twig' %}
         
-        <p>This is an experimental demo.</p><p>It has been developed with firefox, and is not tested on other browsers.</p><p>The UI is designed for a small screen (320x480) landscape. Press <code>ctrl-shift-m</code> in firefox to change your screen size.</p><p>Enjoy!</p>
+        {% include '../slides/audio/audio.twig' %}
+        {% include '../slides/html/html.twig' %}
+        {% include '../slides/pick/pick.twig' %}
+        {% include '../slides/slider/slider.twig' %}
+        {% include '../slides/sort/sort.twig' %}
+        {% include '../slides/title/title.twig' %}        
+        {% include '../slides/support/support.twig' %} 
         
-        <h1><a href="app/" target="_blank">Launch native</a></h1>
-        <p>Start the demo in a new browser tab</p>
-        
-        <h1><a href="simulation.html" target="_blank">Launch phone simlulation</a></h1>
-        <p>Start the demo with a simulated phone screen size</p>        
+        <script>
+            var bso = {episode: 'ep1', slide: {}};
+            {% include '../../temp/min.js' %}  
+            bso.load();
+        </script>         
     </body>
 </html>
