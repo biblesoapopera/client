@@ -12,21 +12,17 @@
         },        
         {
           "type": "html",
-          "content": "<p>This is an experimental demo.</p><p>It has been developed with firefox, and is not tested on other browsers.</p><p>The UI is designed for a small screen (320x480) landscape. Press <code>ctrl-shift-m</code> in firefox to change your screen size.</p><p>Enjoy!</p>"
-        },
-        {
-          "type": "html",
           "content": "<p>Hello. Welcome to this drama lesson. Today we are going to learn about Abraham and how he trusted God's word.</p>"
         },         
         {
           "type": "html",
-          "content": "<p>Remember when God asked Abraham to sacrifice his son Isaac? Read it now in Genesis 22.</p><p>Click next when you're ready.</p>"
+          "content": "<p>Remember when God asked Abraham to sacrifice his son Isaac? Read it now in Genesis 22.</p><p>Click <i class='icon next sprite'></i> when you're ready.</p>"
         },         
         {
           "type": "slider",
           "question": "Why do you think God asked Abraham to sacrifice Isaac?",
-          "left": "To check Abraham - perhaps he had disobeyed God",
-          "right": "To show Abraham what God was like, and teach him about resurrection"
+          "left": "<small>To check Abraham - perhaps he had disobeyed God</small>",
+          "right": "<small>To show Abraham what God was like, and teach him about resurrection</small>"
         }
       ]
     },
@@ -95,7 +91,7 @@
         },
         {
           "type": "pick",
-          "question": "David said to Paul: <br/>'You know, many years later, another loved son was obedient, and offered himself as a sacrifice. But this son was provided by God. And he came back from death.' <br/>Who is the son that offers himself?",
+          "question": "<small>David said to Paul: 'You know, many years later, another loved son was obedient, and offered himself as a sacrifice. But this son was provided by God. And he came back from death.'<br/>Who is the son that offers himself?</small>",
           "answers": [
             "Jesus",
             "Isaac",
@@ -123,17 +119,14 @@
     {
       "type": "info",
       "title": "Lessons",
-      "slides": [           
-        {
-          "type": "title"
-        },        
+      "slides": [                   
         {
           "type": "html",
           "content": "<p>Well, that’s a happy ending. Paul decided to trust his uncle. His uncle was always being kind, even when Paul didn’t understand his words. We learnt that Abraham learnt to trust God – even beyond death. How about you? When do you find it hard to trust God’s Word? You can talk about this with your group now. </p>"
         },         
         {
           "type": "html",
-          "content": "<p>We hope you enjoyed this demo episode. Written by Martin Olmos and Joe Radkovic. Acting by Samuel Gates, Ruth Lee, Luke Forster, and Harry Martin. Web development by Tim Roediger. This project aims to help christians with an oral culture learn how the whole Bible fits together, with Jesus at its heart. Follow this project at biblesoapopera.com</p>"
+          "content": "<p>We hope you enjoyed this demo episode.</p><p><small>Written by Martin Olmos and Joe Radkovic.</small></p><p><small>Acting by Samuel Gates, Ruth Lee, Luke Forster, and Harry Martin.</small></p><p>This project aims to help christians with an oral culture learn how the whole Bible fits together, with Jesus at its heart. Follow this project at <a href='http://biblesoapopera.com' target='_blank'>biblesoapopera.com</a></p>"
         }         
       ]
     }
