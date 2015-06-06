@@ -6,7 +6,7 @@ node_js:
 env:
   global:
   - GH_REF: github.com/biblesoapopera/demo.git
-  - secure: hs5vAnTtN0m/5RQB1TCsBqSB18CAwm5PJ1lva7YeUiCA0BfXCs5y+4Y7nAJxKg/0KkiZRAE4qX/4SzZX51fP2aLVThe28CzdTdox6dQdjxvVUsuCblD9+Xa9eb+/9lh/ZVyN4FLIAqYso490wcY4NACcHNeW0TJMfzdGehCcZyw=
+  - secure: HhVk/y1+niW7WJlU5xBsqhYS26HpMdMvdHecuwUi4e+tdhUu4wp3PtRyJXjIlf/g4gxeUEF27KPP6WUm7z6r08lnaEFMNy9O2Mqary6OPmw1I63RqaSm8U5Y1DMqMmJTrWB4quMsTAjbrtQwhexqeIjSbahPfzWSY1ioVvXbve4=
 
 script:
   - node gulp.js --dist
