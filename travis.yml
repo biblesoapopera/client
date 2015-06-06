@@ -1,0 +1,13 @@
+
+language: node_js
+node_js:
+  - "0.12"
+
+env:
+  global:
+  - GH_REF: github.com/biblesoapopera/demo.git
+  - secure: "hs5vAnTtN0m/5RQB1TCsBqSB18CAwm5PJ1lva7YeUiCA0BfXCs5y+4Y7nAJxKg/0KkiZRAE4qX/4SzZX51fP2aLVThe28CzdTdox6dQdjxvVUsuCblD9+Xa9eb+/9lh/ZVyN4FLIAqYso490wcY4NACcHNeW0TJMfzdGehCcZyw="
+
+script:
+  - node gulp.js --dist
+  - bash ./deploy.sh
