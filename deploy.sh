@@ -9,5 +9,5 @@ git config user.email "superdweebie@gmail.com"
 git add .
 git commit -m "Travis auto deploy to gh-pages"
 
-git push --force "https:://${GH_TOKEN}@${GH_REF}" master:gh-pages
+git push --force "https://${GH_TOKEN}@${GH_REF}" master:gh-pages
 
