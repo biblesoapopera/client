@@ -1,6 +1,8 @@
 demo
 ====
 
+[![Build Status](https://travis-ci.org/biblesoapopera/demo.svg?branch=master)](http://travis-ci.org/biblesoapopera/demo)
+
 This is an experimental user interface for the bible soap opera project (http://biblesoapopera.com/).
 
 To view the user interface go to http://biblesoapopera.github.com/demo.
@@ -21,7 +23,7 @@ The demo development tools use node.js. You will need http://nodejs.org installe
 Demo source code is managed with git. You will need git installed on your system. On windows machines this is probably the easisest way to install git: https://windows.github.com/. Check that git is installed correctly by typing this command at the your system command prompt:
 
 * `>git`. The git help screen should appear.
- 
+
 download the source
 -------------------
 
@@ -58,7 +60,7 @@ This will start the build tool (called gulp). The build tool will carry out the 
 * Place a watch on all the source files
 * Start a live reload server
 * Rebuild the source any time one of the source files is changed
- 
+
 view
 ----
 
@@ -109,7 +111,7 @@ If you make local changes to the demo that you would like incorporated into the 
 * Send your commit to your github remote with:
 `git push myforkname master`
 * Then go to your personal github fork (`http://github.com/myusername/demo`) and create a pull request.
- 
+
 You're done! Your pull request will appear on the issues page of `http://github.com/biblesoapopera/demo` ready for review, dissucssion and then merging.
 
 design principles
@@ -163,13 +165,13 @@ slides.json
 {
   //The episode author, currently not displayed anywhere in the ui
   "author": "tim",
-  
+
   //The episode title, displayed on the title slide, and on the top-nav summary
   "title": "Episode 1",
 
   //The episode sub title, displayed on the title slide, and on the top-nav summary
-  "subtitle": "bible soap opera demo"  
-  
+  "subtitle": "bible soap opera demo"
+
   //an array of section objects
   //each section is displayed on the top-nav summary
   //the user will work through each section in the order listed
@@ -180,32 +182,32 @@ slides.json
       //section type alters the color of the slides in that section
       //section type also alters the icon used for that section in the top-nav summary
       "type": "info",
-      
+
       //section title, displayed in the top-nav summary
       "title": "intro",
-      
+
       //an array of slide object
       //these are all the slides in the section
       //the use will work through each slide in the order listed
-      "slides": [          
+      "slides": [
         {
           //slide type
           //allowed slide types are title||html||pick||slider||sort||audio
           //title slide type will display the episode title and sub title
           "type": "title"
-        },        
+        },
         {
           "type": "html",
-          
+
           //html snippet to display on the slide
           "content": "<p>This is an experimental demo.</p><p>It has been developed with firefox, and is not tested on other browsers.</p><p>The UI is designed for a small screen (320x480) landscape. Press <code>ctrl-shift-m</code> in firefox to change your screen size.</p><p>Enjoy!</p>"
         },
         {
           "type": "pick",
-          
+
           //question html string
           "question": "What is the answer?",
-          
+
           //array of answer html strings
           "answers": [
             "answer 1",
@@ -215,22 +217,22 @@ slides.json
         },
         {
           "type": "slider",
-          
-          //question html string          
+
+          //question html string
           "question": "Do you like chocolate?",
-          
+
           //answer at the left end of the slider
           "left": "yuck",
-          
+
           //answer at the right end of the slider
           "right": "yum"
-        }, 
+        },
         {
           "type": "sort",
-          
-          //question html string          
+
+          //question html string
           "question": "Sort these from smallest to largest:",
-          
+
           //array of answers
           "answers": [
             "mouse",
@@ -241,14 +243,14 @@ slides.json
         },
         {
           "type": "audio",
-          
-          //html string          
+
+          //html string
           "text": "audio drama, part 1",
-          
-          //the point to start playback in the mp3 file. In seconds.          
+
+          //the point to start playback in the mp3 file. In seconds.
           "start": 0,
-          
-          //the point to stop playback in the mp3 file. In seconds.                
+
+          //the point to stop playback in the mp3 file. In seconds.
           "end": 60
         }
       ]
