@@ -1,5 +1,5 @@
 .slide .slider {
-    
+
     .track-container {
         position: relative;
         width: 300px;
@@ -11,40 +11,29 @@
     .track {
         width: 300px;
         height: 10px;
-        background-color: fade(@white, 20%);      
-        border-radius: 5px 5px 5px 5px;           
+        background-color: fade(@white, 20%);
+        border-radius: 5px 5px 5px 5px;
     }
-    
+
     .grip {
         width: 30px;
         height: 30px;
         background-color: fade(@white, 80%);
-        border-radius: 15px 15px 15px 15px;  
+        border-radius: 15px 15px 15px 15px;
         cursor: pointer;
         position: absolute;
         top: 0px;
         left: 150px - 15px;
     }
-    
+
     .grip:hover, .grip.active {
         background-color: @white;
     }
-    
-    .left, .right{
-        position: absolute;        
-    }
-    
-    .left {
+
+    .answer {
+        position: absolute;
         top: 30px;
-        left: -75px;       
-        width: 150px;
     }
-    
-    .right {
-        top: 30px;
-        left: 225px; 
-        width: 150px;
-    }    
 }
-    
+
 

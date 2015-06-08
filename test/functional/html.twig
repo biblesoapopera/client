@@ -1,0 +1,7 @@
+{% extends '../../src/twig/include/skeleton.twig' %}
+
+{% block title %}Test html slide{% endblock %}
+
+{% block execute %}
+    bso.run({% include 'html.json' %});
+{% endblock %}
