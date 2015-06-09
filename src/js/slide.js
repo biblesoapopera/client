@@ -35,9 +35,7 @@ bso.slide.prototype._checkComplete = function(attemptObj){
   if (!this._config.complete) return;
 
   return Object.keys(this._config.complete).some(function(key){
-    if (key === 'score'){
-      return attemptObj.score >= this._config.complete.score;
-    } else if (key === 'correct'){
+    if (key === 'correct'){
       return attemptObj.score === 100
     } else if (key === 'incorrect'){
       return attemptObj.score === 0
@@ -68,6 +66,8 @@ bso.slide.prototype._feedbackContent = function(attemptObj, answerFeedback){
       if (attemptObj.score > 0 && attemptObj.score < 100) ret.push(this._config.feedback.partiallyCorrect)
     } else if (key === 'complete'){
       if (attemptObj.complete) ret.push(this._config.feedback.complete)
+    } else if (key === 'incomplete'){
+      if (!attemptObj.complete) ret.push(this._config.feedback.incomplete)
     }
   }.bind(this))
 

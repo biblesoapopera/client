@@ -22,6 +22,7 @@ bso.slide.slider = function(config){
   }
 
   var position;
+  var value = 0.5;
   var grip = node.querySelector('.grip');
   var track = node.querySelector('.track');
 
@@ -43,19 +44,20 @@ bso.slide.slider = function(config){
     document.removeEventListener('touchmove', dragmove);
     document.removeEventListener('touchend', dragend);
     grip.setAttribute('class', 'grip');
-    this._complete();
+    this._gripMoved(value);
   }.bind(this);
 
   var dragmove = function(evt){
     var clientX = bso.getClientX(evt);
     var newLeft = position.left + clientX - position.client;
 
-    if (newLeft < -10){
-      newLeft = -10;
-    } else if (newLeft > 280){
-      newLeft = 280;
+    if (newLeft < -grip.getBoundingClientRect().width/2){
+      newLeft = -grip.getBoundingClientRect().width/2;
+    } else if (newLeft > track.getBoundingClientRect().width - grip.getBoundingClientRect().width/2){
+      newLeft = track.getBoundingClientRect().width - grip.getBoundingClientRect().width/2;
     }
 
+    value = (newLeft + grip.getBoundingClientRect().width/2) / track.getBoundingClientRect().width;
     grip.style.left = newLeft + 'px';
     position.left = newLeft;
     position.client = clientX;
@@ -65,9 +67,17 @@ bso.slide.slider = function(config){
   grip.addEventListener('touchstart', dragstart);
 
   track.addEventListener('click', function(evt){
-    grip.style.left = evt.clientX - track.getBoundingClientRect().left - grip.getBoundingClientRect().width/2 + 'px';
-    this._complete();
+    var newLeft = evt.clientX - track.getBoundingClientRect().left - grip.getBoundingClientRect().width/2;
+    grip.style.left = newLeft + 'px';
+    this._gripMoved((newLeft + grip.getBoundingClientRect().width/2) / track.getBoundingClientRect().width);
   }.bind(this))
 }
 
 bso.extend(bso.slide.slider)
+
+bso.slide.slider.prototype._gripMoved = function(newValue){
+  var feedback = (this._attempt(this._config.answers[Math.floor(newValue * this._config.answers.length)])).feedback;
+
+  //TODO show feedback in ui
+  console.log(feedback);
+}

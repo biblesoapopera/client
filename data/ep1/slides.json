@@ -26,34 +26,6 @@
   ],
   "slides": [
     {
-      "type": "pick",
-      "question": "What did Paul’s uncle give him as a gift?",
-      "answers": [
-        {
-          "value": "TV",
-          "score": 100,
-          "feedback": "Yes, Paul's uncle gave him a TV"
-        },
-        {
-          "value": "phone",
-          "score": 0,
-          "feedback": "No, Paul's uncle didn't gave him a phone"
-        },
-        {
-          "value": "football",
-          "score": 0,
-          "feedback": "No, Paul's uncle didn't gave him a football"
-        }
-      ],
-      "complete": {
-        "correct": true
-      },
-      "feedback": {
-        "incorrect": "Please try again",
-        "complete": "Good stuff"
-      }
-    },
-    {
       "type": "title"
     },
     {
@@ -79,7 +51,12 @@
           "value": "<small>To show Abraham what God was like, and teach him about resurrection</small>",
           "score": 0
         }
-      ]
+      ],
+      "complete": {
+        "correct": true,
+        "incorrect": true,
+        "partiallyCorrect": true
+      }
     },
     {
       "type": "audio",
@@ -112,7 +89,7 @@
         }
       ],
       "complete": {
-        "score": 100
+        "correct": true
       },
       "feedback": {
         "incorrect": "Please try again",
@@ -135,7 +112,7 @@
         }
       ],
       "complete": {
-        "score": 100
+        "correct": true
       },
       "feedback": {
         "incorrect": "Please try again"
@@ -206,8 +183,6 @@
     {
       "type": "slider",
       "question": "Who would you listen to if you were Paul?",
-      "left": "Samson",
-      "right": "David",
       "answers": [
         {
           "value": "Samson",
@@ -223,7 +198,11 @@
           "score": 0,
           "feedback": "Hmm. Will David's advice turn out to be the best?"
         }
-      ]
+      ],
+      "complete": {
+        "correct": true,
+        "incorrect": true
+      }
     },
     {
       "type": "pick",
@@ -246,7 +225,7 @@
         }
       ],
       "complete": {
-        "score": 100
+        "correct": true
       },
       "feedback": {
         "incorrect": "Please try again",

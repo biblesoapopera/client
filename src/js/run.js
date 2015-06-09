@@ -26,19 +26,20 @@ bso.run = function(episodeData){
     }
 
     slideIndex += dir;
-    if (slideIndex === -1) {
+    if (slideIndex <= 0) {
       slideIndex = 0;
       bso.previous.hide();
     } else {
       bso.previous.show();
     }
 
-    if(slideIndex === episodeData.slides.length) {
+    if(slideIndex >= episodeData.slides.length - 1) {
       slideIndex = episodeData.slides.length - 1;
       bso.next.hide();
     } else {
       bso.next.show();
     }
+
 
     if (!slideCache[slideIndex]){
       var type = episodeData.slides[slideIndex].type;
