@@ -31,11 +31,11 @@ var sourcePaths = {
        js: ['src/bso.js', 'src/slide.js', 'src/**/*.js', 'tools/livereload.js'],
        mainless: ['src/less/main.less'],
        less: ['src/less/**/*.less'],
-       twig: ['src/twig/**/*.twig', '!src/twig/include/**/*'],     
+       twig: ['src/twig/**/*.twig', '!src/twig/include/**/*'],
        imagemin: ['src/**/*.png'],
-       base64: ['temp/favicon.png'],       
-       copy: ['data/**/*']     
-   }    
+       base64: ['temp/favicon.png'],
+       copy: ['data/**/*']
+   }
 };
 
 var targetPaths = {
@@ -44,7 +44,7 @@ var targetPaths = {
 };
 
 gulp.task('copy', function() {
-  return gulp.src(sourcePaths[buildType].copy)    
+  return gulp.src(sourcePaths[buildType].copy)
     .pipe(gulp.dest(targetPaths[buildType]));
 });
 
@@ -77,14 +77,14 @@ gulp.task('base64', ['imagemin'], function(){
 
 gulp.task('twig', ['base64', 'js', 'less'], function() {
   return gulp.src(sourcePaths[buildType].twig)
-    .pipe(twig())        
+    .pipe(twig())
     .pipe(gulpif(buildType === 'dist', minifyHTML({})))
     .pipe(gulp.dest(targetPaths[buildType]))
 });
 
 gulp.task('test', ['base64', 'js', 'less'], function(){
    if (buildType !== 'dev') return
-   
+
    return gulp.src(sourcePaths[buildType].test.functional)
       .pipe(twig())
       .pipe(gulp.dest(targetPaths[buildType] + '/test/functional'))
@@ -99,15 +99,15 @@ gulp.task('main', ['copy', 'twig']);
 // Rerun the task when a file changes
 gulp.task('watch', function() {
   livereload.listen();
-  gulp.watch(['test/**/*'], ['test']);   
-  gulp.watch(['src/**/*'], ['twig', 'test']);    
-  gulp.watch(sourcePaths.dev.copy, ['copy', 'twig']);    
+  gulp.watch(['test/**/*'], ['test']);
+  gulp.watch(['src/**/*'], ['twig', 'test']);
+  gulp.watch(sourcePaths.dev.copy, ['copy', 'twig']);
   gulp.watch('dev/**/*.html').on('change', function(){setTimeout(livereload.changed, 150)});
 });
 
 // The default task (called when you run `gulp` from cli)
 if (buildType === 'dist'){
-    gulp.task('default', ['main']);    
+    gulp.task('default', ['main']);
 } else {
     gulp.task('default', ['watch', 'dev-server', 'main', 'test']);
 }
