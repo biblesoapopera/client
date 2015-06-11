@@ -1,5 +1,4 @@
 {
-  "author": "martin",
   "title": "Demo Episode: Bible Soap Opera",
   "subtitle": "Learn the whole Bible. Find Jesus in every story.",
   "overview": [
@@ -52,11 +51,7 @@
           "score": 0
         }
       ],
-      "complete": {
-        "correct": true,
-        "incorrect": true,
-        "partiallyCorrect": true
-      }
+      "complete": "always"
     },
     {
       "type": "audio",
@@ -88,9 +83,6 @@
           "feedback": "No, Paul's uncle didn't gave him a football"
         }
       ],
-      "complete": {
-        "correct": true
-      },
       "feedback": {
         "incorrect": "Please try again",
         "complete": "Good stuff"
@@ -111,9 +103,6 @@
           "feedback": "Yes, Paul's uncle does want him to give it back"
         }
       ],
-      "complete": {
-        "correct": true
-      },
       "feedback": {
         "incorrect": "Please try again"
       }
@@ -145,10 +134,7 @@
           "feedback": "Sorry, David didn't say that, Samson did."
         }
       ],
-      "complete": {
-        "correct": true,
-        "incorrect": true
-      },
+      "complete": "always",
       "feedback": {
         "complete": "Let's move on ..."
       }
@@ -172,10 +158,7 @@
           "feedback": "Sorry, David didn't say that, Samson did."
         }
       ],
-      "complete": {
-        "correct": true,
-        "incorrect": true
-      },
+      "complete": "always",
       "feedback": {
         "complete": "Let's move on ..."
       }
@@ -199,10 +182,7 @@
           "feedback": "Hmm. Will David's advice turn out to be the best?"
         }
       ],
-      "complete": {
-        "correct": true,
-        "incorrect": true
-      }
+      "complete": "always"
     },
     {
       "type": "pick",
@@ -224,9 +204,6 @@
           "feedback": "No"
         }
       ],
-      "complete": {
-        "correct": true
-      },
       "feedback": {
         "incorrect": "Please try again",
         "complete": "Good stuff."

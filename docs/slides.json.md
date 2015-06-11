@@ -5,9 +5,6 @@ Slides.json defines all the slides for an episode. It has the following basic st
 
 ```js
 {
-  //The episode author, currently not displayed anywhere in the ui
-  "author": "tim",
-
   //The episode title, displayed on the title slide, and on the top-nav summary
   "title": "Episode 1",
 
@@ -54,7 +51,7 @@ pick
 
 Displays a multiple choice question.
 
-The slide will be considered complete (and enable the `next` button) when one of the conditions in the `complete` object is true. Valid conditions are `correct|incorrect|partiallyCorrect`.
+The slide will be considered complete (and enable the `next` button) when one of the conditions in the `complete` object is true. Valid conditions are `correct|incorrect|always`. If not defined, `correct` is the default.
 
 The `feedback` object holds conditional feedback. Valid conditions are `correct|incorrect|partiallyCorrect|complete|incomplete`.
 
@@ -79,9 +76,7 @@ The `feedback` object holds conditional feedback. Valid conditions are `correct|
       "feedback": "No, Paul's uncle didn't gave him a football"
     }
   ],
-  "complete": {
-    "correct": true
-  },
+  "complete": "correct",
   "feedback": {
     "incorrect": "Please try again",
     "complete": "Good stuff"
@@ -112,10 +107,7 @@ slider
       "feedback": "Sorry, David didn't say that, Samson did."
     }
   ],
-  "complete": {
-    "correct": true,
-    "incorrect": true
-  },
+  "complete": "always",
   "feedback": {
     "complete": "Let's move on ..."
   }
