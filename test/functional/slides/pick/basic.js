@@ -1,4 +1,4 @@
-{
+var slides = {
   "title": "Functional test",
   "slides": [
     {
@@ -21,9 +21,7 @@
           "feedback": "No, a dog does not have two legs."
         }
       ],
-      "complete": {
-        "correct": true
-      },
+      "complete": "always",
       "feedback": {
         "incorrect": "Please try again",
         "correct": "Good stuff"
@@ -34,4 +32,6 @@
       "content": "Placeholder"
     }
   ]
-}
+};
+
+bso.run(slides);

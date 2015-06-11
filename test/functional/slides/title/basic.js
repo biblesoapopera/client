@@ -1,4 +1,4 @@
-{
+var slides = {
   "title": "Functional test",
   "subtitle": "testing me be better",
   "slides": [
@@ -10,4 +10,6 @@
       "content": "Placeholder"
     }
   ]
-}
+};
+
+bso.run(slides);

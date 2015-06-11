@@ -9,85 +9,94 @@ var gulpif = require('gulp-if');
 var imagemin = require('gulp-imagemin');
 var twig = require('./tools/gulpTwig');
 var base64 = require('./tools/gulpBase64');
+var functionalTestWriter = require('./tools/gulpFunctionalTestWriter');
 var argv = require('yargs').argv;
 
 var buildType = 'dev';
 if (argv.dist) buildType = 'dist'
 
 var sourcePaths = {
-   dev: {
-       js: ['src/bso.js', 'src/slide.js', 'src/**/*.js', 'tools/livereload.js'],
-       mainless: ['src/less/main.less'],
-       less: ['src/less/**/*.less'],
-       twig: ['src/twig/**/*.twig', '!src/twig/include/**/*'],
-       imagemin: ['src/**/*.png'],
-       base64: ['temp/favicon.png'],
-       copy: ['data/**/*'],
-       test: {
-           functional: ['test/functional/**/*.twig']
-       }
-   },
-   dist: {
-       js: ['src/bso.js', 'src/slide.js', 'src/**/*.js'],
-       mainless: ['src/less/main.less'],
-       less: ['src/less/**/*.less'],
-       twig: ['src/twig/**/*.twig', '!src/twig/include/**/*'],
-       imagemin: ['src/**/*.png'],
-       base64: ['temp/favicon.png'],
-       copy: ['data/**/*']
-   }
+  dev: {
+    js: ['src/bso.js', 'src/slide.js', 'src/**/*.js', 'tools/livereload.js'],
+    mainless: ['src/less/main.less'],
+    less: ['src/less/**/*.less'],
+    twig: ['src/twig/**/*.twig', '!src/twig/include/**/*'],
+    imagemin: ['src/**/*.png'],
+    base64: ['temp/favicon.png'],
+    copy: ['data/**/*'],
+    test: {
+      functional: ['test/functional/**/*.js']
+    }
+  },
+  dist: {
+    js: ['src/bso.js', 'src/slide.js', 'src/**/*.js'],
+    mainless: ['src/less/main.less'],
+    less: ['src/less/**/*.less'],
+    twig: ['src/twig/**/*.twig', '!src/twig/include/**/*'],
+    imagemin: ['src/**/*.png'],
+    base64: ['temp/favicon.png'],
+    copy: ['data/**/*']
+  }
 };
 
 var targetPaths = {
-    dev: 'dev',
-    dist: 'dist'
+  dev: 'dev',
+  dist: 'dist'
 };
 
 gulp.task('copy', function() {
   return gulp.src(sourcePaths[buildType].copy)
-    .pipe(gulp.dest(targetPaths[buildType]));
+  .pipe(gulp.dest(targetPaths[buildType]));
 });
 
 gulp.task('js', function() {
   return gulp.src(sourcePaths[buildType].js)
-    .pipe(concat('min.js'))
-    .pipe(gulpif(buildType === 'dist', uglify()))
-    .pipe(gulp.dest('temp'));
+  .pipe(concat('min.js'))
+  .pipe(gulpif(buildType === 'dist', uglify()))
+  .pipe(gulp.dest('temp'));
 });
 
 gulp.task('less', ['imagemin'], function() {
   return gulp.src(sourcePaths[buildType].mainless)
-    .pipe(gulpif(buildType === 'dist', less({paths: [path.join(__dirname, 'src', 'less')], compress: true})))
-    .pipe(gulpif(buildType === 'dev', less({paths: [path.join(__dirname, 'src', 'less')], compress: false})))
-    .pipe(concat('min.css'))
-    .pipe(gulp.dest('temp'));
+  .pipe(gulpif(buildType === 'dist', less({paths: [path.join(__dirname, 'src', 'less')], compress: true})))
+  .pipe(gulpif(buildType === 'dev', less({paths: [path.join(__dirname, 'src', 'less')], compress: false})))
+  .pipe(concat('min.css'))
+  .pipe(gulp.dest('temp'));
 });
 
 gulp.task('imagemin', function(){
   return gulp.src(sourcePaths[buildType].imagemin)
-    .pipe(gulpif(buildType === 'dist', imagemin({optimizationLevel: 7})))
-    .pipe(gulp.dest('temp'));
+  .pipe(gulpif(buildType === 'dist', imagemin({optimizationLevel: 7})))
+  .pipe(gulp.dest('temp'));
 })
 
 gulp.task('base64', ['imagemin'], function(){
   return gulp.src(sourcePaths[buildType].base64)
-    .pipe(base64())
-    .pipe(gulp.dest('temp'));
+  .pipe(base64())
+  .pipe(gulp.dest('temp'));
 })
 
 gulp.task('twig', ['base64', 'js', 'less'], function() {
   return gulp.src(sourcePaths[buildType].twig)
-    .pipe(twig())
-    .pipe(gulpif(buildType === 'dist', minifyHTML({})))
-    .pipe(gulp.dest(targetPaths[buildType]))
+  .pipe(twig())
+  .pipe(gulpif(buildType === 'dist', minifyHTML({})))
+  .pipe(gulp.dest(targetPaths[buildType]))
 });
 
-gulp.task('test', ['base64', 'js', 'less'], function(){
-   if (buildType !== 'dev') return
+gulp.task('test', ['testToTwig'], function(){
+  if (buildType !== 'dev') return
 
-   return gulp.src(sourcePaths[buildType].test.functional)
-      .pipe(twig())
-      .pipe(gulp.dest(targetPaths[buildType] + '/test/functional'))
+  return gulp.src('temp/test/functional/**/*.twig')
+  .pipe(twig())
+  .pipe(gulp.dest(targetPaths[buildType] +'/test/functional'))
+});
+
+gulp.task('testToTwig', ['base64', 'js', 'less'], function(){
+  if (buildType !== 'dev') return
+
+  return gulp.src(sourcePaths[buildType].test.functional)
+  .pipe(functionalTestWriter())
+  .pipe(gulp.dest('temp/test/functional'))
 });
 
 gulp.task('dev-server', function(){
@@ -107,8 +116,8 @@ gulp.task('watch', function() {
 
 // The default task (called when you run `gulp` from cli)
 if (buildType === 'dist'){
-    gulp.task('default', ['main']);
+  gulp.task('default', ['main']);
 } else {
-    gulp.task('default', ['watch', 'dev-server', 'main', 'test']);
+  gulp.task('default', ['watch', 'dev-server', 'main', 'test']);
 }
 
