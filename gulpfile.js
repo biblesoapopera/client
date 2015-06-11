@@ -28,7 +28,7 @@ var sourcePaths = {
        }
    },
    dist: {
-       js: ['src/bso.js', 'src/slide.js', 'src/**/*.js', 'tools/livereload.js'],
+       js: ['src/bso.js', 'src/slide.js', 'src/**/*.js'],
        mainless: ['src/less/main.less'],
        less: ['src/less/**/*.less'],
        twig: ['src/twig/**/*.twig', '!src/twig/include/**/*'],

@@ -32,17 +32,15 @@ bso.slide.prototype._attempt = function(answer){
 
 bso.slide.prototype._checkComplete = function(attemptObj){
 
-  if (!this._config.complete) return;
+  var key = this._config.complete || 'correct';
 
-  return Object.keys(this._config.complete).some(function(key){
-    if (key === 'correct'){
-      return attemptObj.score === 100
-    } else if (key === 'incorrect'){
-      return attemptObj.score === 0
-    } else if (key === 'partiallyCorrect'){
-      return attemptObj.score > 0 && attemptObj.score < 100
-    }
-  }.bind(this))
+  if (key === 'always'){
+    return true
+  } else if (key === 'correct'){
+    return attemptObj.score === 100
+  } else if (key === 'partiallyCorrect'){
+    return attemptObj.score > 0 && attemptObj.score < 100
+  }
 }
 
 bso.slide.prototype._complete = function(){

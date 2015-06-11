@@ -12,9 +12,7 @@
 
         <link rel="icon shortcut" type="image/png" href="data:image/png;base64,{% include '../../../temp/favicon.base64' %}" />
 
-        <style>
-          {% include '../../../temp/min.css' %}
-        </style>
+        <style>{% include '../../../temp/min.css' %}</style>
     </head>
     <body>
 
@@ -29,9 +27,6 @@
         {% include '../../slides/title/title.twig' %}
         {% include '../../slides/support/support.twig' %}
 
-        <script>
-            {% include '../../../temp/min.js' %}
-            {% block execute %}{% endblock %}
-        </script>
+        <script>{% include '../../../temp/min.js' %}{% block execute %}{% endblock %}</script>
     </body>
 </html>
