@@ -25,7 +25,8 @@ var sourcePaths = {
     base64: ['temp/favicon.png'],
     copy: ['data/**/*'],
     test: {
-      functional: ['test/functional/**/*.js']
+      functional: ['test/functional/**/*.js'],
+      resources: ['test/**/*', '!test/**/*.js']
     }
   },
   dist: {
@@ -83,7 +84,7 @@ gulp.task('twig', ['base64', 'js', 'less'], function() {
   .pipe(gulp.dest(targetPaths[buildType]))
 });
 
-gulp.task('test', ['testToTwig'], function(){
+gulp.task('test', ['testToTwig', 'copyTestResources'], function(){
   if (buildType !== 'dev') return
 
   return gulp.src('temp/test/functional/**/*.twig')
@@ -91,12 +92,23 @@ gulp.task('test', ['testToTwig'], function(){
   .pipe(gulp.dest(targetPaths[buildType] +'/test/functional'))
 });
 
-gulp.task('testToTwig', ['base64', 'js', 'less'], function(){
+gulp.task('copyTestResources', function(){
   if (buildType !== 'dev') return
 
-  return gulp.src(sourcePaths[buildType].test.functional)
+  return gulp.src(sourcePaths[buildType].test.resources)
+  .pipe(gulp.dest(targetPaths[buildType] +'/test'))
+});
+
+gulp.task('testToTwig', ['base64', 'js', 'less'], function(cb){
+  if (buildType !== 'dev') {
+    cb();
+    return;
+  }
+
+  gulp.src(sourcePaths[buildType].test.functional)
   .pipe(functionalTestWriter())
   .pipe(gulp.dest('temp/test/functional'))
+  .on('end', function (){cb()});
 });
 
 gulp.task('dev-server', function(){

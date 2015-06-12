@@ -5,18 +5,12 @@ bso.slide.slider = function(config){
   node.querySelector('.question').innerHTML = config.question;
 
   var answerNode;
-  var width = Math.round(100/config.answers.length);
+  var width = Math.round(100/(config.answers.length-1));
 
   for (var i=0; i<config.answers.length; i++){
     answerNode = document.createElement('div');
     answerNode.setAttribute('class', 'answer');
-    if (i === 0){
-      answerNode.setAttribute('style', 'width: ' + width*2 + '%; left: -' + width + '%');
-    } else if (i === config.answers.length-1){
-      answerNode.setAttribute('style', 'width: ' + width*2 + '%; left: ' + i*width + '%');
-    } else {
-      answerNode.setAttribute('style', 'width: ' + width + '%; left: ' + i*width + '%');
-    }
+    answerNode.setAttribute('style', 'width: ' + width + '%; left: ' + (i*width - width/2) + '%');
     answerNode.innerHTML = config.answers[i].value || '';
     node.querySelector('.track-container').appendChild(answerNode);
   }
@@ -76,7 +70,11 @@ bso.slide.slider = function(config){
 bso.extend(bso.slide.slider)
 
 bso.slide.slider.prototype._gripMoved = function(newValue){
-  var feedback = (this._attempt(this._config.answers[Math.floor(newValue * this._config.answers.length)])).feedback;
+
+  var answer;
+  if (newValue === 1) answer = this._config.answers[this._config.answers.length-1]
+  else answer = this._config.answers[Math.floor(newValue * this._config.answers.length)]
+  var feedback = (this._attempt(answer)).feedback;
 
   //TODO show feedback in ui
   console.log(feedback);
