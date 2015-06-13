@@ -6,9 +6,9 @@ bso.slide = function(slideType, config){
 
   var tempNode = document.createElement('div');
   tempNode.innerHTML = document.querySelector('[data-slide=' + slideType + ']').innerHTML;
-  var node = this.node = tempNode.firstElementChild;
+  this.node = tempNode.firstElementChild;
 
-  return node;
+  return this.node;
 }
 
 bso.slide.prototype._attempt = function(answer){
@@ -56,16 +56,16 @@ bso.slide.prototype._feedbackContent = function(attemptObj, answerFeedback){
   if (!this._config.feedback) return ret;
 
   Object.keys(this._config.feedback).forEach(function(key){
-    if (key === 'correct'){
-      if (attemptObj.score === 100) ret.push(this._config.feedback.correct)
-    } else if (key === 'incorrect'){
-      if (attemptObj.score === 0) ret.push(this._config.feedback.incorrect)
-    } else if (key === 'partiallyCorrect'){
-      if (attemptObj.score > 0 && attemptObj.score < 100) ret.push(this._config.feedback.partiallyCorrect)
-    } else if (key === 'complete'){
-      if (attemptObj.complete) ret.push(this._config.feedback.complete)
-    } else if (key === 'incomplete'){
-      if (!attemptObj.complete) ret.push(this._config.feedback.incomplete)
+    if (key === 'correct' && attemptObj.score === 100) {
+      ret.push(this._config.feedback.correct)
+    } else if (key === 'incorrect' && attemptObj.score === 0) {
+      ret.push(this._config.feedback.incorrect)
+    } else if (key === 'partiallyCorrect' && attemptObj.score > 0 && attemptObj.score < 100){
+      ret.push(this._config.feedback.partiallyCorrect)
+    } else if (key === 'complete' && attemptObj.complete) {
+      ret.push(this._config.feedback.complete)
+    } else if (key === 'incomplete' && !attemptObj.complete) {
+      ret.push(this._config.feedback.incomplete)
     }
   }.bind(this))
 
