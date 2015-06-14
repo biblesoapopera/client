@@ -5,7 +5,7 @@ bso.slide = function(slideType, config){
   bso.evented(this);
 
   var tempNode = document.createElement('div');
-  tempNode.innerHTML = document.querySelector('[data-slide="base"').innerHTML;
+  tempNode.innerHTML = document.querySelector('[data-slide="base"]').innerHTML;
   var inner = tempNode.querySelector('.slide-container-inner');
   inner.setAttribute('class', 'slide-container-inner ' + slideType);
   inner.innerHTML = document.querySelector('[data-slide=' + slideType + ']').innerHTML;
