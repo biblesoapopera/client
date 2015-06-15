@@ -1,15 +1,15 @@
 var slides = {
-  "title": "Functional test",
-  "slides": [
+  title: 'Functional test',
+  slides: [
     {
-      "type": "audio",
-      "text": "Let’s ROCK!",
-      "start": 10,
-      "end": 20
+      type: 'audio',
+      text: 'Let’s ROCK!',
+      start: 10,
+      end: 20
     },
     {
-      "type": "html",
-      "content": "Placeholder"
+      type: 'html',
+      content: 'Placeholder'
     }
   ]
 };

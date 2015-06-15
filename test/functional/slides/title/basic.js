@@ -1,13 +1,13 @@
 var slides = {
-  "title": "Functional test",
-  "subtitle": "testing me be better",
-  "slides": [
+  title: 'Functional test',
+  subtitle: 'testing me be better',
+  slides: [
     {
-      "type": "title"
+      type: 'title'
     },
     {
-      "type": "html",
-      "content": "Placeholder"
+      type: 'html',
+      content: 'Placeholder'
     }
   ]
 };

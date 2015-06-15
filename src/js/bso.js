@@ -1,1 +1,1 @@
-var bso = {};
+var bso = {}; // jshint ignore:line

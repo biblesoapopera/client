@@ -7,6 +7,8 @@ var minifyHTML = require('gulp-minify-html');
 var livereload = require('gulp-livereload');
 var gulpif = require('gulp-if');
 var imagemin = require('gulp-imagemin');
+var changed = require('gulp-changed');
+var jshint = require('gulp-jshint');
 var twig = require('./tools/gulpTwig');
 var base64 = require('./tools/gulpBase64');
 var functionalTestWriter = require('./tools/gulpFunctionalTestWriter');
@@ -18,6 +20,7 @@ if (argv.dist) buildType = 'dist'
 var sourcePaths = {
   dev: {
     js: ['src/bso.js', 'src/slide.js', 'src/**/*.js', 'tools/livereload.js'],
+    lint: ['src/**/*.js', 'test/**/*.js'],
     mainless: ['src/less/main.less'],
     less: ['src/less/**/*.less'],
     twig: ['src/twig/**/*.twig', '!src/twig/include/**/*'],
@@ -111,6 +114,30 @@ gulp.task('testToTwig', ['base64', 'js', 'less'], function(cb){
   .on('end', function (){cb()});
 });
 
+gulp.task('lint', function(){
+
+  if (buildType !== 'dev') return
+
+  var jshintOptions = {
+    asi: true,
+    camelcase: true,
+    maxlen: 120,
+    indent: 2,
+    quotmark: 'single',
+    maxstatements: 14,
+    maxdepth: 3,
+    maxparams: 4,
+    maxcomplexity: 10,
+    unused: 'vars',
+    trailing: true
+  };
+
+  return gulp.src(sourcePaths[buildType].lint)
+    .pipe(changed('.'))                //process only changed files
+    .pipe(jshint(jshintOptions))       //lint
+    .pipe(jshint.reporter('default', {verbose: true}))  //report linting errors to the console
+});
+
 gulp.task('dev-server', function(){
   require('./tools/devserver');
 });
@@ -120,8 +147,8 @@ gulp.task('main', ['copy', 'twig']);
 // Rerun the task when a file changes
 gulp.task('watch', function() {
   livereload.listen();
-  gulp.watch(['test/**/*'], ['test']);
-  gulp.watch(['src/**/*'], ['twig', 'test']);
+  gulp.watch(['test/**/*'], ['lint', 'test']);
+  gulp.watch(['src/**/*'], ['twig', 'lint', 'test']);
   gulp.watch(sourcePaths.dev.copy, ['copy', 'twig']);
   gulp.watch('dev/**/*.html').on('change', function(){setTimeout(livereload.changed, 150)});
 });
@@ -130,6 +157,6 @@ gulp.task('watch', function() {
 if (buildType === 'dist'){
   gulp.task('default', ['main']);
 } else {
-  gulp.task('default', ['watch', 'dev-server', 'main', 'test']);
+  gulp.task('default', ['watch', 'dev-server', 'main', 'lint', 'test']);
 }
 

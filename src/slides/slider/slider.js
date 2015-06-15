@@ -1,13 +1,15 @@
 bso.slide.slider = function(config){
 
-  var node = bso.slide.call(this, 'slider', config);
+  var node = bso.slide.call(this, 'slider', config),
+    answerNode,
+    width = Math.round(100/(config.answers.length-1)),
+    grip = this._grip = node.querySelector('.grip'),
+    track = this._track = node.querySelector('.track'),
+    i;
 
   node.querySelector('.question').innerHTML = config.question;
 
-  var answerNode;
-  var width = Math.round(100/(config.answers.length-1));
-
-  for (var i=0; i<config.answers.length; i++){
+  for (i=0; i<config.answers.length; i++){
     answerNode = document.createElement('div');
     answerNode.setAttribute('class', 'answer');
     answerNode.setAttribute('style', 'width: ' + width + '%; left: ' + (i*width - width/2) + '%');
@@ -15,59 +17,63 @@ bso.slide.slider = function(config){
     node.querySelector('.track-container').appendChild(answerNode);
   }
 
-  var position;
-  var value = 0.5;
-  var grip = node.querySelector('.grip');
-  var track = node.querySelector('.track');
-
-  var dragstart = function(evt){
-    position = {
-      left: parseInt(window.getComputedStyle(grip).getPropertyValue('left').replace('px', '')),
-      client: bso.getClientX(evt)
-    }
-    document.addEventListener('mouseup', dragend);
-    document.addEventListener('mousemove', dragmove);
-    document.addEventListener('touchend', dragend);
-    document.addEventListener('touchmove', dragmove);
-    grip.setAttribute('class', 'grip active');
-  };
-
-  var dragend = function(){
-    document.removeEventListener('mousemove', dragmove);
-    document.removeEventListener('mouseup', dragend);
-    document.removeEventListener('touchmove', dragmove);
-    document.removeEventListener('touchend', dragend);
-    grip.setAttribute('class', 'grip');
-    this._gripMoved(value);
-  }.bind(this);
-
-  var dragmove = function(evt){
-    var clientX = bso.getClientX(evt);
-    var newLeft = position.left + clientX - position.client;
-
-    if (newLeft < -grip.getBoundingClientRect().width/2){
-      newLeft = -grip.getBoundingClientRect().width/2;
-    } else if (newLeft > track.getBoundingClientRect().width - grip.getBoundingClientRect().width/2){
-      newLeft = track.getBoundingClientRect().width - grip.getBoundingClientRect().width/2;
-    }
-
-    value = (newLeft + grip.getBoundingClientRect().width/2) / track.getBoundingClientRect().width;
-    grip.style.left = newLeft + 'px';
-    position.left = newLeft;
-    position.client = clientX;
-  }
-
-  grip.addEventListener('mousedown', dragstart);
-  grip.addEventListener('touchstart', dragstart);
-
-  track.addEventListener('click', function(evt){
-    var newLeft = evt.clientX - track.getBoundingClientRect().left - grip.getBoundingClientRect().width/2;
-    grip.style.left = newLeft + 'px';
-    this._gripMoved((newLeft + grip.getBoundingClientRect().width/2) / track.getBoundingClientRect().width);
-  }.bind(this))
+  grip.addEventListener('mousedown', this);
+  grip.addEventListener('touchstart', this);
+  track.addEventListener('click', this)
 }
 
 bso.extend(bso.slide.slider)
+
+bso.slide.slider.prototype.handleEvent = function(evt){
+  if (evt.type === 'mouseup') this._dragend(evt)
+  else if (evt.type === 'mousemove') this._dragmove(evt)
+  else if (evt.type === 'touchend') this._dragend(evt)
+  else if (evt.type === 'touchmove') this._dragmove(evt)
+  else if (evt.type === 'mousedown') this._dragstart(evt)
+  else if (evt.type === 'touchstart') this._dragstart(evt)
+  else if (evt.type === 'click') this._trackClick(evt)
+}
+
+bso.slide.slider.prototype._dragstart = function(evt){
+  this._position = {
+    left: parseInt(window.getComputedStyle(this._grip).getPropertyValue('left').replace('px', '')),
+    client: bso.getClientX(evt)
+  };
+  ['mouseup','mousemove','touchend','touchmove'].forEach(function(name){
+    document.addEventListener(name, this)
+  }.bind(this));
+  this._grip.setAttribute('class', 'grip active');
+}
+
+bso.slide.slider.prototype._dragend = function(){
+  ['mouseup','mousemove','touchend','touchmove'].forEach(function(name){
+    document.removeEventListener(name, this)
+  }.bind(this));
+  this._grip.setAttribute('class', 'grip');
+  this._gripMoved(this._value);
+}
+
+bso.slide.slider.prototype._dragmove = function(evt){
+  var clientX = bso.getClientX(evt);
+  var newLeft = this._position.left + clientX - this._position.client;
+
+  if (newLeft < -this._grip.getBoundingClientRect().width/2){
+    newLeft = -this._grip.getBoundingClientRect().width/2;
+  } else if (newLeft > this._track.getBoundingClientRect().width - this._grip.getBoundingClientRect().width/2){
+    newLeft = this._track.getBoundingClientRect().width - this._grip.getBoundingClientRect().width/2;
+  }
+
+  this._value = (newLeft + this._grip.getBoundingClientRect().width/2) / this._track.getBoundingClientRect().width;
+  this._grip.style.left = newLeft + 'px';
+  this._position.left = newLeft;
+  this._position.client = clientX;
+}
+
+bso.slide.slider.prototype._trackClick = function(evt){
+  var newLeft = evt.clientX - this._track.getBoundingClientRect().left - this._grip.getBoundingClientRect().width/2;
+  this._grip.style.left = newLeft + 'px';
+  this._gripMoved((newLeft + this._grip.getBoundingClientRect().width/2) / this._track.getBoundingClientRect().width);
+}
 
 bso.slide.slider.prototype._gripMoved = function(newValue){
 
