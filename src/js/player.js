@@ -1,4 +1,4 @@
-bso.player = function(){
+bso.player = function(episodeName){
    
     if (!bso.player._instance){
 
@@ -14,7 +14,7 @@ bso.player = function(){
         else if (ogg === 'probably' || ogg === 'maybe') extension = 'ogg'
         else extension = 'mp3'
         
-        player.src = bso.episode + '/audio.' + extension;
+        player.src = episodeName + '/audio.' + extension;
                         
         bso.player._instance = player;
     }

@@ -1,12 +1,10 @@
-bso.slide.title = function(config, sectionType){
-    
-    var clone = bso.clone(document.querySelector('[data-slide=title]'));
-    clone.querySelector('.slide-inner').setAttribute('class', 'slide-inner ' + sectionType);        
-    clone.querySelector('.title h1').innerHTML = config.title;
-    clone.querySelector('.subtitle').innerHTML = config.subtitle;
+bso.slide.title = function(config){
 
-    document.body.appendChild(clone);
-    this.node = document.body.lastElementChild;      
-    
-    this.complete = true;
+    var node = bso.slide.call(this, 'title', config);
+    node.querySelector('.title h1').innerHTML = config.title;
+    node.querySelector('.subtitle').innerHTML = config.subtitle;
+
+    this._complete();
 }
+
+bso.extend(bso.slide.title)
