@@ -2,6 +2,7 @@
   "name": "bso",
   "version": "0.0.1",
   "description": "An Interactive Audio Soap Opera",
+  "license" : "LicenseRef-LICENSE",
   "homepage": "http://biblesoapopera.com",
   "repository": {
     "type": "git",
