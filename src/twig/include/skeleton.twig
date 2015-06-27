@@ -6,9 +6,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>{% block title %}Bible Soap Opera Demo{% endblock %}</title>
-        <meta name="description" content="An Interactive Audio Soap Opera">
-        <meta name="author" content="Tim Roediger">
-        <meta name="keywords" content="blah">
 
         <link rel="icon shortcut" type="image/png" href="data:image/png;base64,{% include '../../../temp/favicon.base64' %}" />
 
@@ -16,17 +13,10 @@
     </head>
     <body>
 
-        {% include 'topNav.twig' %}
         {% include 'loading.twig' %}
-        {% include 'slide.twig' %}
 
-        {% include '../../slides/audio/audio.twig' %}
-        {% include '../../slides/html/html.twig' %}
-        {% include '../../slides/pick/pick.twig' %}
-        {% include '../../slides/slider/slider.twig' %}
-        {% include '../../slides/sort/sort.twig' %}
-        {% include '../../slides/title/title.twig' %}
-        {% include '../../slides/support/support.twig' %}
+        {% include '../../Screen/Screen.twig' %}
+        {% include '../../Screen/Title/Title.twig' %}
 
         <script type="application/javascript">{% include '../../../temp/min.js' %}{% block execute %}{% endblock %}</script>
     </body>

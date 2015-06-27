@@ -1,0 +1,50 @@
+.screen .Title {
+
+  text-align: left;
+
+  .icon-box {
+
+    float: left;
+
+    @width: 145px;
+    @height: 145px;
+    @border-radius: 15px;
+
+    width: @unit0 * @width;
+    height: @unit0 * @height;
+    border-radius: @unit0 * @border-radius;
+    margin-left: 20px;
+    margin-right: 30px;
+
+    @media @media1 {
+      width: @unit1 * @width;
+      height: @unit1 * @height;
+      border-radius: @unit1 * @border-radius;
+    }
+
+    @media @media2 {
+      width: @unit2 * @width;
+      height: @unit2 * @height;
+      border-radius: @unit2 * @border-radius;
+    }
+
+    @media @media3 {
+      width: @unit2 * @width;
+      height: @unit2 * @height;
+      border-radius: @unit2 * @border-radius;
+    }
+  }
+
+  .text {
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    p {
+      padding-top: 10px;
+    }
+  }
+
+  button {
+    margin-left: 160px;
+  }
+}
