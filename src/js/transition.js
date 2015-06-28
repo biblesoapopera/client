@@ -19,11 +19,18 @@ bso.transition = (function(){
 
     activeNode.addEventListener('transitionend', end);
 
-    //position slide ready for transiton
-    newNode.setAttribute('class', 'screen ' + direction);
-
     if (activeScreen && activeScreen.exit) activeScreen.exit()
     if (newScreen.enter) newScreen.enter()
+
+    if (direction === 'instant'){
+      newNode.setAttribute('class', 'screen active');
+      activeNode.setAttribute('class', 'screen');
+      activeNode = newScreen;
+      return;
+    }
+
+    //position slide ready for transiton
+    newNode.setAttribute('class', 'screen ' + direction);
 
     //wait for repaint
     setTimeout(function () {
