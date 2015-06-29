@@ -1,22 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{% block title %}Bible Soap Opera Demo{% endblock %}</title>
+    <title>{% block title %}Bible Soap Opera{% endblock %}</title>
 
-        <style>{% include '../../../temp/min.css' %}</style>
-    </head>
-    <body>
+    <style>{% include '../../../temp/min.css' %}</style>
+  </head>
+  <body>
 
-        {% include 'loading.twig' %}
+    {% include 'loading.twig' %}
 
-        {% include '../../Screen/Screen.twig' %}
-        {% include '../../Screen/Menu/Menu.twig' %}
-        {% include '../../Screen/Title/Title.twig' %}
+    {% include '../../Screen/Screen.twig' %}
+    {% include '../../Screen/Menu/Menu.twig' %}
+    {% include '../../Screen/Title/Title.twig' %}
 
-        <script type="application/javascript">{% include '../../../temp/min.js' %}{% block execute %}{% endblock %}</script>
-    </body>
+    <script type="application/javascript">{% include '../../../temp/min.js' %}{% block execute %}{% endblock %}</script>
+  </body>
 </html>

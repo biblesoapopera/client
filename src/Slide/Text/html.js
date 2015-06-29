@@ -6,4 +6,4 @@ bso.slide.html = function(config){
     this._complete();
 }
 
-bso.extend(bso.slide.html)
+bso.extend(bso.slide, bso.slide.html)

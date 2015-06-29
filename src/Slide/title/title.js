@@ -7,4 +7,4 @@ bso.slide.title = function(config){
     this._complete();
 }
 
-bso.extend(bso.slide.title)
+bso.extend(bso.slide, bso.slide.title)

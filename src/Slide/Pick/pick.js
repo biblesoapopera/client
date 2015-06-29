@@ -16,7 +16,7 @@ bso.slide.pick = function (config, sectionType) {
   }
 }
 
-bso.extend(bso.slide.pick)
+bso.extend(bso.slide, bso.slide.pick)
 
 bso.slide.pick.prototype._itemClick = function (evt) {
   var answerList = this._answerList;

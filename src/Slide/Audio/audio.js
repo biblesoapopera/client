@@ -20,7 +20,7 @@ bso.slide.audio = function(config){
   this._currentTime = config.start;
 }
 
-bso.extend(bso.slide.audio)
+bso.extend(bso.slide, bso.slide.audio)
 
 bso.slide.audio.prototype.enter = function(){
   this._player.currentTime = this._currentTime;

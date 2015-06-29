@@ -1,3 +1,4 @@
 function bso(){ //jshint ignore:line
-  bso.transition(new bso.getScreen('title', 'Title'), 'instant');
+  if (!location.hash) location.hash = '#title'
+  else bso.go(location.hash.slice(1))
 }

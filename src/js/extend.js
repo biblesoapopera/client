@@ -1,4 +1,4 @@
-bso.extend = function(ctr){
-    ctr.prototype = Object.create(bso.slide.prototype);    
-    ctr.prototype.constructor = ctr;
+bso.extend = function(parent, child){
+  child.prototype = Object.create(parent.prototype);
+  child.prototype.constructor = child;
 }

@@ -1,14 +1,14 @@
-button {
+.btn {
   border: 0;
   background-color: @color500;
-  cursor: pointer;
+  display: inline-block;
 }
 
-button:hover {
+.btn:hover {
   background-color: @color300;
 }
 
-button.round {
+.btn.round {
   .shaddow;
 
   @radius: 20px;
@@ -36,7 +36,7 @@ button.round {
   }
 }
 
-button.down {
+.btn.down {
   transform: rotate(90deg);
 }
 

@@ -22,7 +22,7 @@ bso.slide.slider = function(config){
   track.addEventListener('click', this)
 }
 
-bso.extend(bso.slide.slider)
+bso.extend(bso.slide, bso.slide.slider)
 
 bso.slide.slider.prototype.handleEvent = function(evt){
   if (evt.type === 'mouseup') this._dragend(evt)

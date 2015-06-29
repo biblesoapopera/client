@@ -3,6 +3,7 @@
 
   @title-padding: 10px;
 
+
   .episode {
     overflow: hidden;
     height: 28px + @title-padding * 2;
@@ -13,7 +14,28 @@
     background-color: @color300;
   }
 
+  .episode.active {
+    height: 100vh;
+
+    .title {
+      pointer-events: none;
+      cursor: default;
+    }
+  }
+
+  .episode.active:hover {
+    background-color: inherit;
+  }
+
   .title {
-    padding: @title-padding;
+    a {
+      font-style: normal;
+      display: block;
+      padding: @title-padding;
+    }
+
+    a:hover {
+      text-decoration: none;
+    }
   }
 }
