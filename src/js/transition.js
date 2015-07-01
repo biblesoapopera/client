@@ -1,36 +1,29 @@
 bso.transition = (function(){
 
-  var activeScreen;
+  var activeScreen = bso.getScreen('title');
 
   var end = function(evt){
     evt.target.removeEventListener('transitionend', end);
-    evt.target.setAttribute('class', 'screen');
-  }.bind(this);
+    evt.target.classList.remove('active', 'left', 'right', 'top', 'bottom');
+  }
 
   return function (newScreen, direction) {
 
-    var activeNode;
-    var newNode;
-
-    if (activeScreen) activeNode = activeScreen.node
-    else activeNode = document.querySelector('.screen.active')
-
-    newNode = newScreen.node;
-
-    activeNode.addEventListener('transitionend', end);
+    var activeNode = activeScreen.node;
+    var newNode = newScreen.node;
 
     if (activeScreen && activeScreen.exit) activeScreen.exit()
     if (newScreen.enter) newScreen.enter()
 
     if (direction === 'instant'){
-      newNode.setAttribute('class', 'screen active');
-      activeNode.setAttribute('class', 'screen');
+      newNode.classList.add('active');
+      activeNode.classList.remove('active');
       activeNode = newScreen;
       return;
     }
 
     //position slide ready for transiton
-    newNode.setAttribute('class', 'screen ' + direction);
+    newNode.classList.add(direction);
 
     //wait for repaint
     setTimeout(function () {
@@ -44,8 +37,12 @@ bso.transition = (function(){
               'top' :
               'bottom';
 
-      activeNode.setAttribute('class', 'screen ' + outDirection);
-      newNode.setAttribute('class', 'screen active');
+      activeNode.addEventListener('transitionend', end);
+
+      activeNode.classList.remove('active');
+      activeNode.classList.add(outDirection);
+      newNode.classList.add('active');
+      newNode.classList.remove(direction);
       activeScreen = newScreen;
     }, 80);
 

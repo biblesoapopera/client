@@ -1,17 +1,67 @@
-.screen .Menu {
+.screen.Menu.left,
+.screen.Menu.right,
+.screen.Menu.top,
+.screen.Menu.bottom,
+.screen.Menu.active{
+  display: block;
+}
+
+.screen.Menu {
   text-align: left;
-
-  @title-padding: 10px;
-
 
   .episode {
     overflow: hidden;
-    height: 28px + @title-padding * 2;
-    border-bottom: 2px solid @white;
-  }
+    height: 11vw;
+    border-bottom: 0.4vw solid @white;
+    transition-property: height;
+    transition-duration: 1s, 1s;
 
-  .episode:hover {
-    background-color: @color300;
+    div {
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: flex-start;
+      height: 100vh;
+    }
+
+    .title {
+
+      a {
+        font-style: normal;
+        display: block;
+        height: 5vw;
+        width: 94vw;
+        padding: 3vw;
+      }
+
+      a:hover {
+        text-decoration: none;
+        background-color: @color300;
+      }
+    }
+
+    .content {
+      display: flex;
+      flex-flow: column nowrap;
+      padding-left: 9vw;
+      padding-right: 9vw;
+      flex: 2;
+
+      p {
+        width: 100%;
+      }
+
+      .summary {
+        flex: 2;
+        padding-top: 3vw;
+      }
+
+      .buttons {
+        padding-bottom: 9vw;
+        display: flex;
+        flex-flow: row;
+        justify-content: space-between;
+      }
+    }
   }
 
   .episode.active {
@@ -21,21 +71,21 @@
       pointer-events: none;
       cursor: default;
     }
-  }
 
-  .episode.active:hover {
-    background-color: inherit;
-  }
-
-  .title {
-    a {
-      font-style: normal;
-      display: block;
-      padding: @title-padding;
-    }
-
-    a:hover {
-      text-decoration: none;
+    a:hover{
+      background-color: inherit;
     }
   }
+}
+
+.screen.Menu.ep1 {
+  top: 0;
+}
+
+.screen.Menu.ep2 {
+  top: -11vw;
+}
+
+.screen.Menu.ep3 {
+  top: -22vw;
 }

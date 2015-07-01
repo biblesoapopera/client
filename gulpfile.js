@@ -17,7 +17,7 @@ if (argv.dist) buildType = 'dist'
 
 var sourcePaths = {
   dev: {
-    js: ['src/bso.js', 'data/lang.js', 'src/slide.js', 'src/**/*.js', 'tools/livereload.js'],
+    js: ['src/bso.js', 'src/slide.js', 'src/**/*.js', 'tools/livereload.js'],
     lint: ['src/**/*.js', 'test/**/*.js'],
     mainless: ['src/less/main.less'],
     less: ['src/less/**/*.less'],
@@ -29,7 +29,7 @@ var sourcePaths = {
     }
   },
   dist: {
-    js: ['src/bso.js', 'data/lang.js', 'src/slide.js', 'src/**/*.js'],
+    js: ['src/bso.js', 'src/slide.js', 'src/**/*.js'],
     mainless: ['src/less/main.less'],
     less: ['src/less/**/*.less'],
     twig: ['src/twig/**/*.twig', '!src/twig/include/**/*'],

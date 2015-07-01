@@ -11,32 +11,16 @@
 .btn.round {
   .shaddow;
 
-  @radius: 20px;
-
-  width: @unit0 * @radius * 2;
-  height: @unit0 * @radius * 2;
-  border-radius: @unit0 * @radius;
-
-  @media @media1 {
-    width: @unit1 * @radius * 2;
-    height: @unit1 * @radius * 2;
-    border-radius: @unit1 * @radius;
-  }
-
-  @media @media2 {
-    width: @unit2 * @radius * 2;
-    height: @unit2 * @radius * 2;
-    border-radius: @unit2 * @radius;
-  }
-
-  @media @media3 {
-    width: @unit3 * @radius * 2;
-    height: @unit3 * @radius * 2;
-    border-radius: @unit3 * @radius;
-  }
+  width: 10vw;
+  height: 10vw;
+  border-radius: 5vw;
 }
 
 .btn.down {
   transform: rotate(90deg);
+}
+
+.btn.up {
+  transform: rotate(-90deg);
 }
 

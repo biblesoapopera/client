@@ -1,107 +1,19 @@
-.screen .Title {
-
-  text-align: left;
-
+.screen.Title {
   .logo {
-
-    float: left;
-
-    @width: 145px;
-    @height: 145px;
-    @border-radius: 15px;
-    @margin-left: 20px;
-    @margin-right: 30px;
-
-    width: @unit0 * @width;
-    height: @unit0 * @height;
-    border-radius: @unit0 * @border-radius;
-    margin-left: @unit0 * @margin-left;
-    margin-right: @unit0 * @margin-right;
-
-    @media @media1 {
-      width: @unit1 * @width;
-      height: @unit1 * @height;
-      border-radius: @unit1 * @border-radius;
-      margin-left: @unit1 * @margin-left;
-      margin-right: @unit1 * @margin-right;
-    }
-
-    @media @media2 {
-      width: @unit2 * @width;
-      height: @unit2 * @height;
-      border-radius: @unit2 * @border-radius;
-      margin-left: @unit2 * @margin-left;
-      margin-right: @unit2 * @margin-right;
-    }
-
-    @media @media3 {
-      width: @unit3 * @width;
-      height: @unit3 * @height;
-      border-radius: @unit3 * @border-radius;
-      margin-left: @unit3 * @margin-left;
-      margin-right: @unit3 * @margin-right;
-    }
+    width: 30vw;
+    height: 30vw;
+    border-radius: 3vw;
   }
 
   .text {
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    padding-left: 6vw;
 
-    @padding-top: 10px;
-    @padding-bottom: 10px;
-
-    padding-top: @unit0 * @padding-top;
-    padding-bottom: @unit0 * @padding-bottom;
-
-    @media @media1 {
-      padding-top: @unit1 * @padding-top;
-      padding-bottom: @unit1 * @padding-bottom;
-    }
-
-    @media @media2 {
-      padding-top: @unit2 * @padding-top;
-      padding-bottom: @unit2 * @padding-bottom;
-    }
-
-    @media @media3 {
-      padding-top: @unit3 * @padding-top;
-      padding-bottom: @unit3 * @padding-bottom;
-    }
-
-    p {
-
-      @padding-top: 10px;
-
-      padding-top: @unit0 * @padding-top;
-
-      @media @media1 {
-        padding-top: @unit1 * @padding-top;
-      }
-
-      @media @media2 {
-        padding-top: @unit2 * @padding-top;
-      }
-
-      @media @media3 {
-        padding-top: @unit3 * @padding-top;
-      }
-    }
-  }
-
-  .btn {
-
-    @margin-left: 160px;
-
-    margin-left: @unit0 * @margin-left;
-
-    @media @media1 {
-      margin-left: @unit1 * @margin-left;
-    }
-
-    @media @media2 {
-      margin-left: @unit2 * @margin-left;
-    }
-
-    @media @media3 {
-      margin-left: @unit3 * @margin-left;
+    a {
+      align-self: flex-end;
+      margin-top: 7vw;
     }
   }
 }

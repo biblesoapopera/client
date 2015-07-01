@@ -1,9 +1,13 @@
 .screen {
   display: none;
   position: absolute;
-  width: 100%;
-  height: 100%;
-  min-height: 100%;
+  height: 100vh;
+  width: 100vw;
+  background-color: @color500;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
   transition-property: left, top;
   transition-duration: 1s, 1s;
 }
@@ -13,55 +17,26 @@
 .screen.top,
 .screen.bottom,
 .screen.active{
-  display: table;
+  display: flex;
 }
 
 .screen.left {
-  left: -100%;
+  left: -100vw;
 }
 
 .screen.right {
-  left: 100%;
+  left: 100vw;
 }
 
 .screen.top {
-  top: -100%;
+  top: -100vh;
 }
 
 .screen.bottom {
-  top: 100%;
+  top: 100vh;
 }
 
 .screen.active {
-  left: 0px;
-  top: 0px;
-}
-
-.screen1 {
-  display: table-cell;
-  vertical-align: middle;
-  height: 100%;
-  min-height: 100%;
-  background-color: @color500;
-}
-
-.screen2 {
-  margin-left: auto;
-  margin-right: auto;
-
-  @width: 450px;
-
-  width: @unit0 * @width;
-
-  @media @media1 {
-    width: @unit1 * @width;
-  }
-
-  @media @media2 {
-    width: @unit2 * @width;
-  }
-
-  @media @media3 {
-    width: @unit3 * @width;
-  }
+  left: 0;
+  top: 0;
 }

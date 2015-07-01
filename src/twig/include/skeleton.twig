@@ -9,11 +9,11 @@
   </head>
   <body>
 
-    {% include 'loading.twig' %}
-
-    {% include '../../Screen/Screen.twig' %}
     {% include '../../Screen/Menu/Menu.twig' %}
-    {% include '../../Screen/Title/Title.twig' %}
+
+    <div class="screen active Title">
+      {% include '../../Screen/Title/Title.twig' %}
+    </div>
 
     <script type="application/javascript">{% include '../../../temp/min.js' %}{% block execute %}{% endblock %}</script>
   </body>
