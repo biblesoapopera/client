@@ -19,6 +19,8 @@ bso.go = (function(){
       var menu = bso.getScreen('menu');
       if (currentRoute != 'menu') bso.transition(menu, 'instant');
       menu.show(pieces[1]);
+    } else if (pieces[0] === 'episode' && pieces.length === 2 && /menu\/\d/.test(currentRoute)){
+      bso.transition(bso.getScreen(route), 'bottom');
     }
 
     currentRoute = route;

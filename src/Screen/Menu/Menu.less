@@ -1,18 +1,18 @@
-.screen.Menu.left,
-.screen.Menu.right,
-.screen.Menu.top,
-.screen.Menu.bottom,
-.screen.Menu.active{
-  display: block;
+.screen.Menu.episode-active {
+  overflow: hidden;
 }
 
 .screen.Menu {
   text-align: left;
+  overflow-y: scroll;
+
+  @colapsed-height: 11vw;
+  @border-thickness: 0.4vw;
 
   .episode {
     overflow: hidden;
-    height: 11vw;
-    border-bottom: 0.4vw solid @white;
+    height: @colapsed-height;
+    border-bottom: @border-thickness solid @white;
     transition-property: height;
     transition-duration: 1s, 1s;
 
@@ -76,16 +76,12 @@
       background-color: inherit;
     }
   }
+
+  .wrap {
+    position: relative;
+    transition-property: top;
+    transition-duration: 1s, 1s;
+    top: 0;
+  }
 }
 
-.screen.Menu.ep1 {
-  top: 0;
-}
-
-.screen.Menu.ep2 {
-  top: -11vw;
-}
-
-.screen.Menu.ep3 {
-  top: -22vw;
-}

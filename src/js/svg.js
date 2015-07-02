@@ -13,13 +13,12 @@ bso.svg = (function(){
 
   //css backgrounds
   for (var selector in paths){
-/*
     document.styleSheets[0].insertRule(
       selector +
       ' {background-image: url("' + (open + paths[selector] + close).replace(/</g, '%3C').replace(/>/g, '%3E') +
       '"); background-repeat: no-repeat; background-position: center center; background-size: contain;}',
       0
-    );*/
+    );
   }
 
   //favicon
