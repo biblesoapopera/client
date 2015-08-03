@@ -41,8 +41,8 @@ bso.series = [
   }
 ];
 
-bso.Screen.Menu = function(){
-  bso.Screen.call(this, 'Menu');
+$.screen.menu = function(){
+  $.screen.call(this, 'menu');
 
   var data,
     i,
@@ -61,21 +61,25 @@ bso.Screen.Menu = function(){
     epNode.querySelector('.title').innerHTML = '<a href="#menu/' + (i+1) + '">' + (i+1) + '. ' + data.title + '</a>';
     epNode.querySelector('.subtitle').innerHTML = data.subtitle;
     epNode.querySelector('.summary').innerHTML = data.summary;
-    epNode.querySelector('.start').href = '#episode/' + (i+1);
     node.appendChild(epNode);
   }
 }
 
-bso.extend(bso.Screen, bso.Screen.Menu);
+$.extend($.screen, $.screen.menu);
 
-bso.Screen.Menu.prototype.show = function(index){
+$.screen.menu.prototype.show = function(id, index, animate){
+  if (!animate) this.node.classList.remove('animate')
+  else this.node.classList.add('animate')
+
   this.node.classList.add('episode-active');
-  var epNode = this.node.children[0].children[index-1];
+  var epNode = this.node.children[0].children[id-1];
+  epNode.querySelector('.start').href = '#episode/' + id + '/' + index;
   epNode.classList.add('active');
   this.node.children[0].style.top = this.node.scrollTop - epNode.offsetTop + 'px';
 }
 
-bso.Screen.Menu.prototype.enter = function(){
+$.screen.menu.prototype.enter = function(){
+  this.node.classList.add('animate');
   this.node.classList.remove('episode-active');
   this.node.children[0].style.top = 0;
   for(var i = 0; i < this.node.children[0].children.length; i++){

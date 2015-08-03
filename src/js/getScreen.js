@@ -1,19 +1,21 @@
-bso.getScreen = (function(){
+$.getScreen = (function(){
 
   var cache = {};
 
   return function(id){
+
     if (!cache[id]){
       var screen;
       if (id === 'title'){
         screen = {
-          node: document.querySelector('.screen.Title')
+          node: document.querySelector('.screen.title')
         }
-      } else if (/episode\/\d/.test(id)){
-        screen = new bso.Screen.Episode(id.split('/')[1]);
-        document.body.appendChild(screen.node);
+      } else if (/episode\/\d\/\d+/.test(id)){
+        var parts = id.split('/');
+        var screen = $.getEpisode(parts[1], parts[2]).getSlide(parts[2]);
+        if (screen) document.body.appendChild(screen.node);
       } else {
-        screen = new bso.Screen[id[0].toUpperCase() + id.slice(1)]();
+        screen = new $.screen[id]();
         document.body.appendChild(screen.node);
       }
       cache[id] = screen;

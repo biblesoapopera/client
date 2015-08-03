@@ -9,12 +9,17 @@
   </head>
   <body>
 
-    {% include '../../Screen/Episode/Episode.twig' %}
-    {% include '../../Screen/Menu/Menu.twig' %}
+    {% include '../../screen/loading/loading.twig' %}
+    {% include '../../screen/menu/menu.twig' %}
+    {% include '../../screen/slide/slide.twig' %}
 
-    <div class="screen active Title">
-      {% include '../../Screen/Title/Title.twig' %}
+    {% include '../../screen/slider/slider.twig' %}
+
+    <div class="screen active title">
+      {% include '../../screen/title/title.twig' %}
     </div>
+
+    {% include './nav.twig' %}
 
     <script type="application/javascript">{% include '../../../temp/min.js' %}{% block execute %}{% endblock %}</script>
   </body>

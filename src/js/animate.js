@@ -1,24 +1,38 @@
-bso.transition = (function(){
+$.animate = (function(){
 
-  var activeScreen = bso.getScreen('title');
+  var activeScreen = $.getScreen('title');
+  var pending = [];
+  var animating;
 
   var end = function(evt){
     evt.target.removeEventListener('transitionend', end);
     evt.target.classList.remove('active', 'left', 'right', 'top', 'bottom');
+    next();
   }
 
-  return function (newScreen, direction) {
+  var next = function(){
+    if (pending.length) {
+      var args = pending.pop();
+      doAnimation(args[0], args[1]);
+    } else {
+      animating = false;
+    }
+  }
 
+  var doAnimation = function(newScreen, direction){
+    animating = true;
     var activeNode = activeScreen.node;
     var newNode = newScreen.node;
 
+    if (activeNode === newNode) return;
     if (activeScreen && activeScreen.exit) activeScreen.exit()
     if (newScreen.enter) newScreen.enter()
 
     if (direction === 'instant'){
       newNode.classList.add('active');
       activeNode.classList.remove('active');
-      activeNode = newScreen;
+      activeScreen = newScreen;
+      next();
       return;
     }
 
@@ -45,6 +59,15 @@ bso.transition = (function(){
       newNode.classList.remove(direction);
       activeScreen = newScreen;
     }, 80);
+  }
 
+  return function (newScreen, direction) {
+
+    if (animating) {
+      pending.unshift([newScreen, direction]);
+      return;
+    }
+
+    doAnimation(newScreen,direction);
   };
 })();

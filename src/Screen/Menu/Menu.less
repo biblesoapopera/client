@@ -1,8 +1,20 @@
-.screen.Menu.episode-active {
+.screen.menu.episode-active {
   overflow: hidden;
 }
 
-.screen.Menu {
+.screen.menu.animate {
+  .episode {
+    transition-property: height;
+    transition-duration: 1s, 1s;
+  }
+
+  .wrap {
+    transition-property: top;
+    transition-duration: 1s, 1s;
+  }
+}
+
+.screen.menu {
   text-align: left;
   overflow-y: scroll;
 
@@ -13,8 +25,6 @@
     overflow: hidden;
     height: @colapsed-height;
     border-bottom: @border-thickness solid @white;
-    transition-property: height;
-    transition-duration: 1s, 1s;
 
     div {
       display: flex;
@@ -79,8 +89,6 @@
 
   .wrap {
     position: relative;
-    transition-property: top;
-    transition-duration: 1s, 1s;
     top: 0;
   }
 }

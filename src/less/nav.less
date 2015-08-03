@@ -1,37 +1,143 @@
-/*
-@nav-background-color: @primary;
-@nav-font-size: 15px;
+@nav-height: 13vh;
 
-@nav-title-font-color: @white;
-@nav-title-font-weight: 700;
-*/
+.nav {
 
-.btn.previous, .btn.next {
-  background-size: (30px * @sprite-count) 30px;
-  background-position: (30px * 7) 0;
-  position: fixed;
-  z-index: 1;
-  bottom: 10px;
+  @gap: .2vh;
+
+  display: none;
+  position: absolute;
+  height: 0;
+  width: 0;
+  transition-property: top;
+  transition-duration: 1s, 1s;
+  z-index: 10;
+  top: 100vh;
+
+  .shaddow {
+    position: absolute;
+    top: 100-@nav-height;
+    left: -20vw;
+    width: 140vw;
+    height: @nav-height;
+  }
+
+  .controls {
+    background-color: @white;
+    position: absolute;
+    top: 100-@nav-height;
+    width: 100vw;
+    height: @nav-height;
+
+    .previous.enabled:hover, .next.enabled:hover, .exit.enabled:hover{
+      background-color: @color300;
+    }
+
+    .previous.enabled, .next.enabled, .exit.enabled {
+
+      background-color: @color500;
+      cursor: pointer;
+      pointer-events: auto;
+
+      span {
+        display: block;
+      }
+    }
+
+    .previous.disabled, .next.disabled, exits.disabled {
+
+      background-color: @color200;
+
+      span {
+        display: block;
+      }
+    }
+
+    .previous, .next, .exit {
+      position: absolute;
+      display: flex;
+      background-color: @color200;
+      cursor: default;
+      pointer-events: none;
+
+      flex-flow: row wrap;
+      justify-content: center;
+      align-items: center;
+
+      span {
+        display: none;
+        background-color: transparent;
+      }
+    }
+
+    .previous {
+
+      width: 20vw;
+      height: @nav-height;
+
+      span {
+        top: 1.5vh;
+        width: @nav-height - 3;
+        height: @nav-height - 3;
+      }
+    }
+
+    .next {
+      right: 0;
+      width: 20vw;
+      height: @nav-height;
+
+      span {
+        top: 1.5vh;
+        width: @nav-height - 3;
+        height: @nav-height - 3;
+      }
+    }
+
+    .exit {
+      left: 20vw + @gap;
+      width: 60vw - @gap * 2;
+      height: (@nav-height / 2 ) - @gap;
+
+      span {
+        width: (@nav-height / 2 ) - @gap;
+        height: (@nav-height / 2 ) - @gap;
+      }
+    }
+
+    .progress {
+      position: absolute;
+      top: (@nav-height / 2 ) + @gap * 2;
+      left: 20vw + @gap;
+      width: 60vw - @gap * 2;
+      height: (@nav-height / 2 ) - @gap;
+      background-color: @color200;
+
+      .active {
+        position: absolute;
+        background-color: @color500;
+        height: (@nav-height / 2 ) - @gap;
+        transition-property: left;
+        transition-duration: 1s, 1s;
+      }
+
+      .complete {
+        position: absolute;
+        background-color: @color300;
+        height: (@nav-height / 2 ) - @gap;
+      }
+    }
+  }
 }
 
-.btn.previous:hover, .btn.next:hover {
-  background-color: fade(@white, 20%);
+.nav.bottom,
+.nav.active {
+  display: block;
 }
 
-.btn.previous.disabled, .btn.next.disabled {
-  opacity: 0.5;
-  cursor: inherit;
+.nav.bottom {
+  top: 100vh;
 }
 
-.btn.previous.disabled:hover, .btn.next.disabled:hover {
-  background-color: fade(@white, 0%);
-}
-
-.btn.previous {
-  left: 10px;
-  transform: rotate(180deg);
-}
-
-.btn.next {
-  right: 10px;
+.nav.active {
+  top: 0;
 }

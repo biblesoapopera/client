@@ -1,1 +1,1 @@
-bso.transition(new bso.getScreen('title', 'Title'), 'instant');
+bso.transition(new bso.getScreen('title'), 'instant');

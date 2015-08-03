@@ -1,0 +1,37 @@
+.screen .slider {
+
+  .track-container {
+    position: relative;
+    padding-top: 4vh;
+    margin-top: 5vh;
+  }
+  .track {
+    width: 60vw;
+    height: 2vh;
+    background-color: @color100;
+    border-radius: 1vh;
+  }
+
+  .grip {
+    width: 10vh;
+    height: 10vh;
+    background-color: @color500;
+    border-radius: 10vh;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+  }
+
+  .grip:hover, .grip.active {
+    background-color: @color300;
+  }
+
+  .answers {
+    .font1;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-content: center;
+    margin-top: 5vh;
+  }
+}
