@@ -2,7 +2,7 @@ $.episode = function(id){
   this.id = id;
 
   //load episode config
-  bso.load(id, this.ready.bind(this));
+  $.load(id, this.ready.bind(this));
 }
 
 $.episode.prototype.show = function(index, animate){
@@ -25,7 +25,10 @@ $.episode.prototype.hide = function(){
 }
 
 $.episode.prototype.getSlide = function(index){
-  if (this.config) return new $.screen[this.config.slides[index].type](this.config.slides[index])
+  if (this.config) {
+    if (this.config.slides[index].type === 'audio') this.config.slides[index].id = this.id;
+    return new $.screen[this.config.slides[index].type](this.config.slides[index])
+  }
 }
 
 $.episode.prototype.ready = function(config){

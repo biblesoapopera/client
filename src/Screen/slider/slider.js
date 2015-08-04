@@ -23,7 +23,8 @@ $.screen.slider = function(config){
   grip.addEventListener('touchstart', this);
   track.addEventListener('click', this);
 
-  grip.style.left = (0.30*document.documentElement.clientWidth - 0.05*document.documentElement.clientHeight) + 'px';
+
+  grip.style.left = (0.30*document.documentElement.clientWidth - 0.05*document.documentElement.clientHeight) * 100 / document.documentElement.clientWidth + 'vw';
 }
 
 $.extend($.screen.slide, $.screen.slider);
@@ -69,14 +70,14 @@ $.screen.slider.prototype.dragmove = function(evt){
 
   this.value = (newLeft + this.grip.getBoundingClientRect().width/2) / this.track.getBoundingClientRect().width;
 
-  this.grip.style.left = newLeft + 'px';
+  this.grip.style.left = newLeft * 100 / document.documentElement.clientWidth + 'vw';
   this.position.left = newLeft;
   this.position.client = clientX;
 }
 
 $.screen.slider.prototype.trackClick = function(evt){
   var newLeft = evt.clientX - this.track.getBoundingClientRect().left - this.grip.getBoundingClientRect().width/2;
-  this.grip.style.left = newLeft + 'px';
+  this.grip.style.left = newLeft * 100 / document.documentElement.clientWidth + 'vw';
   this.gripMoved((newLeft + this.grip.getBoundingClientRect().width/2) / this.track.getBoundingClientRect().width);
 }
 

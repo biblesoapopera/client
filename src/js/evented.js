@@ -1,4 +1,5 @@
-bso.evented = function(context){
+/*
+$.evented = function(context){
   var registry = {};
 
   context.on = function(eventName, handler){
@@ -21,3 +22,4 @@ bso.evented = function(context){
     }
   }
 }
+*/

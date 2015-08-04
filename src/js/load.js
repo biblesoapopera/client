@@ -1,4 +1,4 @@
-bso.load = function (epId, cb) {
+$.load = function (epId, cb) {
 
   var xhr = new XMLHttpRequest();
   xhr.open('GET', epId + '/slides.json', true);

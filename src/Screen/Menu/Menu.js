@@ -1,4 +1,4 @@
-bso.series = [
+$.series = [
   {
     title: 'The drama begins here',
     subtitle: 'episode subtitle',
@@ -53,8 +53,8 @@ $.screen.menu = function(){
   node.innerHTML = '<div class="wrap"></div>';
   node = node.children[0];
 
-  for(i=0;i<bso.series.length;i++){
-    data = bso.series[i];
+  for(i=0;i<$.series.length;i++){
+    data = $.series[i];
     epNode = document.createElement('div');
     epNode.setAttribute('class', 'episode');
     epNode.innerHTML = episodeHTML;

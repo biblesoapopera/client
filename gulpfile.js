@@ -29,7 +29,7 @@ var sourcePaths = {
     }
   },
   dist: {
-    js: ['src/js/main.js', 'src/js/extend.js', 'src/screen/screen.js', 'src/screen/slide/slide.js', 'src/transition/transition.js', 'src/**/*.js'],
+    js: ['src/js/main.js', 'src/js/extend.js', 'src/js/getScreen.js', 'src/screen/screen.js', 'src/screen/slide/slide.js', 'src/transition/transition.js', 'src/**/*.js'],
     mainless: ['src/less/main.less'],
     less: ['src/less/**/*.less'],
     twig: ['src/twig/**/*.twig', '!src/twig/include/**/*'],

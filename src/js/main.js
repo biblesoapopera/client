@@ -19,5 +19,3 @@ function $(){ //jshint ignore:line
   };
 }
 
-//TODO remove this line
-var bso = {}

@@ -1,28 +1,7 @@
 {
   "title": "Demo Episode: Bible Soap Opera",
   "subtitle": "Learn the whole Bible. Find Jesus in every story.",
-  "overview": [
-    {
-      "type": "info",
-      "title": "Introduction"
-    },
-    {
-      "type": "listen",
-      "title": "drama"
-    },
-    {
-      "type": "discuss",
-      "title": "discussion"
-    },
-    {
-      "type": "listen",
-      "title": "drama"
-    },
-    {
-      "type": "info",
-      "title": "Lessons"
-    }
-  ],
+  "summary": "This episode contains the pilot audio dram with accompanying disucssion question.",
   "slides": [
     {
       "type": "html",
