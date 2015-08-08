@@ -42,7 +42,7 @@ $.nav = (function(){
 
       index = val;
 
-      if (index < length -1) {
+      if (index < length - 1) {
         next.href = '#episode/' + id + '/' + (parseInt(index) + 1);
         next.classList.remove('enabled', 'disabled');
         next.classList.add('disabled');
@@ -65,7 +65,7 @@ $.nav = (function(){
       if (!val) return
 
       next.classList.remove('enabled', 'disabled');
-      next.classList.add('enabled');
+      if (index < length - 1) next.classList.add('enabled');
 
       if (index > maxComplete) {
         maxComplete = index;

@@ -7,11 +7,11 @@ $.screen.pick = function(config){
 
   for (var i = 0; i < config.answers.length; i++) {
     var answer = config.answers[i];
-    var li = document.createElement('li');
-    li.innerHTML = answer.value;
-    li.answerIndex = i;
-    li.addEventListener('click', this.itemClick.bind(this));
-    answerList.appendChild(li);
+    var div = document.createElement('div');
+    div.innerHTML = answer.value;
+    div.answerIndex = i;
+    div.addEventListener('click', this.itemClick.bind(this));
+    answerList.appendChild(div);
   }
 }
 
