@@ -15,9 +15,9 @@ $.screen.slide.prototype.enter = function(){
   if (this.complete) $.nav.complete = true;
 }
 
-$.screen.slide.prototype.isComplete = function(){
-  this.complete = true;
-  $.nav.complete = true;
+$.screen.slide.prototype.setComplete = function(val){
+  this.complete = val;
+  $.nav.complete = val;
 }
 
 $.screen.slide.prototype.attempt = function(answer){
@@ -32,7 +32,7 @@ $.screen.slide.prototype.attempt = function(answer){
   attemptObj.complete = this.checkComplete(attemptObj);
   attemptObj.feedback = this.feedbackContent(attemptObj, answer.feedback);
 
-  if (attemptObj.complete) this.isComplete();
+  this.setComplete(attemptObj.complete);
 
   return attemptObj;
 };

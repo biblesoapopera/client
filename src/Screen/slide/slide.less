@@ -6,10 +6,11 @@
   padding: 5vh 5vw;
   height: 90 - @nav-height;
   width: 90vw;
+  overflow-y: auto;
 
   .content {
-    height: 100%;
-    width: 100%;
+    min-height: 90 - @nav-height;
+    width: 90vw;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;

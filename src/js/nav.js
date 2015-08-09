@@ -62,14 +62,17 @@ $.nav = (function(){
 
     set complete(val){
 
-      if (!val) return
+      if (val){
+        next.classList.remove('enabled', 'disabled');
+        if (index < length - 1) next.classList.add('enabled');
 
-      next.classList.remove('enabled', 'disabled');
-      if (index < length - 1) next.classList.add('enabled');
-
-      if (index > maxComplete) {
-        maxComplete = index;
-        complete.style.width = (progress.getBoundingClientRect().width * 100 * (maxComplete + 1)) / (document.documentElement.clientWidth * length) + 'vw';
+        if (index > maxComplete) {
+          maxComplete = index;
+          complete.style.width = (progress.getBoundingClientRect().width * 100 * (maxComplete + 1)) / (document.documentElement.clientWidth * length) + 'vw';
+        }
+      } else {
+        next.classList.add('disabled');
+        next.classList.remove('enabled');
       }
     }
   }

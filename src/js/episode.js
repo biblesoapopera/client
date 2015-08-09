@@ -39,14 +39,9 @@ $.episode.prototype.ready = function(config){
   $.animate($.getScreen('episode/' + this.id + '/' + this.index), 'instant');
 }
 
-$.episode.prototype.next = function(){
-  this.index++;
-  $.nav.index = this.index;
-  $.animate($.getScreen('episode/' + this.id + '/' + this.index), 'right');
-}
-
-$.episode.prototype.previous = function(){
-  this.index--;
-  $.nav.index = this.index;
-  $.animate($.getScreen('episode/' + this.id + '/' + this.index), 'left');
+$.episode.prototype.changeSlide = function(index){
+  var dir = index > this.index ? 'right' : 'left';
+  this.index = index;;
+  $.nav.index = index;
+  $.animate($.getScreen('episode/' + this.id + '/' + index), dir);
 }
