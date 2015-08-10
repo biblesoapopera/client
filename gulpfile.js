@@ -17,7 +17,7 @@ if (argv.dist) buildType = 'dist'
 
 var sourcePaths = {
   dev: {
-    js: ['src/js/main.js', 'src/js/extend.js', 'src/js/getScreen.js', 'src/screen/screen.js', 'src/screen/slide/slide.js', 'src/transition/transition.js', 'src/**/*.js', 'tools/livereload.js'],
+    js: ['src/js/main.js', 'src/js/extend.js', 'src/js/getScreen.js', 'src/screen/screen.js', 'src/screen/slide/slide.js', 'src/screen/slide/feedback.js', 'src/transition/transition.js', 'src/**/*.js', 'tools/livereload.js'],
     lint: ['src/**/*.js', 'test/**/*.js'],
     mainless: ['src/less/main.less'],
     less: ['src/less/**/*.less'],
@@ -29,7 +29,7 @@ var sourcePaths = {
     }
   },
   dist: {
-    js: ['src/js/main.js', 'src/js/extend.js', 'src/js/getScreen.js', 'src/screen/screen.js', 'src/screen/slide/slide.js', 'src/transition/transition.js', 'src/**/*.js'],
+    js: ['src/js/main.js', 'src/js/extend.js', 'src/js/getScreen.js', 'src/screen/screen.js', 'src/screen/slide/slide.js', 'src/screen/slide/feedback.js', 'src/transition/transition.js', 'src/**/*.js'],
     mainless: ['src/less/main.less'],
     less: ['src/less/**/*.less'],
     twig: ['src/twig/**/*.twig', '!src/twig/include/**/*'],

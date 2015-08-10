@@ -1,33 +1,33 @@
 $.screen.slider = function(config){
 
-  $.screen.slide.call(this, config);
+  $.screen.feedback.call(this, config);
 
-  var answersNode = this.content.querySelector('.answers'),
+  this.trackContainer = this.content.querySelector('.track-container');
+
+  var answerList = this.answerList = this.content.querySelector('.answers'),
     answerNode,
     width = Math.round(90/config.answers.length),
-    grip = this.grip = this.content.querySelector('.grip'),
-    track = this.track = this.content.querySelector('.track'),
+    grip = this.grip = this.trackContainer.children[1],
+    track = this.track = this.trackContainer.children[0],
     i;
 
   this.content.querySelector('.question').innerHTML = config.question;
-
 
   for (i=0; i<config.answers.length; i++){
     answerNode = document.createElement('div');
     answerNode.style.width = width + 'vw';
     answerNode.innerHTML = config.answers[i].value || '';
-    answersNode.appendChild(answerNode);
+    answerList.appendChild(answerNode);
   }
 
   grip.addEventListener('mousedown', this);
   grip.addEventListener('touchstart', this);
   track.addEventListener('click', this);
 
-
   grip.style.left = (0.30*document.documentElement.clientWidth - 0.05*document.documentElement.clientHeight) * 100 / document.documentElement.clientWidth + 'vw';
 }
 
-$.extend($.screen.slide, $.screen.slider);
+$.extend($.screen.feedback, $.screen.slider);
 
 $.screen.slider.prototype.handleEvent = function(evt){
   if (evt.type === 'mouseup') this.dragend(evt)
@@ -82,11 +82,21 @@ $.screen.slider.prototype.trackClick = function(evt){
 }
 
 $.screen.slider.prototype.gripMoved = function(newValue){
-  var answer;
-  if (newValue === 1) answer = this.config.answers[this.config.answers.length-1]
-  else answer = this.config.answers[Math.floor(newValue * this.config.answers.length)]
-  var feedback = (this.attempt(answer)).feedback;
+  var answerIndex = newValue === 1 ? this.config.answers.length-1 : Math.floor(newValue * this.config.answers.length);
+  this.showFeedback(this.answerList.children[answerIndex], this.attempt(this.config.answers[answerIndex]));
+}
 
-  //TODO show feedback in ui
-  console.log(feedback);
+$.screen.slider.prototype.showFeedback = function(target, attemptObj){
+  $.screen.feedback.prototype.showFeedback.call(this, target, attemptObj);
+  if (attemptObj.feedback.length !== 0) this.trackContainer.classList.add('inactive');
+}
+
+$.screen.slider.prototype.hideFeedback = function(){
+  $.screen.feedback.prototype.hideFeedback.call(this);
+  this.grip.style.left = (0.30*document.documentElement.clientWidth - 0.05*document.documentElement.clientHeight) * 100 / document.documentElement.clientWidth + 'vw';
+}
+
+$.screen.slider.prototype.feedbackAnimateDone = function(){
+  if (this.feedback.style.height === '0px') this.trackContainer.classList.remove('inactive')
+  $.screen.feedback.prototype.feedbackAnimateDone.call(this);
 }

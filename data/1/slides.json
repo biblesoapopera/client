@@ -110,7 +110,6 @@
           "feedback": "Sorry, David didn't say that, Samson did."
         }
       ],
-      "complete": "always",
       "feedback": {
         "complete": "Let's move on ..."
       }
