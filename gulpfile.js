@@ -10,6 +10,7 @@ var changed = require('gulp-changed');
 var jshint = require('gulp-jshint');
 var twig = require('./tools/gulpTwig');
 var functionalTestWriter = require('./tools/gulpFunctionalTestWriter');
+var series = require('./tools/gulpSeries');
 var argv = require('yargs').argv;
 
 var buildType = 'dev';
@@ -17,7 +18,19 @@ if (argv.dist) buildType = 'dist'
 
 var sourcePaths = {
   dev: {
-    js: ['src/js/main.js', 'src/js/extend.js', 'src/js/getScreen.js', 'src/screen/screen.js', 'src/screen/slide/slide.js', 'src/screen/slide/feedback.js', 'src/transition/transition.js', 'src/**/*.js', 'tools/livereload.js'],
+    js: [
+      'src/js/main.js',
+      'temp/series.js',
+      'src/js/extend.js',
+      'src/js/getScreen.js',
+      'src/screen/screen.js',
+      'src/screen/slide/slide.js',
+      'src/screen/slide/feedback.js',
+      'src/transition/transition.js',
+      'src/**/*.js',
+      'tools/livereload.js'
+    ],
+    episodes: ['data/**/slides.json'],
     lint: ['src/**/*.js', 'test/**/*.js'],
     mainless: ['src/less/main.less'],
     less: ['src/less/**/*.less'],
@@ -29,7 +42,18 @@ var sourcePaths = {
     }
   },
   dist: {
-    js: ['src/js/main.js', 'src/js/extend.js', 'src/js/getScreen.js', 'src/screen/screen.js', 'src/screen/slide/slide.js', 'src/screen/slide/feedback.js', 'src/transition/transition.js', 'src/**/*.js'],
+    js: [
+      'src/js/main.js',
+      'temp/series.js',
+      'src/js/extend.js',
+      'src/js/getScreen.js',
+      'src/screen/screen.js',
+      'src/screen/slide/slide.js',
+      'src/screen/slide/feedback.js',
+      'src/transition/transition.js',
+      'src/**/*.js'
+    ],
+    episodes: ['data/**/slides.json'],
     mainless: ['src/less/main.less'],
     less: ['src/less/**/*.less'],
     twig: ['src/twig/**/*.twig', '!src/twig/include/**/*'],
@@ -47,7 +71,13 @@ gulp.task('copy', function() {
   .pipe(gulp.dest(targetPaths[buildType]));
 });
 
-gulp.task('js', function() {
+gulp.task('series', function() {
+  return gulp.src(sourcePaths[buildType].episodes)
+  .pipe(series())
+  .pipe(gulp.dest('temp'));
+});
+
+gulp.task('js', ['series'], function() {
   return gulp.src(sourcePaths[buildType].js)
   .pipe(concat('min.js'))
   .pipe(gulpif(buildType === 'dist', uglify()))
