@@ -70,7 +70,7 @@ $.screen.slider.prototype.dragmove = function(evt){
 
   this.value = (newLeft + this.grip.getBoundingClientRect().width/2) / this.track.getBoundingClientRect().width;
 
-  this.grip.style.left = newLeft * 100 / document.documentElement.clientWidth + 'vw';
+  this.grip.style.left = newLeft + 'px';// * 100 / document.documentElement.clientWidth + 'vw';
   this.position.left = newLeft;
   this.position.client = clientX;
 }
