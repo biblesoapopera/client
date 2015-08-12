@@ -53,14 +53,19 @@
 
     .previous, .next, .exit {
       position: absolute;
-      display: flex;
       background-color: @color200;
       cursor: default;
       pointer-events: none;
 
+      display: flex;
       flex-flow: row wrap;
       justify-content: center;
       align-items: center;
+
+      display: -webkit-flex;
+      -webkit-flex-flow: row wrap;
+      -webkit-justify-content: center;
+      -webkit-align-items: center;
 
       span {
         display: none;

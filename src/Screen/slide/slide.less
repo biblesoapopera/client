@@ -11,10 +11,17 @@
   .content {
     min-height: 90 - @nav-height;
     width: 90vw;
+
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-content: center;
     align-items: center;
+
+    display: -webkit-flex;
+    -webkit-flex-flow: column nowrap;
+    -webkit-justify-content: center;
+    -webkit-align-content: center;
+    -webkit-align-items: center;
   }
 }
