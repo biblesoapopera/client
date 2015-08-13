@@ -13,8 +13,11 @@ $.player = function(id){
     if (mp3 === 'probably') extension = 'mp3'
     else if (ogg === 'probably' || ogg === 'maybe') extension = 'ogg'
     else extension = 'mp3'
-
     player.src = id + '/audio.' + extension;
+
+    player.addEventListener('canplay', function(){
+      $.player.canplay = true;
+    });
 
     $.player._instance = player;
   }

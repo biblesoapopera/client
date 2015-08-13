@@ -28,8 +28,24 @@ $.screen.audio.prototype.enter = function(){
 
   $.screen.slide.prototype.enter.call(this);
 
-  this.player.currentTime = this.currentTime;
-  this.player.addEventListener('timeupdate', this);
+  if (this.player.canplay){
+    this.player.currentTime = this.currentTime;
+    this.player.addEventListener('timeupdate', this);
+  } else {
+    //TODO this polling is really yuck coding.
+    // this will be replaced when the offline handling of audio and .bso files is brought in (issue #22)
+    var pollCanPlay = function(){
+      setTimeout(function(){
+        if (this.player.canplay){
+          this.player.currentTime = this.currentTime;
+          this.player.addEventListener('timeupdate', this);
+        } else {
+          pollCanPlay();
+        }
+      }.bind(this), 300);
+    }.bind(this);
+    pollCanPlay();
+  }
 }
 
 $.screen.audio.prototype.exit = function(){
