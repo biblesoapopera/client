@@ -1,4 +1,4 @@
-bso.load = function(id, cb){
+$.load = function(id, cb){
   setTimeout(function(){
     cb({
       title: 'Functional test',
@@ -12,5 +12,7 @@ bso.load = function(id, cb){
   },0)
 }
 
-bso.go('episode/1');
+$();
+
+location.hash = 'episode/1/0';
 

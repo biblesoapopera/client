@@ -1,5 +1,4 @@
 function $(){ //jshint ignore:line
-
   var from = location.hash.slice(1).split('/');
   var go = function(to){
 

@@ -1,6 +1,8 @@
-bso.load = function(id, cb){
+$.load = function(id, cb){
   //never return callback
   //this test will show the loading screen forever
 }
 
-bso.transition(new bso.getScreen('episode/1'), 'instant');
+$();
+
+location.hash = 'episode/1/0';
