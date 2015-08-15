@@ -1,7 +1,6 @@
 $.load = function(id, cb){
   setTimeout(function(){
     cb({
-      title: 'Functional test',
       slides: [
         {
           type: 'html',

@@ -24,7 +24,7 @@ $.screen.slider = function(config){
   grip.addEventListener('touchstart', this);
   track.addEventListener('click', this);
 
-  grip.style.left = (0.30*document.documentElement.clientWidth - 0.05*document.documentElement.clientHeight) * 100 / document.documentElement.clientWidth + 'vw';
+  this.centreGrip();
 }
 
 $.extend($.screen.feedback, $.screen.slider);
@@ -93,10 +93,14 @@ $.screen.slider.prototype.showFeedback = function(target, attemptObj){
 
 $.screen.slider.prototype.hideFeedback = function(){
   $.screen.feedback.prototype.hideFeedback.call(this);
-  this.grip.style.left = (0.30*document.documentElement.clientWidth - 0.05*document.documentElement.clientHeight) * 100 / document.documentElement.clientWidth + 'vw';
+  this.centreGrip();
 }
 
 $.screen.slider.prototype.feedbackAnimateDone = function(){
   if (this.feedback.style.height === '0px') this.trackContainer.classList.remove('inactive')
   $.screen.feedback.prototype.feedbackAnimateDone.call(this);
+}
+
+$.screen.slider.prototype.centreGrip = function(){
+  this.grip.style.left = (0.35*document.documentElement.clientWidth - 0.05*document.documentElement.clientHeight) * 100 / document.documentElement.clientWidth + 'vw';
 }

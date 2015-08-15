@@ -28,7 +28,7 @@ $.screen.audio.prototype.enter = function(){
 
   $.screen.slide.prototype.enter.call(this);
 
-  if (this.player.canplay){
+  if ($.player.canplay){
     this.player.currentTime = this.currentTime;
     this.player.addEventListener('timeupdate', this);
   } else {
@@ -36,7 +36,7 @@ $.screen.audio.prototype.enter = function(){
     // this will be replaced when the offline handling of audio and .bso files is brought in (issue #22)
     var pollCanPlay = function(){
       setTimeout(function(){
-        if (this.player.canplay){
+        if ($.player.canplay){
           this.player.currentTime = this.currentTime;
           this.player.addEventListener('timeupdate', this);
         } else {
@@ -78,7 +78,7 @@ $.screen.audio.prototype.actionClick = function(){
 $.screen.audio.prototype.progressClick = function(evt){
   var currentTime =
     this.config.start +
-    (evt.clientX - this.progress.getBoundingClientRect().left) * (this.config.end - this.config.start) / 300;
+    (evt.clientX - this.progress.getBoundingClientRect().left) * (this.config.end - this.config.start) / this.track.getBoundingClientRect().width;
 
   if (currentTime < this.config.start) currentTime = this.config.start
   else if (currentTime > this.config.end) currentTime = this.config.end
@@ -101,6 +101,7 @@ $.screen.audio.prototype.timeupdate = function(){
   if (this.player.currentTime >= this.config.end) {
     this.pause();
     this.player.currentTime = this.config.start;
+    this.progress.style.width = this.track.getBoundingClientRect().width * 100 / document.documentElement.clientWidth + 'vw';
     this.complete = true;
   }
 
