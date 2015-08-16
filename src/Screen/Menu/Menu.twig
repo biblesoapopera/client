@@ -1,15 +1,17 @@
 <div class="template menu">
-  <div>
-    <p class="title"></p>
+  <div class="content-wrap"> <!--this div is set at 100vh-->
     <div class="content">
-      <div class="about">
-        <p class="subtitle font2"></p>
-        <p class="summary font1"></p>
-      </div>
-      <p class="buttons">
-        <a href="#menu" class="back btn round up arrow shaddow0"></a>
-        <a class="start btn round down arrow shaddow0"></a>
-      </p>
+    <p class="title"></p> <!-- always visible -->
+
+    <div class="about"> <!-- becomes scrollable if the content is too long -->
+      <p class="subtitle font2"></p>
+      <p class="summary font1"></p>
     </div>
+</div>
+    <p class="buttons"> <!-- attached to the bottom of the screen -->
+      <a href="#menu" class="back btn round up arrow shaddow0"></a>
+      <a class="start btn round down arrow shaddow0"></a>
+    </p>
+
   </div>
 </div>

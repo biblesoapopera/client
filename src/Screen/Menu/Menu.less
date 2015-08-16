@@ -26,60 +26,49 @@
     height: @colapsed-height;
     border-bottom: @border-thickness solid @white;
 
-    div {
+    .content-wrap {
+
       display: flex;
       flex-flow: column nowrap;
-      justify-content: flex-start;
-
-      display: -webkit-flex;
-      -webkit-flex-flow: column nowrap;
-      -webkit-justify-content: flex-start;
-
-      height: 100vh;
-    }
-
-    .title {
-
-      a {
-        font-style: normal;
-        display: block;
-        height: 5vw;
-        width: 94vw;
-        padding: 3vh 3vw;
-      }
-
-      a:hover {
-        text-decoration: none;
-        background-color: @color300;
-      }
-    }
-
-    .content {
-
-      display: flex;
-      flex-flow: column;
       justify-content: space-between;
 
       display: -webkit-flex;
-      -webkit-flex-flow: column;
+      -webkit-flex-flow: column nowrap;
       -webkit-justify-content: space-between;
 
-      padding-left: 9vw;
-      padding-right: 9vw;
+      height: 100vh;
 
-      height: 89vh;
+      .content {
+        .title {
 
-      .about {
-        overflow-y: auto;
+          a {
+            font-style: normal;
+            display: block;
+            height: 5vw;
+            width: 94vw;
+            padding: 3vw;
+            color: @white;
+          }
 
-        .summary {
-          padding-top: 3vw;
+          a:hover {
+            text-decoration: none;
+            background-color: @color300;
+          }
+        }
+
+        .about {
+          height: 50vh;
+          padding: 0 9vw;
+          overflow-y: auto;
+
+          .summary {
+            padding-top: 3vw;
+          }
         }
       }
 
       .buttons {
-        padding-top: 9vh;
-        padding-bottom: 9vh;
+        padding: 9vh 9vw;
 
         display: flex;
         flex-flow: row;

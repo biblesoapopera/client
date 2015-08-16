@@ -47,14 +47,14 @@ $.screen.slider.prototype.dragstart = function(evt){
   ['mouseup','mousemove','touchend','touchmove'].forEach(function(name){
     document.addEventListener(name, this)
   }.bind(this));
-  this.grip.setAttribute('class', 'grip active');
+  this.grip.classList.add('active');
 }
 
 $.screen.slider.prototype.dragend = function(){
   ['mouseup','mousemove','touchend','touchmove'].forEach(function(name){
     document.removeEventListener(name, this)
   }.bind(this));
-  this.grip.setAttribute('class', 'grip');
+  this.grip.classList.remove('active');
   this.gripMoved(this.value);
 }
 
