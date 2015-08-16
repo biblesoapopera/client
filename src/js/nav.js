@@ -1,3 +1,5 @@
+/* jshint -W078 */
+
 $.nav = (function(){
   var node = document.querySelector('.nav');
   var next = node.querySelector('.next');
@@ -35,7 +37,8 @@ $.nav = (function(){
 
     set length(val){
       length = val;
-      active.style.width = (progress.getBoundingClientRect().width * 100) / (document.documentElement.clientWidth * length) + 'vw';
+      active.style.width =
+        (progress.getBoundingClientRect().width * 100) / (document.documentElement.clientWidth * length) + 'vw';
     },
 
     set index(val){
@@ -57,7 +60,8 @@ $.nav = (function(){
         previous.classList.remove('enabled', 'disabled');
       }
 
-      active.style.left = (progress.getBoundingClientRect().width * 100 * index) / (document.documentElement.clientWidth * length) + 'vw';
+      active.style.left =
+        (progress.getBoundingClientRect().width * 100 * index) / (document.documentElement.clientWidth * length) + 'vw';
     },
 
     set complete(val){
@@ -68,7 +72,9 @@ $.nav = (function(){
 
         if (index > maxComplete) {
           maxComplete = index;
-          complete.style.width = (progress.getBoundingClientRect().width * 100 * (maxComplete + 1)) / (document.documentElement.clientWidth * length) + 'vw';
+          complete.style.width =
+            (progress.getBoundingClientRect().width * 100 * (maxComplete + 1)) /
+            (document.documentElement.clientWidth * length) + 'vw';
         }
       } else {
         next.classList.add('disabled');

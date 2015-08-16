@@ -102,5 +102,7 @@ $.screen.slider.prototype.feedbackAnimateDone = function(){
 }
 
 $.screen.slider.prototype.centreGrip = function(){
-  this.grip.style.left = (0.35*document.documentElement.clientWidth - 0.05*document.documentElement.clientHeight) * 100 / document.documentElement.clientWidth + 'vw';
+  this.grip.style.left =
+    (0.35*document.documentElement.clientWidth - 0.05*document.documentElement.clientHeight) * 100 /
+    document.documentElement.clientWidth + 'vw';
 }

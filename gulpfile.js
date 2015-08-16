@@ -128,8 +128,6 @@ gulp.task('testToTwig', ['js', 'less'], function(cb){
 
 gulp.task('lint', function(){
 
-  if (buildType !== 'dev') return
-
   var jshintOptions = {
     asi: true,
     camelcase: true,

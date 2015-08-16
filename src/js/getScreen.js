@@ -12,7 +12,7 @@ $.getScreen = (function(){
         }
       } else if (/episode\/\d\/\d+/.test(id)){
         var parts = id.split('/');
-        var screen = $.getEpisode(parts[1], parts[2]).getSlide(parts[2]);
+        screen = $.getEpisode(parts[1], parts[2]).getSlide(parts[2]);
         if (screen) document.body.appendChild(screen.node);
       } else {
         screen = new $.screen[id]();

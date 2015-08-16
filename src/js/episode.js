@@ -41,7 +41,7 @@ $.episode.prototype.ready = function(config){
 
 $.episode.prototype.changeSlide = function(index){
   var dir = index > this.index ? 'right' : 'left';
-  this.index = index;;
+  this.index = index;
   $.nav.index = index;
   $.animate($.getScreen('episode/' + this.id + '/' + index), dir);
 }

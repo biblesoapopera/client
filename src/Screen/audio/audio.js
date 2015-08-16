@@ -78,7 +78,8 @@ $.screen.audio.prototype.actionClick = function(){
 $.screen.audio.prototype.progressClick = function(evt){
   var currentTime =
     this.config.start +
-    (evt.clientX - this.progress.getBoundingClientRect().left) * (this.config.end - this.config.start) / this.track.getBoundingClientRect().width;
+    (evt.clientX - this.progress.getBoundingClientRect().left) * (this.config.end - this.config.start) /
+    this.track.getBoundingClientRect().width;
 
   if (currentTime < this.config.start) currentTime = this.config.start
   else if (currentTime > this.config.end) currentTime = this.config.end
@@ -101,7 +102,9 @@ $.screen.audio.prototype.timeupdate = function(){
   if (this.player.currentTime >= this.config.end) {
     this.pause();
     this.player.currentTime = this.config.start;
-    this.progress.style.width = this.track.getBoundingClientRect().width * 100 / document.documentElement.clientWidth + 'vw';
+    this.progress.style.width =
+      this.track.getBoundingClientRect().width * 100 /
+      document.documentElement.clientWidth + 'vw';
     this.complete = true;
   }
 
@@ -110,11 +113,15 @@ $.screen.audio.prototype.timeupdate = function(){
   if (percProgress < 0) percProgress = 0
   else if (percProgress > 1) percProgress = 1
 
-  this.grip.style.left = (this.track.getBoundingClientRect().width * percProgress - this.grip.getBoundingClientRect().width / 2) * 100 / document.documentElement.clientWidth + 'vw';
+  this.grip.style.left =
+    (this.track.getBoundingClientRect().width * percProgress - this.grip.getBoundingClientRect().width / 2) * 100 /
+    document.documentElement.clientWidth + 'vw';
 
   if (this.progressTime < this.player.currentTime){
     this.progressTime = this.player.currentTime;
-    this.progress.style.width = this.track.getBoundingClientRect().width * percProgress * 100 / document.documentElement.clientWidth + 'vw';
+    this.progress.style.width =
+      this.track.getBoundingClientRect().width * percProgress * 100 /
+      document.documentElement.clientWidth + 'vw';
   }
 }
 
@@ -136,7 +143,9 @@ $.screen.audio.prototype.dragend = function(){
   }.bind(this));
 
   var currentTime =
-    this.config.start + (this.gripDragPosition.left + this.grip.getBoundingClientRect().width / 2) * (this.config.end - this.config.start) / this.track.getBoundingClientRect().width;
+    this.config.start +
+    (this.gripDragPosition.left + this.grip.getBoundingClientRect().width / 2) * (this.config.end - this.config.start) /
+    this.track.getBoundingClientRect().width;
 
   if (currentTime < this.config.start) currentTime = this.config.start
   else if (currentTime > this.config.end) currentTime = this.config.end

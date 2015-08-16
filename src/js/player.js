@@ -16,7 +16,8 @@ $.player = function(id){
     player.src = id + '/audio.' + extension;
 
     player.addEventListener('canplay', function(){
-      //TODO: this won't work if playing multiple different episodes in the same session. Needs to be fixed as part of issue #22
+      //TODO: this won't work if playing multiple different episodes in the same session.
+      //Needs to be fixed as part of issue #22
       $.player.canplay = true;
     });
 
