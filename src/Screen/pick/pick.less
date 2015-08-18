@@ -1,0 +1,33 @@
+.screen.slide .pick {
+
+  .answers {
+    margin-top: 5vh;
+    display: flex;
+    flex-flow: row wrap;
+
+    display: -webkit-flex;
+    -webkit-flex-flow: row wrap;
+
+    div {
+      .shaddow1;
+      cursor: pointer;
+      border-radius: 2vh;
+      background-color: @color500;
+      color: @white;
+      padding: 2vh 2vw;
+      margin: 2vh;
+    }
+
+    div:hover {
+      background-color: @color300;
+    }
+
+    div.active, div.active:hover {
+      background-color: @color200;
+    }
+  }
+
+  .answers.inactive {
+    pointer-events: none;
+  }
+}

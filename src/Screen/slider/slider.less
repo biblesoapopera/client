@@ -1,0 +1,54 @@
+.screen .slider {
+
+  .track-container {
+    position: relative;
+    padding-top: 4vh;
+    margin-top: 5vh;
+  }
+
+  .track-container.inactive {
+    pointer-events: none;
+  }
+
+  .track {
+    width: 70vw;
+    height: 2vh;
+    background-color: @color100;
+    border-radius: 1vh;
+  }
+
+  .grip {
+    .shaddow1;
+    width: 10vh;
+    height: 10vh;
+    background-color: @color500;
+    border-radius: 10vh;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+
+    transition-property: left;
+    transition-duration: 1s;
+  }
+
+  .grip:hover, .grip.active {
+    transition: none;
+    background-color: @color300;
+  }
+
+  .answers {
+    .font1;
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-content: center;
+
+    display: -webkit-flex;
+    -webkit-flex-flow: row wrap;
+    -webkit-justify-content: center;
+    -webkit-align-content: center;
+
+    margin-top: 5vh;
+  }
+}

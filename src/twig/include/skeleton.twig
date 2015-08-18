@@ -1,33 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{% block title %}Bible Soap Opera Demo{% endblock %}</title>
-        <meta name="description" content="An Interactive Audio Soap Opera">
-        <meta name="author" content="Tim Roediger">
-        <meta name="keywords" content="blah">
+    <title>{% block title %}Bible Soap Opera{% endblock %}</title>
 
-        <link rel="icon shortcut" type="image/png" href="data:image/png;base64,{% include '../../../temp/favicon.base64' %}" />
+    <style>{% include '../../../temp/min.css' %}</style>
+  </head>
+  <body>
 
-        <style>{% include '../../../temp/min.css' %}</style>
-    </head>
-    <body>
+    {% include '../../screen/loading/loading.twig' %}
+    {% include '../../screen/menu/menu.twig' %}
+    {% include '../../screen/slide/slide.twig' %}
+    {% include '../../screen/slide/feedback.twig' %}
 
-        {% include 'topNav.twig' %}
-        {% include 'loading.twig' %}
-        {% include 'slide.twig' %}
+    {% include '../../screen/audio/audio.twig' %}
+    {% include '../../screen/pick/pick.twig' %}
+    {% include '../../screen/slider/slider.twig' %}
 
-        {% include '../../slides/audio/audio.twig' %}
-        {% include '../../slides/html/html.twig' %}
-        {% include '../../slides/pick/pick.twig' %}
-        {% include '../../slides/slider/slider.twig' %}
-        {% include '../../slides/sort/sort.twig' %}
-        {% include '../../slides/title/title.twig' %}
-        {% include '../../slides/support/support.twig' %}
+    <div class="screen active title">
+      {% include '../../screen/title/title.twig' %}
+    </div>
 
-        <script type="application/javascript">{% include '../../../temp/min.js' %}{% block execute %}{% endblock %}</script>
-    </body>
+    {% include './nav.twig' %}
+
+    <script type="application/javascript">{% include '../../../temp/min.js' %}{% block execute %}{% endblock %}</script>
+  </body>
 </html>

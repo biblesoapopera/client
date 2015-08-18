@@ -1,40 +1,87 @@
-bso.nav = function(name, dir){
-    return {
-        create: function(goFn){
-           var btn = document.createElement('a');
-           btn.setAttribute('class', 'btn sprite ' + name);
-           btn.addEventListener('click', function(){
-               goFn(dir);
-           });
-           document.body.appendChild(btn);
-           this.disabled = false;
-           this.hidden = false;
-        },
-        render: function(){
-           var cls = 'btn sprite ' + name;
-           if (this.disabled) cls += ' disabled'
-           if (this.hidden) cls += ' hidden'
-           document.querySelector('.btn.' + name).setAttribute('class', cls);        
-        },
-        show: function(){
-           this.hidden = false;
-           this.render();
-        },
-        hide: function(){    
-           this.hidden = true;
-           this.render();       
-        },
-        enable: function(){        
-           this.disabled = false;
-           this.render();       
-        },
-        disable: function(){
-           this.disabled = true;
-           this.render();        
+/* jshint -W078 */
+
+$.nav = (function(){
+  var node = document.querySelector('.nav');
+  var next = node.querySelector('.next');
+  var previous = node.querySelector('.previous');
+  var exit = node.querySelector('.exit');
+  var progress = node.querySelector('.progress');
+  var complete = node.querySelector('.complete');
+  var active = node.querySelector('.active');
+  var id;
+  var length;
+  var index;
+  var maxComplete = -1;
+
+  var nav = {
+    show: function(animate){
+
+      if (animate){
+        node.classList.add('bottom');
+        setTimeout(function () {
+          node.classList.add('active');
+        }, 80);
+      } else {
+        node.classList.add('active', 'bottom');
+      }
+    },
+
+    hide: function(){
+      node.classList.remove('active');
+    },
+
+    set id(val){
+      id = val;
+      exit.href = '#menu/' + id;
+    },
+
+    set length(val){
+      length = val;
+      active.style.width =
+        (progress.getBoundingClientRect().width * 100) / (document.documentElement.clientWidth * length) + 'vw';
+    },
+
+    set index(val){
+
+      index = val;
+
+      if (index < length - 1) {
+        next.href = '#episode/' + id + '/' + (parseInt(index) + 1);
+        next.classList.remove('enabled', 'disabled');
+        next.classList.add('disabled');
+      } else {
+        next.classList.remove('enabled', 'disabled');
+      }
+
+      if (index > 0) {
+        previous.href = '#episode/' + id + '/' + (parseInt(index) - 1);
+        previous.classList.add('enabled');
+      } else {
+        previous.classList.remove('enabled', 'disabled');
+      }
+
+      active.style.left =
+        (progress.getBoundingClientRect().width * 100 * index) / (document.documentElement.clientWidth * length) + 'vw';
+    },
+
+    set complete(val){
+
+      if (val){
+        next.classList.remove('enabled', 'disabled');
+        if (index < length - 1) next.classList.add('enabled');
+
+        if (index > maxComplete) {
+          maxComplete = index;
+          complete.style.width =
+            (progress.getBoundingClientRect().width * 100 * (maxComplete + 1)) /
+            (document.documentElement.clientWidth * length) + 'vw';
         }
+      } else {
+        next.classList.add('disabled');
+        next.classList.remove('enabled');
+      }
     }
-}
+  }
 
-bso.next = bso.nav('next', 1);
-
-bso.previous = bso.nav('previous', -1);
+  return nav;
+})();

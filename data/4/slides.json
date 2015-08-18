@@ -1,0 +1,14 @@
+{
+  "title": "Placeholder Episode",
+  "subtitle": "There isn't actually anything here.",
+  "slides": [
+    {
+      "type": "html",
+      "content": "<p>Slide 1</p>"
+    },
+    {
+      "type": "html",
+      "content": "<p>Slide 2</p>"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+.screen.slide .audio {
+
+  .track-container {
+    position: relative;
+    padding-top: 0.75vh;
+    margin-top: 10vh;
+  }
+
+  .track {
+    width: 70vw;
+    height: 1.5vh;
+    background-color: @color100;
+    border-radius: 0.75vh;
+
+    .progress {
+      width: 0;
+      height: 1.5vh;
+      background-color: @color200;
+      border-radius: 0.75vh;
+    }
+
+    .progress:hover {
+      cursor: pointer;
+    }
+  }
+
+  .grip {
+    width: 3vh;
+    height: 3vh;
+    background-color: @color500;
+    border-radius: 1.5vh;
+    position: absolute;
+    top: 0px;
+    left: -1.5vh;
+  }
+
+  .grip:hover {
+    background-color: @color300;
+    cursor: pointer;
+  }
+
+  .btn {
+    margin-top: 15vh;
+  }
+}

@@ -1,0 +1,27 @@
+.screen.slide {
+
+  background-color: @color50;
+  color: @color700;
+
+  padding: 5vh 5vw;
+  height: 90 - @nav-height;
+  width: 90vw;
+  overflow-y: auto;
+
+  .content {
+    min-height: 90 - @nav-height;
+    width: 90vw;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+
+    display: -webkit-flex;
+    -webkit-flex-flow: column nowrap;
+    -webkit-justify-content: center;
+    -webkit-align-content: center;
+    -webkit-align-items: center;
+  }
+}

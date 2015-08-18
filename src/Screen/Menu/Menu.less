@@ -1,0 +1,102 @@
+.screen.menu.episode-active {
+  overflow: hidden;
+}
+
+.screen.menu.animate {
+  .episode {
+    transition-property: height;
+    transition-duration: 1s, 1s;
+  }
+
+  .wrap {
+    transition-property: top;
+    transition-duration: 1s, 1s;
+  }
+}
+
+.screen.menu {
+  text-align: left;
+  overflow-y: scroll;
+
+  @colapsed-height: 11vw;
+  @border-thickness: 0.4vw;
+
+  .episode {
+    overflow: hidden;
+    height: @colapsed-height;
+    border-bottom: @border-thickness solid @white;
+
+    .content-wrap {
+
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: space-between;
+
+      display: -webkit-flex;
+      -webkit-flex-flow: column nowrap;
+      -webkit-justify-content: space-between;
+
+      height: 100vh;
+
+      .content {
+        .title {
+
+          a {
+            font-style: normal;
+            display: block;
+            height: 5vw;
+            width: 94vw;
+            padding: 3vw;
+            color: @white;
+          }
+
+          a:hover {
+            text-decoration: none;
+            background-color: @color300;
+          }
+        }
+
+        .about {
+          height: 50vh;
+          padding: 0 9vw;
+          overflow-y: auto;
+
+          .summary {
+            padding-top: 3vw;
+          }
+        }
+      }
+
+      .buttons {
+        padding: 9vh 9vw;
+
+        display: flex;
+        flex-flow: row;
+        justify-content: space-between;
+
+        display: -webkit-flex;
+        -webkit-flex-flow: row;
+        -webkit-justify-content: space-between;
+      }
+    }
+  }
+
+  .episode.active {
+    height: 100vh;
+
+    .title {
+      pointer-events: none;
+      cursor: default;
+    }
+
+    a:hover{
+      background-color: inherit;
+    }
+  }
+
+  .wrap {
+    position: relative;
+    top: 0;
+  }
+}
+

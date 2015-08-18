@@ -1,0 +1,38 @@
+.screen {
+  display: none;
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background-color: @color500;
+  transition-property: left, top;
+  transition-duration: 1s, 1s;
+}
+
+.screen.left,
+.screen.right,
+.screen.top,
+.screen.bottom,
+.screen.active{
+  display: block;
+}
+
+.screen.left {
+  left: -100vw;
+}
+
+.screen.right {
+  left: 100vw;
+}
+
+.screen.top {
+  top: -100vh;
+}
+
+.screen.bottom {
+  top: 100vh;
+}
+
+.screen.active {
+  left: 0;
+  top: 0;
+}

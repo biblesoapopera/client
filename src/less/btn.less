@@ -1,9 +1,37 @@
 .btn {
-  border: 0 none;
-  border-radius: 2px 2px 2px 2px;
-  cursor: pointer;
-  background-size: 30px 30px;
-  width: 30px;
-  height: 30px; 
+  border: 0;
+  background-color: @color500;
   display: inline-block;
 }
+
+.btn:hover {
+  background-color: @color300;
+}
+
+.btn.round {
+  width: 15vh;
+  height: 15vh;
+  border-radius: 7.5vh;
+}
+
+.btn.round.small {
+  width: 10vh;
+  height: 10vh;
+  border-radius: 5vh;
+}
+
+.btn.down {
+  transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+}
+
+.btn.up {
+  transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+}
+
+.btn.right {
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+}
+

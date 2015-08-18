@@ -1,0 +1,78 @@
+.slide {
+  .feedback {
+
+    height: 0;
+    overflow: hidden;
+    transition-property: height;
+    transition-duration: 1s;
+    padding: 0 5vw;
+    width: 80vw;
+
+    .feedback-arrow {
+      width: 12vh;
+      height: 6vh;
+      position: relative;
+      overflow: hidden;
+    }
+    .feedback-arrow:after {
+      .shaddow1;
+      content: "";
+      position: absolute;
+      width: 7vh;
+      height: 7vh;
+      background-color: @color100;
+      transform: rotate(45deg);
+      -webkit-transform: rotate(45deg);
+      top: 2.5vh;
+      left: 2.5vh;
+    }
+
+    .box {
+      .shaddow1;
+      background-color: @color100;
+      border-radius: 2vh;
+
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: flex-start;
+      align-content: flex-start;
+      align-items: center;
+
+      display: -webkit-flex;
+      -webkit-flex-flow: column nowrap;
+      -webkit-justify-content: flex-start;
+      -webkit-align-content: flex-start;
+      -webkit-align-items: center;
+
+      padding: 5vh 5vw;
+
+      .actions {
+        width: 100%;
+
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+
+        display: -webkit-flex;
+        -webkit-flex-flow: row nowrap;
+        -webkit-justify-content: center;
+        -webkit-align-content: center;
+        -webkit-align-items: center;
+
+        div {
+          margin: 5vh 2.5vw 0 2.5vw;
+        }
+
+        .next {
+          display: none;
+        }
+
+        .next.active {
+          display: block;
+        }
+      }
+    }
+  }
+}
