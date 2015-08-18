@@ -120,8 +120,8 @@
       "answers": [
         {
           "value": "Samson",
-          "score": 100,
-          "feedback": "You're right! Well done."
+          "score": 0,
+          "feedback": "Sorry, Samson didn't say that, David did."
         },
         {
           "score": 50,
@@ -129,8 +129,8 @@
         },
         {
           "value": "David",
-          "score": 0,
-          "feedback": "Sorry, David didn't say that, Samson did."
+          "score": 100,
+          "feedback": "You're right! Well done."
         }
       ],
       "complete": "always",
