@@ -1,4 +1,7 @@
 function $(){ //jshint ignore:line
+
+  $.analytics.setup();
+
   var from = location.hash.slice(1).split('/');
   var go = function(to){
 
@@ -9,6 +12,7 @@ function $(){ //jshint ignore:line
     }
 
     from = to;
+    $.analytics.nav();
   }
 
   go(location.hash.slice(1))

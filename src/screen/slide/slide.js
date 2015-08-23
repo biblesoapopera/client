@@ -34,6 +34,7 @@ $.screen.slide.prototype.attempt = function(answer){
 
   this.setComplete(attemptObj.complete);
 
+  $.analytics.attempt(attemptObj);
   return attemptObj;
 };
 
